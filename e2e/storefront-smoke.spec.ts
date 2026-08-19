@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("home → filter shop by use case → open a product → add to cart", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: /herbs your grandmother would recognize/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /herbs for a healthier life/i })).toBeVisible();
 
   await page.getByRole("link", { name: "Shop Botanicals", exact: false }).click();
   await expect(page).toHaveURL(/\/shop\/type\/whole-leaves/);

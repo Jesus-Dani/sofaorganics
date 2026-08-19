@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { InstagramLogo, FacebookLogo, TiktokLogo } from "@phosphor-icons/react/dist/ssr";
-import { MEGA_MENU_COLUMNS, WHATSAPP_LINK } from "@/lib/nav-config";
+import { TYPE_FACETS_FOR_FOOTER, WHATSAPP_LINK } from "@/lib/nav-config";
 
 const FOOTER_COLUMNS = [
   {
     title: "Shop",
     links: [
       { label: "All Products", href: "/shop" },
-      ...MEGA_MENU_COLUMNS[0].facets.slice(0, 4).map((f) => ({ label: f.label, href: `/shop/type/${f.slug}` })),
+      ...TYPE_FACETS_FOR_FOOTER.slice(0, 4).map((f) => ({ label: f.label, href: `/shop/type/${f.slug}` })),
     ],
   },
   {

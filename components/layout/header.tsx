@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ShoppingCart, User } from "@phosphor-icons/react/dist/ssr";
-import { MegaMenu } from "@/components/nav/mega-menu";
+import { PrimaryNav } from "@/components/nav/primary-nav";
 import { MobileNav } from "@/components/nav/mobile-nav";
 import { SearchBar } from "@/components/nav/search-bar";
 import { useCart } from "@/components/cart/cart-context";
@@ -53,7 +53,7 @@ export function Header() {
 
       <div className="hidden border-t border-border md:block">
         <div className="wrap">
-          <MegaMenu />
+          <PrimaryNav />
         </div>
       </div>
     </header>

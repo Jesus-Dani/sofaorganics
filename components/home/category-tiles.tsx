@@ -8,18 +8,16 @@ const TILES = [
     tagline: "Roots, barks, and whole leaves, from root to bloom.",
     href: "/shop/type/whole-leaves",
     cta: "Shop Botanicals",
-    bg: "bg-secondary-tint",
-    image: "/images/products/gingko-leaves.jpeg",
-    alt: "Sofa Organics Gingko Leaves in a bowl with fresh gingko sprigs",
+    image: "/images/categories/botanicals.jpeg",
+    alt: "A circular arrangement of ground spices and botanicals in small bowls and spoons",
   },
   {
     title: "Herbs & Spices",
     tagline: "Flavorful, functional staples for the kitchen and the medicine cabinet.",
     href: "/shop/type/seeds-spices",
     cta: "Shop Herbs & Spices",
-    bg: "bg-accent-tint",
-    image: "/images/products/cayenne-pepper.jpeg",
-    alt: "Sofa Organics Cayenne Pepper beside fresh red chillies and black pepper",
+    image: "/images/categories/herbs-spices.jpeg",
+    alt: "Cinnamon sticks, walnuts, dried herbs, and turmeric powder in a stone mortar and pestle",
   },
 ];
 
@@ -39,15 +37,19 @@ export function CategoryTiles() {
             <Link
               key={tile.title}
               href={tile.href}
-              className={`group relative flex aspect-[16/11] flex-col justify-end overflow-hidden rounded-tile p-8 ${tile.bg}`}
+              className="group relative aspect-square overflow-hidden rounded-tile"
             >
-              <div className="absolute right-6 top-6 h-[62%] w-[52%] overflow-hidden rounded-tile shadow-sm transition-transform duration-500 group-hover:scale-105 md:right-8 md:top-8">
-                <Image src={tile.image} alt={tile.alt} fill className="object-cover" sizes="(min-width: 1024px) 26vw, 50vw" />
-              </div>
-              <div className="relative z-10 max-w-[55%]">
-                <h3 className="font-serif text-2xl text-text">{tile.title}</h3>
-                <p className="mt-1.5 text-sm text-text/85">{tile.tagline}</p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-text">
+              <Image
+                src={tile.image}
+                alt={tile.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-text/80 via-text/30 to-transparent p-6 pt-16">
+                <h3 className="font-serif text-2xl text-background">{tile.title}</h3>
+                <p className="mt-1.5 text-sm text-background/90">{tile.tagline}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-background">
                   {tile.cta} <ArrowRight size={14} aria-hidden />
                 </span>
               </div>

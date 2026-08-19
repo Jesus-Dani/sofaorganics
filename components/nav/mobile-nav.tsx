@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Accordion from "@radix-ui/react-accordion";
-import { List, X, CaretDown, PawPrint } from "@phosphor-icons/react/dist/ssr";
-import { MEGA_MENU_COLUMNS, USE_CASE_COLUMN } from "@/lib/nav-config";
+import { List, X, CaretDown } from "@phosphor-icons/react/dist/ssr";
+import { PRIMARY_NAV } from "@/lib/nav-config";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -29,52 +29,62 @@ export function MobileNav() {
             </Dialog.Close>
           </div>
 
-          <nav className="flex flex-col gap-1">
-            <Link href="/shop" onClick={() => setOpen(false)} className="py-3 text-base text-text">
-              Shop All
-            </Link>
-
+          <nav className="flex flex-col">
             <Accordion.Root type="multiple" className="border-t border-border">
-              {[...MEGA_MENU_COLUMNS, USE_CASE_COLUMN].map((column) => (
-                <Accordion.Item key={column.title} value={column.title} className="border-b border-border">
-                  <Accordion.Header>
-                    <Accordion.Trigger className="group flex w-full items-center justify-between py-3.5 text-left text-base text-text">
-                      {column.title}
-                      <CaretDown size={14} aria-hidden className="transition-transform group-data-[state=open]:rotate-180" />
-                    </Accordion.Trigger>
-                  </Accordion.Header>
-                  <Accordion.Content className="overflow-hidden pb-3">
-                    <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
-                      {column.facets.map((facet) => (
-                        <li key={facet.slug}>
-                          <Link
-                            href={`${column.basePath}/${facet.slug}`}
-                            onClick={() => setOpen(false)}
-                            className="text-sm text-text-muted hover:text-primary"
-                          >
-                            {facet.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </Accordion.Content>
-                </Accordion.Item>
-              ))}
+              {PRIMARY_NAV.map((item) => {
+                if (item.kind === "link") {
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={`block border-b border-border py-3.5 text-base ${item.accent ? "font-semibold text-accent" : "text-text"}`}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <Accordion.Item key={item.label} value={item.label} className="border-b border-border">
+                    <Accordion.Header>
+                      <Accordion.Trigger className="group flex w-full items-center justify-between py-3.5 text-left text-base text-text">
+                        {item.label}
+                        <CaretDown size={14} aria-hidden className="transition-transform group-data-[state=open]:rotate-180" />
+                      </Accordion.Trigger>
+                    </Accordion.Header>
+                    <Accordion.Content className="overflow-hidden pb-3">
+                      <ul className="space-y-2.5">
+                        {item.allHref && (
+                          <li>
+                            <Link
+                              href={item.allHref}
+                              onClick={() => setOpen(false)}
+                              className="text-sm font-semibold text-primary"
+                            >
+                              {item.allLabel ?? "Shop All"}
+                            </Link>
+                          </li>
+                        )}
+                        {item.facets.map((facet) => (
+                          <li key={facet.slug}>
+                            <Link
+                              href={`${item.basePath}/${facet.slug}`}
+                              onClick={() => setOpen(false)}
+                              className="text-sm text-text-muted hover:text-primary"
+                            >
+                              {facet.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </Accordion.Content>
+                  </Accordion.Item>
+                );
+              })}
             </Accordion.Root>
 
-            <Link
-              href="/shop?pet_safe=1"
-              onClick={() => setOpen(false)}
-              className="mt-4 flex items-center gap-2 text-sm font-medium text-primary"
-            >
-              <PawPrint size={16} weight="bold" aria-hidden />
-              Shop pet-safe products →
-            </Link>
-
-            <div className="mt-6 flex flex-col gap-3 border-t border-border pt-6 text-sm">
-              <Link href="/about" onClick={() => setOpen(false)}>Our Story</Link>
-              <Link href="/blog" onClick={() => setOpen(false)}>Journal</Link>
-              <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+            <div className="mt-6 flex flex-col gap-3 text-sm">
               <Link href="/account" onClick={() => setOpen(false)}>Account</Link>
             </div>
           </nav>
