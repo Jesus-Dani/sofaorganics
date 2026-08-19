@@ -12,12 +12,17 @@ export interface ProductVariant {
 }
 
 export interface ProductImage {
+  /** Present for images that came from Supabase (all real rows); absent for local seed placeholders. */
+  id?: string;
   src: string;
   alt: string;
+  sortOrder?: number;
   isPlaceholder: boolean;
 }
 
 export interface ProductFacetTag {
+  /** Present when sourced from the live DB (all real rows); used by the admin tag picker. */
+  facetId?: string;
   facetType: FacetType;
   label: string;
   slug: string;

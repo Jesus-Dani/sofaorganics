@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 // Design tokens per UI Design Doc §2-4. Do not add ad hoc colors/fonts here —
 // every value traces back to the "Sage Garden" palette and the locked type/shape rules.
@@ -63,9 +64,28 @@ const config: Config = {
         md: "1024px",
         lg: "1440px",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "#49392C",
+            "--tw-prose-headings": "#49392C",
+            "--tw-prose-links": "#4E5026",
+            "--tw-prose-bold": "#49392C",
+            "--tw-prose-quotes": "#49392C",
+            "--tw-prose-quote-borders": "#CB6843",
+            "--tw-prose-bullets": "#8A7B6E",
+            "--tw-prose-hr": "#E4DFD3",
+            fontFamily: "var(--font-karla)",
+            h1: { fontFamily: "var(--font-playfair)", fontWeight: "500" },
+            h2: { fontFamily: "var(--font-playfair)", fontWeight: "500" },
+            h3: { fontFamily: "var(--font-playfair)", fontWeight: "500" },
+            blockquote: { fontFamily: "var(--font-playfair)", fontStyle: "italic" },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 
 export default config;

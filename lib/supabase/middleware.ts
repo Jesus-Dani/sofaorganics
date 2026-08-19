@@ -20,9 +20,11 @@ export async function updateSupabaseSession(request: NextRequest) {
     },
   });
 
-  // Refreshes the auth session (used once checkout offers account creation) — the
-  // call itself is what triggers the cookie refresh, the result isn't otherwise needed here.
-  await supabase.auth.getUser();
+  // Refreshes the auth session (used once checkout offers account creation, and
+  // to gate /admin below) — the call itself is what triggers the cookie refresh.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return response;
+  return { response, supabase, user };
 }

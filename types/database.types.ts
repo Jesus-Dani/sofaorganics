@@ -13,6 +13,7 @@ export type ProductStatus = "draft" | "published" | "archived";
 export type FacetType = "type" | "origin" | "use_case";
 export type OrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled" | "refunded";
 export type OrderSource = "online" | "manual";
+export type BlogPostStatus = "draft" | "published";
 
 export interface Database {
   public: {
@@ -228,8 +229,47 @@ export interface Database {
           },
         ];
       };
+      admin_users: {
+        Row: { id: string; created_at: string };
+        Insert: { id: string; created_at?: string };
+        Update: Partial<Database["public"]["Tables"]["admin_users"]["Insert"]>;
+        Relationships: [];
+      };
+      blog_posts: {
+        Row: {
+          id: string;
+          title: string;
+          slug: string;
+          body_richtext: string;
+          cover_image_path: string | null;
+          status: BlogPostStatus;
+          related_product_ids: string[];
+          published_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["blog_posts"]["Row"], "id" | "created_at" | "updated_at"> & {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["blog_posts"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Functions: {
+      is_admin: {
+        Args: { uid: string };
+        Returns: boolean;
+      };
+      admin_bootstrap_available: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+      claim_admin_bootstrap: {
+        Args: Record<string, never>;
+        Returns: void;
+      };
       create_guest_order: {
         Args: {
           p_cart_items: { variant_id: string; quantity: number }[];
@@ -300,3 +340,4 @@ export type ProductImageRow = Database["public"]["Tables"]["product_images"]["Ro
 export type FacetRow = Database["public"]["Tables"]["facets"]["Row"];
 export type ShippingRuleRow = Database["public"]["Tables"]["shipping_rules"]["Row"];
 export type TaxRuleRow = Database["public"]["Tables"]["tax_rules"]["Row"];
+export type BlogPostRow = Database["public"]["Tables"]["blog_posts"]["Row"];
