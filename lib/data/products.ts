@@ -105,9 +105,13 @@ export async function getFeaturedProducts(limit = 5): Promise<Product[]> {
     .from("products")
     .select(PRODUCT_SELECT)
     .eq("status", "published")
-    .order("created_at", { ascending: true })
-    .limit(limit);
+    .order("created_at", { ascending: true });
 
   if (error) throw error;
-  return (data as unknown as ProductQueryRow[]).map(mapProductRow);
+
+  // Homepage bestsellers only shows products with real photography — a
+  // placeholder tile looks unfinished in this row (the full /shop grid is
+  // where placeholder products belong, since that's the whole catalog).
+  const products = (data as unknown as ProductQueryRow[]).map(mapProductRow);
+  return products.filter((p) => p.images.length > 0).slice(0, limit);
 }
