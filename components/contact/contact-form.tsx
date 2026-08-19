@@ -36,7 +36,7 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="border border-primary/40 bg-primary-tint px-5 py-4 text-sm text-text">
-        Thanks — we&apos;ve noted your message. For a faster reply, message us directly on WhatsApp.
+        Thanks, we&apos;ve noted your message. For a faster reply, message us directly on WhatsApp.
       </div>
     );
   }

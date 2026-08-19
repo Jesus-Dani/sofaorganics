@@ -22,7 +22,7 @@ const karla = Karla({
 
 export const metadata: Metadata = {
   title: {
-    default: "Sofa Organics — Ayurvedic & African Herbs, Spices, and Oils",
+    default: "Sofa Organics: Ayurvedic & African Herbs, Spices, and Oils",
     template: "%s | Sofa Organics",
   },
   description:

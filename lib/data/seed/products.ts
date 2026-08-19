@@ -52,11 +52,11 @@ const REAL_PRODUCTS: Product[] = [
     name: "Chia Seeds",
     slug: "chia-seeds",
     description:
-      "Whole, unroasted chia seeds with their natural mottled black-and-white color intact. Soak into puddings, stir into smoothies, or fold into baking. A traditional gut-and-heart-supporting staple, valued for its fibre and natural mucilage. A small amount is a common addition to pet meals — see the pet-safe notes below for guidance.",
+      "Whole, unroasted chia seeds with their natural mottled black-and-white color intact. Soak into puddings, stir into smoothies, or fold into baking. Traditionally used to support digestion and heart health, thanks to their fibre and natural mucilage. A small amount is also a common addition to pet meals; see the pet-safe notes below for guidance.",
     status: "published",
     isPetSafe: true,
     petSafeNote:
-      "A teaspoon of soaked (never dry) chia seeds is a common addition to a dog's meal for fibre. Introduce gradually and always soak first — dry seeds can swell in the throat. Check with your vet for cats or animals with existing conditions.",
+      "A teaspoon of soaked (never dry) chia seeds is a common addition to a dog's meal for fibre. Introduce it gradually and always soak the seeds first, since dry seeds can swell in the throat. Check with your vet first for cats or animals with existing conditions.",
     images: [{ src: "/images/products/chia-seeds.jpeg", alt: "Sofa Organics Chia Seeds kraft pouch showing the whole seeds through the window", isPlaceholder: false }],
     variants: [
       variant("100g", 2800, 55, "SO-CHI-100"),
@@ -71,7 +71,7 @@ const REAL_PRODUCTS: Product[] = [
     name: "Gingko Leaves",
     slug: "gingko-leaves",
     description:
-      "Dried, hand-cut gingko biloba leaves for steeping into tea or preparing your own tincture. One of the oldest botanicals in traditional practice, gingko is reached for as part of routines built around focus and mental clarity. Steep 1–2 teaspoons in hot water for 8–10 minutes.",
+      "Dried, hand-cut gingko biloba leaves for steeping into tea or preparing your own tincture. One of the oldest botanicals in traditional practice, gingko is often used to support focus and mental clarity. Steep 1 to 2 teaspoons in hot water for 8 to 10 minutes.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "/images/products/gingko-leaves.jpeg", alt: "Sofa Organics Gingko Leaves kraft pouch beside a bowl of dried leaves, a wooden spoon, and a dropper bottle", isPlaceholder: false }],
@@ -87,7 +87,7 @@ const REAL_PRODUCTS: Product[] = [
     name: "Moringa Root Extract Powder",
     slug: "moringa-root-extract-powder",
     description:
-      "A concentrated extract powder milled from moringa root, a plant long relied on across West African herbal practice. Mix a small measure into water or juice. Traditionally used to support the body's natural defenses and everyday vitality — start with a small amount to see how it suits you.",
+      "A concentrated extract powder milled from moringa root, a plant long relied on across West African herbal practice. Mix a small measure into water or juice. Traditionally used to support the body's natural defenses and everyday vitality. Start with a small amount to see how it suits you.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "/images/products/moringa-root-extract-powder.jpeg", alt: "Sofa Organics Moringa Root Extract Powder kraft pouch showing the fine tan powder through the window", isPlaceholder: false }],
@@ -127,7 +127,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Triphala Powder",
     slug: "triphala-powder",
     description:
-      "A traditional Ayurvedic blend of three dried fruits — amla, bibhitaki, and haritaki — ground fine. Stirred into warm water, it's one of the most reached-for staples for everyday digestive support in Ayurvedic practice.",
+      "A traditional Ayurvedic blend of three dried fruits (amla, bibhitaki, and haritaki), ground fine. Stirred into warm water, it's one of the most common everyday picks for digestive support in Ayurvedic practice.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Bowl of fine olive-toned triphala powder", isPlaceholder: true }],
@@ -143,7 +143,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Ashwagandha Root",
     slug: "ashwagandha-root",
     description:
-      "Whole, dried ashwagandha root pieces for simmering into a traditional decoction. A cornerstone of Ayurvedic practice, ashwagandha is reached for as part of routines built around steady stress response and restful sleep.",
+      "Whole, dried ashwagandha root pieces for simmering into a traditional decoction. A cornerstone of Ayurvedic practice, it's commonly worked into evening routines to support a steadier response to stress and better sleep.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Dried whole ashwagandha root pieces in a wooden bowl", isPlaceholder: true }],
@@ -174,7 +174,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Olive Leaves",
     slug: "olive-leaves",
     description:
-      "Whole, air-dried olive leaves for a mild, herbaceous infusion. A staple of Mediterranean-African herbal tradition, olive leaf tea is a longstanding pick for everyday immune and heart-health routines.",
+      "Whole, air-dried olive leaves for a mild, herbaceous infusion. Part of Mediterranean and African herbal tradition alike, olive leaf tea has long been a daily habit for supporting immune function and heart health.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Dried whole olive leaves in a linen-lined bowl", isPlaceholder: true }],
@@ -190,7 +190,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Wormwood",
     slug: "wormwood",
     description:
-      "Dried wormwood leaf and stem, cut for steeping into a traditional bitter infusion. Long used across African herbal practice as part of routines built around digestive comfort. Its flavor is intensely bitter by design — start with a short steep.",
+      "Dried wormwood leaf and stem, cut for steeping into a traditional bitter infusion. Long used across African herbal practice to ease digestive discomfort. Its flavor is intensely bitter by design, so start with a short steep.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Dried wormwood leaf and stem in a wooden bowl", isPlaceholder: true }],
@@ -205,7 +205,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Black Walnut Hull",
     slug: "black-walnut-hull",
     description:
-      "Dried, cracked black walnut hull for simmering into a traditional decoction. A longstanding African herbal staple, reached for as part of digestive-support and clear-skin routines.",
+      "Dried, cracked black walnut hull for simmering into a traditional decoction. A longstanding staple of African herbal practice, used to support digestion and clearer-looking skin.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Dried black walnut hull pieces in a wooden bowl", isPlaceholder: true }],
@@ -220,7 +220,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Whole Cloves",
     slug: "whole-cloves",
     description:
-      "Sun-dried whole clove buds with their deep, warming aroma intact. A cooking and wellness staple in equal measure — simmer a few into tea, or grind fresh as needed for the fullest flavor and support for everyday digestion and immunity.",
+      "Sun-dried whole clove buds with their deep, warming aroma intact. Just as at home in the kitchen as in a wellness routine. Simmer a few into tea, or grind fresh as needed for the fullest flavor.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Whole dried clove buds in a small wooden bowl" , isPlaceholder: true }],
@@ -251,7 +251,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Jojoba Oil",
     slug: "jojoba-oil",
     description:
-      "Light, close-to-skin's-own jojoba oil that absorbs without a greasy finish. A gentle daily pick for face, body, and scalp — and a common base oil in homemade pet paw and nose balms.",
+      "Light, close-to-skin's-own jojoba oil that absorbs without a greasy finish. A gentle daily pick for face, body, and scalp, and a common base oil in homemade pet paw and nose balms.",
     status: "published",
     isPetSafe: true,
     petSafeNote:
@@ -285,7 +285,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Raw Shea Butter",
     slug: "raw-shea-butter",
     description:
-      "Unrefined, ivory-toned shea butter, hand-whipped from shea nuts in the West African tradition it's named for. Rich and deeply moisturizing — scoop a small amount and warm it between your palms before applying.",
+      "Unrefined, ivory-toned shea butter, hand-whipped from shea nuts in the West African tradition it's named for. Rich and deeply moisturizing. Scoop a small amount and warm it between your palms before applying.",
     status: "published",
     isPetSafe: true,
     petSafeNote: "Raw shea butter is a common ingredient in homemade paw-balm recipes. Apply a thin layer and monitor to make sure your pet doesn't lick it off immediately.",
@@ -302,7 +302,7 @@ const PLACEHOLDER_PRODUCTS: Product[] = [
     name: "Frankincense Oil",
     slug: "frankincense-oil",
     description:
-      "Steam-distilled frankincense oil from resin tapped in the Horn of Africa tradition. Warm, resinous, and grounding — a drop or two blended into a carrier oil is a longstanding pick for evening wind-down and post-movement massage routines.",
+      "Steam-distilled frankincense oil from resin tapped in the Horn of Africa tradition. Warm, resinous, and grounding. A drop or two blended into a carrier oil suits an evening wind-down or a post-workout massage equally well.",
     status: "published",
     isPetSafe: false,
     images: [{ src: "", alt: "Amber dropper bottle of frankincense oil beside resin tears", isPlaceholder: true }],

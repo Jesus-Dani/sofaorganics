@@ -69,7 +69,7 @@ export function CreateAccountPrompt({ orderId, defaultEmail }: { orderId: string
   if (status === "needs-confirmation") {
     return (
       <div className="mt-8 border border-primary/40 bg-primary-tint px-5 py-4 text-sm text-text">
-        Almost there — check your email to confirm your new account. Order history and Buy Again
+        Almost there. Check your email to confirm your new account. Order history and Buy Again
         arrive with the full Accounts phase; this order is safely on record either way.
       </div>
     );
@@ -79,7 +79,7 @@ export function CreateAccountPrompt({ orderId, defaultEmail }: { orderId: string
     <div className="mt-8 border border-border p-6">
       <h2 className="font-serif text-lg">Save your details for next time?</h2>
       <p className="mt-1 text-sm text-text-muted">
-        Optional — create an account and this order will be attached to it. Full order history and
+        Optional: create an account and this order will be attached to it. Full order history and
         Buy Again are coming in a later phase.
       </p>
       <form onSubmit={onSubmit} className="mt-4 grid gap-4 sm:grid-cols-2">

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Our Story",
-  description: "Sofa Organics is built around a functional-medicine approach to herbalism — root causes, not formulations.",
+  description: "Sofa Organics is built around a functional-medicine approach to herbalism, focused on root causes rather than pre-made formulations.",
 };
 
 export default function AboutPage() {
@@ -17,8 +17,8 @@ export default function AboutPage() {
           </h1>
           <div className="mt-6 max-w-lg space-y-4 text-[15px] leading-relaxed text-text-muted">
             <p>
-              Sofa Organics started with a simple frustration: most herbal shops sell blends — pre-mixed,
-              proprietary, and impossible to actually understand. Behind Sofa Organics is a master
+              Sofa Organics started with a simple frustration: most herbal shops sell blends that are
+              pre-mixed, proprietary, and impossible to actually understand. Behind Sofa Organics is a master
               herbalist who practices functional medicine, meaning the starting question is always
               &ldquo;what&apos;s the root cause?&rdquo; rather than &ldquo;what can I sell you?&rdquo;
             </p>
@@ -26,7 +26,7 @@ export default function AboutPage() {
               That&apos;s why every product here is sold as itself. No secret formulations, no
               proprietary blends you can&apos;t look up. If it&apos;s cayenne pepper, the bag says
               cayenne pepper, and the description tells you what it&apos;s traditionally used to
-              support — plainly, honestly, without promising it will cure anything.
+              support, plainly and honestly, without promising it will cure anything.
             </p>
             <p>
               The catalog spans two traditions we trust: Ayurvedic staples like ashwagandha and

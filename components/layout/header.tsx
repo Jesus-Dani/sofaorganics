@@ -13,7 +13,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 bg-background">
       <div className="bg-primary py-2.5 text-center text-[13px] text-background">
-        Order by WhatsApp for same-day Port Harcourt pickup —{" "}
+        Order by WhatsApp for same-day Port Harcourt pickup,{" "}
         <a href="/contact" className="underline">
           reach us here
         </a>

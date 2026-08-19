@@ -17,8 +17,8 @@ export default function DisclaimerPage() {
         qualified healthcare provider before using any herbal product.
       </p>
       <p>
-        Pet-safe notes on individual product pages are general guidance, not veterinary advice —
-        check with your vet before introducing any new product to your pet&apos;s routine.
+        Pet-safe notes on individual product pages are general guidance, not veterinary advice.
+        Check with your vet before introducing any new product to your pet&apos;s routine.
       </p>
     </LegalPage>
   );

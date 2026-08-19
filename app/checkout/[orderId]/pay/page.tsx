@@ -20,8 +20,8 @@ export default async function PayPage({ params }: { params: { orderId: string } 
       <p className="eyebrow mb-4">Order #{order.id.slice(0, 8)}</p>
       <h1 className="text-[28px]">Complete your payment</h1>
       <p className="mt-4 text-text-muted">
-        Real Paystack isn&apos;t connected yet — this button stands in for it so the flow is fully
-        testable. It marks the order paid exactly the way the real webhook will.
+        Real Paystack isn&apos;t connected yet, so this button stands in for it and keeps the flow
+        fully testable. It marks the order paid exactly the way the real webhook will.
       </p>
       <PaySimulator orderId={order.id} grandTotal={order.grand_total} currency={order.currency} />
     </div>

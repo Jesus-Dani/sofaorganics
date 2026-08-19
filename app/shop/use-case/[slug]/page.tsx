@@ -28,7 +28,7 @@ export default function ShopByUseCasePage({
     <ShopView
       query={query}
       title={facet.label}
-      description="Traditionally used to support this area of wellness — always paired with a plain-language explanation on the product page, never a cure claim."
+      description="Traditionally used to support this area of wellness, always paired with a plain-language explanation on the product page, never a cure claim."
     />
   );
 }

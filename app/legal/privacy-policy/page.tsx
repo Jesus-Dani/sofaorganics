@@ -7,8 +7,8 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalPage title="Privacy Policy">
       <p>
-        We collect the information needed to fulfil an order — name, contact details, and shipping
-        address — and, if you create an account, your order history and saved details.
+        We collect the information needed to fulfil an order (name, contact details, and shipping
+        address), and, if you create an account, your order history and saved details.
       </p>
       <p>
         Payment is processed by Paystack; we never see or store your full card details. We use your

@@ -51,7 +51,7 @@ export function AddToCartForm({ product }: { product: Product }) {
                     className="flex cursor-pointer items-center justify-between gap-6 px-4 py-2.5 text-sm text-text outline-none data-[highlighted]:bg-background-alt data-[disabled]:cursor-not-allowed data-[disabled]:text-text-muted"
                   >
                     <Select.ItemText>
-                      {v.sizeLabel} — {formatCurrency(v.price, v.currency)}
+                      {v.sizeLabel} · {formatCurrency(v.price, v.currency)}
                       {v.stockStatus === "out_of_stock" ? " (Out of Stock)" : ""}
                     </Select.ItemText>
                     <Select.ItemIndicator>

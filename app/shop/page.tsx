@@ -4,7 +4,7 @@ import { ShopView } from "@/components/shop/shop-view";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Ayurvedic and African herbs, spices, and oils — filterable by type, origin, use case, and pet-safety.",
+  description: "Ayurvedic and African herbs, spices, and oils, filterable by type, origin, use case, and pet-safety.",
 };
 
 export default function ShopPage({

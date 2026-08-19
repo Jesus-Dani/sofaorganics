@@ -36,8 +36,8 @@ export function Footer() {
         <div className="col-span-2">
           <span className="block font-serif text-2xl font-semibold text-text">SOFA Organics</span>
           <p className="mt-3 max-w-xs text-sm text-text-muted">
-            Ayurvedic and African herbs, spices, and oils, guided by a functional-medicine approach —
-            rooted in tradition, sold with a wellness-support promise, never a cure claim.
+            Ayurvedic and African herbs, spices, and oils, guided by a functional-medicine approach.
+            Rooted in tradition, sold with a wellness-support promise, never a cure claim.
           </p>
           <div className="mt-5 flex items-center gap-4">
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary underline">

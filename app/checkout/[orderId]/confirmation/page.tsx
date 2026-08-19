@@ -19,12 +19,12 @@ export default async function ConfirmationPage({ params }: { params: { orderId: 
       <div className="text-center">
         <CheckCircle size={40} weight="fill" className="mx-auto text-primary" aria-hidden />
         <p className="eyebrow mt-4 mb-2">
-          Order #{order.id.slice(0, 8)} — {order.status === "paid" ? "Paid" : order.status}
+          Order #{order.id.slice(0, 8)} · {order.status === "paid" ? "Paid" : order.status}
         </p>
         <h1 className="text-[28px]">Thank you, {order.guest_name?.split(" ")[0] ?? "there"}.</h1>
         <p className="mt-2 text-text-muted">
           We&apos;ve got your order. A confirmation would normally go to {order.guest_email}, though
-          email sending isn&apos;t wired up yet — this page is the record for now.
+          email sending isn&apos;t wired up yet, so this page is the record for now.
         </p>
       </div>
 

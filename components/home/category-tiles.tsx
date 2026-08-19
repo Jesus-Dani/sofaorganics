@@ -5,7 +5,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 const TILES = [
   {
     title: "Botanicals",
-    tagline: "Roots, barks, and whole leaves — from root to bloom.",
+    tagline: "Roots, barks, and whole leaves, from root to bloom.",
     href: "/shop/type/whole-leaves",
     cta: "Shop Botanicals",
     bg: "bg-secondary-tint",

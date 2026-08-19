@@ -11,7 +11,7 @@ export default function AccountPage() {
       <h1 className="text-[28px]">Accounts are on the way.</h1>
       <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-text-muted">
         Sign-in, order history, and wishlist are being built next. For now, browse the shop as a
-        guest — your cart stays on this device — or reach us on WhatsApp for anything account-related.
+        guest (your cart stays on this device), or reach us on WhatsApp for anything account-related.
       </p>
       <div className="mt-7 flex items-center justify-center gap-4">
         <Link href="/shop" className="bg-primary px-6 py-3 text-sm font-medium text-background">

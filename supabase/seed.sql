@@ -4,197 +4,197 @@
 truncate table product_facets, product_images, product_variants, products, facets restart identity cascade;
 
 -- Facets (type / origin / use_case)
-insert into facets (id, facet_type, label, slug) values ('f47e42de-fcd4-4f92-909b-d617ce00e4cc', 'type', 'Powders', 'powders');
-insert into facets (id, facet_type, label, slug) values ('09e56965-e7e2-4ac7-8ecd-a2687848da9d', 'type', 'Oils', 'oils');
-insert into facets (id, facet_type, label, slug) values ('f04830d8-e6c6-4281-ad30-35730c551c1f', 'type', 'Whole Leaves', 'whole-leaves');
-insert into facets (id, facet_type, label, slug) values ('9c6a7e07-534c-4cd0-ac49-067887157dae', 'type', 'Roots', 'roots');
-insert into facets (id, facet_type, label, slug) values ('7136538f-ad7e-47c8-ab6c-ee3af17e179a', 'type', 'Barks', 'barks');
-insert into facets (id, facet_type, label, slug) values ('ae5f9cec-cc77-4139-8aaf-74bb3f4d3025', 'type', 'Seeds & Spices', 'seeds-spices');
-insert into facets (id, facet_type, label, slug) values ('655d1277-e3d4-4179-88ad-d9b30aed5413', 'origin', 'Ayurvedic', 'ayurvedic');
-insert into facets (id, facet_type, label, slug) values ('67905d9d-0a45-452f-9dbd-df88ef290126', 'origin', 'African', 'african');
-insert into facets (id, facet_type, label, slug) values ('ea0f0848-db86-4856-a0e0-62a5e7c9479e', 'use_case', 'Digestion & Gut Health', 'digestion-gut-health');
-insert into facets (id, facet_type, label, slug) values ('581ad5ad-a933-42a9-99b9-f0714e66d220', 'use_case', 'Male Reproductive Health', 'male-reproductive-health');
-insert into facets (id, facet_type, label, slug) values ('51d12053-460d-4288-89fd-23cd919b9503', 'use_case', 'Female Reproductive Health', 'female-reproductive-health');
-insert into facets (id, facet_type, label, slug) values ('97ba120a-a538-41fd-af5d-085965e50035', 'use_case', 'Hormonal Balance', 'hormonal-balance');
-insert into facets (id, facet_type, label, slug) values ('077ea120-39f5-4f15-af06-ed841a0ee873', 'use_case', 'Immune Support', 'immune-support');
-insert into facets (id, facet_type, label, slug) values ('f3fc50c0-3371-4f67-a7dc-737a215ad37d', 'use_case', 'Stress & Sleep Support', 'stress-sleep-support');
-insert into facets (id, facet_type, label, slug) values ('41276bb8-ca92-464e-bbb1-fc23232bc6b7', 'use_case', 'Skin Care', 'skin-care');
-insert into facets (id, facet_type, label, slug) values ('57feba67-3ec3-42fc-8d2f-0b189b136ba6', 'use_case', 'Hair Care', 'hair-care');
-insert into facets (id, facet_type, label, slug) values ('aed21c24-26b8-41ef-9631-1e20fabc93bc', 'use_case', 'Joint & Mobility Support', 'joint-mobility-support');
-insert into facets (id, facet_type, label, slug) values ('fb806c15-923d-43b2-bc24-9a715890ff82', 'use_case', 'Metabolic Wellness', 'metabolic-wellness');
-insert into facets (id, facet_type, label, slug) values ('e4780b71-ad98-4879-8172-db65d4d7fd30', 'use_case', 'Heart Health', 'heart-health');
-insert into facets (id, facet_type, label, slug) values ('b8ae1945-1256-42ed-9780-157e8cebe095', 'use_case', 'Blood Pressure Support', 'blood-pressure-support');
-insert into facets (id, facet_type, label, slug) values ('f3afb2f3-f04b-4336-a708-8608a41303a4', 'use_case', 'Memory & Focus', 'memory-focus');
+insert into facets (id, facet_type, label, slug) values ('ff453f64-ad25-4b27-ad2b-6366dcb4cc02', 'type', 'Powders', 'powders');
+insert into facets (id, facet_type, label, slug) values ('a724c0df-a980-4506-b2d8-c323187cb673', 'type', 'Oils', 'oils');
+insert into facets (id, facet_type, label, slug) values ('4ac0f1a0-8583-411a-8137-5217b57d8f2a', 'type', 'Whole Leaves', 'whole-leaves');
+insert into facets (id, facet_type, label, slug) values ('b575b25d-aed7-4b3d-8a7f-fbd36ba84fb4', 'type', 'Roots', 'roots');
+insert into facets (id, facet_type, label, slug) values ('ff7eef86-e1b3-4b23-86f2-719be2521287', 'type', 'Barks', 'barks');
+insert into facets (id, facet_type, label, slug) values ('29997bc9-861b-4c59-87b2-745394ca0181', 'type', 'Seeds & Spices', 'seeds-spices');
+insert into facets (id, facet_type, label, slug) values ('ffc0b626-c773-4c35-b28f-f65363057f9b', 'origin', 'Ayurvedic', 'ayurvedic');
+insert into facets (id, facet_type, label, slug) values ('3701886b-55ac-4f55-824d-10a355c2189e', 'origin', 'African', 'african');
+insert into facets (id, facet_type, label, slug) values ('1dc3e690-7627-4df6-94d1-6327100c11cf', 'use_case', 'Digestion & Gut Health', 'digestion-gut-health');
+insert into facets (id, facet_type, label, slug) values ('c5ced096-664e-4f1e-89b3-62f86bd2b44f', 'use_case', 'Male Reproductive Health', 'male-reproductive-health');
+insert into facets (id, facet_type, label, slug) values ('bea4a4ae-dd41-4078-9eff-03e60874b19b', 'use_case', 'Female Reproductive Health', 'female-reproductive-health');
+insert into facets (id, facet_type, label, slug) values ('530853af-82d6-4161-93db-ef3d062e1750', 'use_case', 'Hormonal Balance', 'hormonal-balance');
+insert into facets (id, facet_type, label, slug) values ('201b4c8f-0378-4a45-b5f8-6826c3b19ba0', 'use_case', 'Immune Support', 'immune-support');
+insert into facets (id, facet_type, label, slug) values ('a1edd207-8462-4d84-ba2c-04e0458c9cb9', 'use_case', 'Stress & Sleep Support', 'stress-sleep-support');
+insert into facets (id, facet_type, label, slug) values ('aa38ed59-489b-44f6-ab86-66d92d6118f5', 'use_case', 'Skin Care', 'skin-care');
+insert into facets (id, facet_type, label, slug) values ('d0fae58b-f0d9-4448-8ea6-d7eb30e335ea', 'use_case', 'Hair Care', 'hair-care');
+insert into facets (id, facet_type, label, slug) values ('f3d1200f-28a8-45f3-b3b6-8f00f8251bc7', 'use_case', 'Joint & Mobility Support', 'joint-mobility-support');
+insert into facets (id, facet_type, label, slug) values ('9d4b5fa6-294f-4eac-9137-918464ae05d1', 'use_case', 'Metabolic Wellness', 'metabolic-wellness');
+insert into facets (id, facet_type, label, slug) values ('49bd8950-bf58-448c-8353-adf18053a489', 'use_case', 'Heart Health', 'heart-health');
+insert into facets (id, facet_type, label, slug) values ('8b721008-5f1c-42c6-ac7d-6771dc4c80bc', 'use_case', 'Blood Pressure Support', 'blood-pressure-support');
+insert into facets (id, facet_type, label, slug) values ('ffb970ce-2b83-4784-96ea-29604e69f1d5', 'use_case', 'Memory & Focus', 'memory-focus');
 
 -- Cayenne Pepper
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('bd8d9201-80d4-4bf4-b53f-2f25abc8b166', 'Cayenne Pepper', 'cayenne-pepper', 'Ground from sun-ripened cayenne pods, this fiery red powder is a kitchen staple across West African cooking and a traditional pick for warming, circulation-supporting blends. Stir a pinch into teas, soups, or tonics. Traditionally used to support healthy circulation and metabolism as part of a balanced diet.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('077516a4-5882-48f9-aa5f-14487eea5811', 'bd8d9201-80d4-4bf4-b53f-2f25abc8b166', '100g', 3500, 'NGN', 42, 10, false, 'SO-CAY-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('2f5135e1-5c8c-4260-8497-0333b74b88fe', 'bd8d9201-80d4-4bf4-b53f-2f25abc8b166', '250g', 7500, 'NGN', 18, 10, false, 'SO-CAY-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('9cc3df7b-d906-443d-8fd1-bbcd722133ea', 'bd8d9201-80d4-4bf4-b53f-2f25abc8b166', '500g', 13500, 'NGN', 6, 10, false, 'SO-CAY-500');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('b4663456-fce9-4046-8e08-fd233c603c81', 'bd8d9201-80d4-4bf4-b53f-2f25abc8b166', '1kg', 24000, 'NGN', 0, 10, false, 'SO-CAY-1000');
-insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('4c386b66-6694-4aba-a642-2df1cb23c919', 'bd8d9201-80d4-4bf4-b53f-2f25abc8b166', '/images/products/cayenne-pepper.jpeg', 'Sofa Organics Cayenne Pepper kraft pouch beside a bowl of ground cayenne and fresh chillies', 0);
-insert into product_facets (product_id, facet_id) values ('bd8d9201-80d4-4bf4-b53f-2f25abc8b166', 'f47e42de-fcd4-4f92-909b-d617ce00e4cc');
-insert into product_facets (product_id, facet_id) values ('bd8d9201-80d4-4bf4-b53f-2f25abc8b166', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('bd8d9201-80d4-4bf4-b53f-2f25abc8b166', 'fb806c15-923d-43b2-bc24-9a715890ff82');
-insert into product_facets (product_id, facet_id) values ('bd8d9201-80d4-4bf4-b53f-2f25abc8b166', 'e4780b71-ad98-4879-8172-db65d4d7fd30');
-insert into product_facets (product_id, facet_id) values ('bd8d9201-80d4-4bf4-b53f-2f25abc8b166', 'ea0f0848-db86-4856-a0e0-62a5e7c9479e');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('c0b2193d-aaa3-4c0f-865f-7ada6fe68208', 'Cayenne Pepper', 'cayenne-pepper', 'Ground from sun-ripened cayenne pods, this fiery red powder is a kitchen staple across West African cooking and a traditional pick for warming, circulation-supporting blends. Stir a pinch into teas, soups, or tonics. Traditionally used to support healthy circulation and metabolism as part of a balanced diet.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('5451f23d-5057-43a0-83ca-e33960c8addd', 'c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '100g', 3500, 'NGN', 42, 10, false, 'SO-CAY-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('1b5a806e-a0f6-4341-b4e5-63fc2d1ad3c8', 'c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '250g', 7500, 'NGN', 18, 10, false, 'SO-CAY-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('f990994a-bae3-48b2-b0b1-be1b0b0b3839', 'c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '500g', 13500, 'NGN', 6, 10, false, 'SO-CAY-500');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('3c4c38ce-a4fd-401d-84c2-5aa91db0abc9', 'c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '1kg', 24000, 'NGN', 0, 10, false, 'SO-CAY-1000');
+insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('e8a52c2c-fab3-4ed6-b042-501d5fc93aaf', 'c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '/images/products/cayenne-pepper.jpeg', 'Sofa Organics Cayenne Pepper kraft pouch beside a bowl of ground cayenne and fresh chillies', 0);
+insert into product_facets (product_id, facet_id) values ('c0b2193d-aaa3-4c0f-865f-7ada6fe68208', 'ff453f64-ad25-4b27-ad2b-6366dcb4cc02');
+insert into product_facets (product_id, facet_id) values ('c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '9d4b5fa6-294f-4eac-9137-918464ae05d1');
+insert into product_facets (product_id, facet_id) values ('c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '49bd8950-bf58-448c-8353-adf18053a489');
+insert into product_facets (product_id, facet_id) values ('c0b2193d-aaa3-4c0f-865f-7ada6fe68208', '1dc3e690-7627-4df6-94d1-6327100c11cf');
 
 -- Chia Seeds
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('94852761-bcea-43f7-9150-b417f232bcbd', 'Chia Seeds', 'chia-seeds', 'Whole, unroasted chia seeds with their natural mottled black-and-white color intact. Soak into puddings, stir into smoothies, or fold into baking. A traditional gut-and-heart-supporting staple, valued for its fibre and natural mucilage. A small amount is a common addition to pet meals — see the pet-safe notes below for guidance.', 'published', true, 'A teaspoon of soaked (never dry) chia seeds is a common addition to a dog''s meal for fibre. Introduce gradually and always soak first — dry seeds can swell in the throat. Check with your vet for cats or animals with existing conditions.');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('a7c6908b-02bc-40ae-8d28-a6dc61ed3599', '94852761-bcea-43f7-9150-b417f232bcbd', '100g', 2800, 'NGN', 55, 10, false, 'SO-CHI-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('3c204f1c-1f0b-4db0-9710-67f68eb8757a', '94852761-bcea-43f7-9150-b417f232bcbd', '250g', 6000, 'NGN', 30, 10, false, 'SO-CHI-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('0627ecc7-eb40-479a-a36c-4507c69fab7e', '94852761-bcea-43f7-9150-b417f232bcbd', '500g', 10500, 'NGN', 12, 10, false, 'SO-CHI-500');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('9bc8b90b-cebc-4922-b9e9-b30466e1137d', '94852761-bcea-43f7-9150-b417f232bcbd', '1kg', 19000, 'NGN', 8, 10, false, 'SO-CHI-1000');
-insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('ad958e4e-fe6e-483f-a300-ff6c0b3e0f64', '94852761-bcea-43f7-9150-b417f232bcbd', '/images/products/chia-seeds.jpeg', 'Sofa Organics Chia Seeds kraft pouch showing the whole seeds through the window', 0);
-insert into product_facets (product_id, facet_id) values ('94852761-bcea-43f7-9150-b417f232bcbd', 'ae5f9cec-cc77-4139-8aaf-74bb3f4d3025');
-insert into product_facets (product_id, facet_id) values ('94852761-bcea-43f7-9150-b417f232bcbd', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('94852761-bcea-43f7-9150-b417f232bcbd', 'ea0f0848-db86-4856-a0e0-62a5e7c9479e');
-insert into product_facets (product_id, facet_id) values ('94852761-bcea-43f7-9150-b417f232bcbd', 'e4780b71-ad98-4879-8172-db65d4d7fd30');
-insert into product_facets (product_id, facet_id) values ('94852761-bcea-43f7-9150-b417f232bcbd', 'fb806c15-923d-43b2-bc24-9a715890ff82');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('6113d790-a142-439c-8cc5-531323bcb2ea', 'Chia Seeds', 'chia-seeds', 'Whole, unroasted chia seeds with their natural mottled black-and-white color intact. Soak into puddings, stir into smoothies, or fold into baking. Traditionally used to support digestion and heart health, thanks to their fibre and natural mucilage. A small amount is also a common addition to pet meals; see the pet-safe notes below for guidance.', 'published', true, 'A teaspoon of soaked (never dry) chia seeds is a common addition to a dog''s meal for fibre. Introduce it gradually and always soak the seeds first, since dry seeds can swell in the throat. Check with your vet first for cats or animals with existing conditions.');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('52d8fc7d-92b6-4193-bc99-3ff73f5bfab9', '6113d790-a142-439c-8cc5-531323bcb2ea', '100g', 2800, 'NGN', 55, 10, false, 'SO-CHI-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('226da50b-b93d-46fa-aca4-8cb74b32eb34', '6113d790-a142-439c-8cc5-531323bcb2ea', '250g', 6000, 'NGN', 30, 10, false, 'SO-CHI-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('b601abf6-bd27-4caa-a114-3ed07fd9c3ae', '6113d790-a142-439c-8cc5-531323bcb2ea', '500g', 10500, 'NGN', 12, 10, false, 'SO-CHI-500');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('41c04e74-e259-4415-a71d-0adb53fa69be', '6113d790-a142-439c-8cc5-531323bcb2ea', '1kg', 19000, 'NGN', 8, 10, false, 'SO-CHI-1000');
+insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('462f509d-7c34-4cd8-aaa6-f8ced22e8472', '6113d790-a142-439c-8cc5-531323bcb2ea', '/images/products/chia-seeds.jpeg', 'Sofa Organics Chia Seeds kraft pouch showing the whole seeds through the window', 0);
+insert into product_facets (product_id, facet_id) values ('6113d790-a142-439c-8cc5-531323bcb2ea', '29997bc9-861b-4c59-87b2-745394ca0181');
+insert into product_facets (product_id, facet_id) values ('6113d790-a142-439c-8cc5-531323bcb2ea', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('6113d790-a142-439c-8cc5-531323bcb2ea', '1dc3e690-7627-4df6-94d1-6327100c11cf');
+insert into product_facets (product_id, facet_id) values ('6113d790-a142-439c-8cc5-531323bcb2ea', '49bd8950-bf58-448c-8353-adf18053a489');
+insert into product_facets (product_id, facet_id) values ('6113d790-a142-439c-8cc5-531323bcb2ea', '9d4b5fa6-294f-4eac-9137-918464ae05d1');
 
 -- Gingko Leaves
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('a033c7b5-335f-4f9c-91c2-8537b50471a9', 'Gingko Leaves', 'gingko-leaves', 'Dried, hand-cut gingko biloba leaves for steeping into tea or preparing your own tincture. One of the oldest botanicals in traditional practice, gingko is reached for as part of routines built around focus and mental clarity. Steep 1–2 teaspoons in hot water for 8–10 minutes.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('7aa5c899-438b-463b-8e41-9659f11569da', 'a033c7b5-335f-4f9c-91c2-8537b50471a9', '100g', 4200, 'NGN', 38, 10, false, 'SO-GIN-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('8c448131-1a39-4dda-93e2-d509a8040e02', 'a033c7b5-335f-4f9c-91c2-8537b50471a9', '250g', 9000, 'NGN', 14, 10, false, 'SO-GIN-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('bad227c4-4978-47d6-a49a-546f8ca4d303', 'a033c7b5-335f-4f9c-91c2-8537b50471a9', '500g', 16000, 'NGN', 4, 10, false, 'SO-GIN-500');
-insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('ada101c9-6ade-4f82-b4d0-b9f27c397b37', 'a033c7b5-335f-4f9c-91c2-8537b50471a9', '/images/products/gingko-leaves.jpeg', 'Sofa Organics Gingko Leaves kraft pouch beside a bowl of dried leaves, a wooden spoon, and a dropper bottle', 0);
-insert into product_facets (product_id, facet_id) values ('a033c7b5-335f-4f9c-91c2-8537b50471a9', 'f04830d8-e6c6-4281-ad30-35730c551c1f');
-insert into product_facets (product_id, facet_id) values ('a033c7b5-335f-4f9c-91c2-8537b50471a9', '655d1277-e3d4-4179-88ad-d9b30aed5413');
-insert into product_facets (product_id, facet_id) values ('a033c7b5-335f-4f9c-91c2-8537b50471a9', 'f3afb2f3-f04b-4336-a708-8608a41303a4');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', 'Gingko Leaves', 'gingko-leaves', 'Dried, hand-cut gingko biloba leaves for steeping into tea or preparing your own tincture. One of the oldest botanicals in traditional practice, gingko is often used to support focus and mental clarity. Steep 1 to 2 teaspoons in hot water for 8 to 10 minutes.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('42527427-d368-4f2f-b014-a772aa62ce12', 'ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', '100g', 4200, 'NGN', 38, 10, false, 'SO-GIN-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('fffa48ba-a527-471d-aa45-6040615a3903', 'ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', '250g', 9000, 'NGN', 14, 10, false, 'SO-GIN-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('8bd6719f-c01c-4254-9a41-35e39e05b894', 'ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', '500g', 16000, 'NGN', 4, 10, false, 'SO-GIN-500');
+insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('1d9fff37-3e8d-4e9d-a242-ce46c3516fc3', 'ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', '/images/products/gingko-leaves.jpeg', 'Sofa Organics Gingko Leaves kraft pouch beside a bowl of dried leaves, a wooden spoon, and a dropper bottle', 0);
+insert into product_facets (product_id, facet_id) values ('ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', '4ac0f1a0-8583-411a-8137-5217b57d8f2a');
+insert into product_facets (product_id, facet_id) values ('ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', 'ffc0b626-c773-4c35-b28f-f65363057f9b');
+insert into product_facets (product_id, facet_id) values ('ecb4ca90-3d0a-46b1-800b-299eb7cb77b2', 'ffb970ce-2b83-4784-96ea-29604e69f1d5');
 
 -- Moringa Root Extract Powder
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('bec0e46e-179a-4f3b-bdd5-59dd507617b3', 'Moringa Root Extract Powder', 'moringa-root-extract-powder', 'A concentrated extract powder milled from moringa root, a plant long relied on across West African herbal practice. Mix a small measure into water or juice. Traditionally used to support the body''s natural defenses and everyday vitality — start with a small amount to see how it suits you.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('0f5c601e-9699-4982-b518-62144659231e', 'bec0e46e-179a-4f3b-bdd5-59dd507617b3', '100g', 4800, 'NGN', 26, 10, false, 'SO-MOR-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('d25d39fc-7a28-4f2d-aa1a-13b004ef03b8', 'bec0e46e-179a-4f3b-bdd5-59dd507617b3', '250g', 10500, 'NGN', 9, 10, false, 'SO-MOR-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('31b12d2f-364e-4ebf-8945-ba9a16c35915', 'bec0e46e-179a-4f3b-bdd5-59dd507617b3', '500g', 19000, 'NGN', 0, 10, false, 'SO-MOR-500');
-insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('f6cb022e-b83e-4e99-b52d-0c6e5700a50b', 'bec0e46e-179a-4f3b-bdd5-59dd507617b3', '/images/products/moringa-root-extract-powder.jpeg', 'Sofa Organics Moringa Root Extract Powder kraft pouch showing the fine tan powder through the window', 0);
-insert into product_facets (product_id, facet_id) values ('bec0e46e-179a-4f3b-bdd5-59dd507617b3', 'f47e42de-fcd4-4f92-909b-d617ce00e4cc');
-insert into product_facets (product_id, facet_id) values ('bec0e46e-179a-4f3b-bdd5-59dd507617b3', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('bec0e46e-179a-4f3b-bdd5-59dd507617b3', '077ea120-39f5-4f15-af06-ed841a0ee873');
-insert into product_facets (product_id, facet_id) values ('bec0e46e-179a-4f3b-bdd5-59dd507617b3', '581ad5ad-a933-42a9-99b9-f0714e66d220');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('2f634719-320d-4161-93bd-0dd4801951bb', 'Moringa Root Extract Powder', 'moringa-root-extract-powder', 'A concentrated extract powder milled from moringa root, a plant long relied on across West African herbal practice. Mix a small measure into water or juice. Traditionally used to support the body''s natural defenses and everyday vitality. Start with a small amount to see how it suits you.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('b6d2fb1a-ab28-48fd-9982-d0f0153e20ac', '2f634719-320d-4161-93bd-0dd4801951bb', '100g', 4800, 'NGN', 26, 10, false, 'SO-MOR-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('efd34a69-ba54-433f-a193-ad3dd4bfc701', '2f634719-320d-4161-93bd-0dd4801951bb', '250g', 10500, 'NGN', 9, 10, false, 'SO-MOR-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('0b05854b-475b-4e0a-b241-026bf49a9d09', '2f634719-320d-4161-93bd-0dd4801951bb', '500g', 19000, 'NGN', 0, 10, false, 'SO-MOR-500');
+insert into product_images (id, product_id, storage_path, alt_text, sort_order) values ('8137d0cf-c44f-4e98-9cd4-e678f0db2b62', '2f634719-320d-4161-93bd-0dd4801951bb', '/images/products/moringa-root-extract-powder.jpeg', 'Sofa Organics Moringa Root Extract Powder kraft pouch showing the fine tan powder through the window', 0);
+insert into product_facets (product_id, facet_id) values ('2f634719-320d-4161-93bd-0dd4801951bb', 'ff453f64-ad25-4b27-ad2b-6366dcb4cc02');
+insert into product_facets (product_id, facet_id) values ('2f634719-320d-4161-93bd-0dd4801951bb', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('2f634719-320d-4161-93bd-0dd4801951bb', '201b4c8f-0378-4a45-b5f8-6826c3b19ba0');
+insert into product_facets (product_id, facet_id) values ('2f634719-320d-4161-93bd-0dd4801951bb', 'c5ced096-664e-4f1e-89b3-62f86bd2b44f');
 
 -- Hexane-Free Castor Oil
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', 'Hexane-Free Castor Oil', 'hexane-free-castor-oil', 'Cold-pressed and hexane-free, this thick, pale-gold castor oil is a scalp and skin staple across both African and Ayurvedic beauty traditions. Warm a small amount between your palms before massaging into hair ends or dry skin.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('9b8455d6-49b7-41c1-be1f-f16555e396e0', '4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '100ml', 5200, 'NGN', 33, 10, false, 'SO-CAS-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('22b0fb35-56b7-48ea-9b4b-e16ff17e02fe', '4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '250ml', 11000, 'NGN', 20, 10, false, 'SO-CAS-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('f3502837-ffd8-43e9-9fbb-2cdd97eb1206', '4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '500ml', 19500, 'NGN', 7, 10, false, 'SO-CAS-500');
-insert into product_facets (product_id, facet_id) values ('4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '09e56965-e7e2-4ac7-8ecd-a2687848da9d');
-insert into product_facets (product_id, facet_id) values ('4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '655d1277-e3d4-4179-88ad-d9b30aed5413');
-insert into product_facets (product_id, facet_id) values ('4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '57feba67-3ec3-42fc-8d2f-0b189b136ba6');
-insert into product_facets (product_id, facet_id) values ('4b0598ba-9c9b-4010-9e8c-24e6df10e9fc', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('a4391267-c669-4d6f-a458-6ecd6612f9b4', 'Hexane-Free Castor Oil', 'hexane-free-castor-oil', 'Cold-pressed and hexane-free, this thick, pale-gold castor oil is a scalp and skin staple across both African and Ayurvedic beauty traditions. Warm a small amount between your palms before massaging into hair ends or dry skin.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('3a42f8c2-6d1a-4cbb-8358-e54bf270415f', 'a4391267-c669-4d6f-a458-6ecd6612f9b4', '100ml', 5200, 'NGN', 33, 10, false, 'SO-CAS-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('d3b3a152-15c2-4bb6-8d99-0ae66a4a07a3', 'a4391267-c669-4d6f-a458-6ecd6612f9b4', '250ml', 11000, 'NGN', 20, 10, false, 'SO-CAS-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('802916d8-03d6-49b9-98b9-6e4ae8fcada6', 'a4391267-c669-4d6f-a458-6ecd6612f9b4', '500ml', 19500, 'NGN', 7, 10, false, 'SO-CAS-500');
+insert into product_facets (product_id, facet_id) values ('a4391267-c669-4d6f-a458-6ecd6612f9b4', 'a724c0df-a980-4506-b2d8-c323187cb673');
+insert into product_facets (product_id, facet_id) values ('a4391267-c669-4d6f-a458-6ecd6612f9b4', 'ffc0b626-c773-4c35-b28f-f65363057f9b');
+insert into product_facets (product_id, facet_id) values ('a4391267-c669-4d6f-a458-6ecd6612f9b4', 'd0fae58b-f0d9-4448-8ea6-d7eb30e335ea');
+insert into product_facets (product_id, facet_id) values ('a4391267-c669-4d6f-a458-6ecd6612f9b4', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
 
 -- Triphala Powder
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('cce0a4d9-5449-4445-85eb-4811744035fa', 'Triphala Powder', 'triphala-powder', 'A traditional Ayurvedic blend of three dried fruits — amla, bibhitaki, and haritaki — ground fine. Stirred into warm water, it''s one of the most reached-for staples for everyday digestive support in Ayurvedic practice.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('e7dbcb73-ba91-4438-b1f0-4068fc2277ab', 'cce0a4d9-5449-4445-85eb-4811744035fa', '100g', 3200, 'NGN', 40, 10, false, 'SO-TRI-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('5adf5633-85d0-4306-a411-e75dbef93e64', 'cce0a4d9-5449-4445-85eb-4811744035fa', '250g', 7000, 'NGN', 22, 10, false, 'SO-TRI-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('ae7bdadb-d2dd-4fcf-bcca-c9ce4d6c07d1', 'cce0a4d9-5449-4445-85eb-4811744035fa', '500g', 12500, 'NGN', 10, 10, false, 'SO-TRI-500');
-insert into product_facets (product_id, facet_id) values ('cce0a4d9-5449-4445-85eb-4811744035fa', 'f47e42de-fcd4-4f92-909b-d617ce00e4cc');
-insert into product_facets (product_id, facet_id) values ('cce0a4d9-5449-4445-85eb-4811744035fa', '655d1277-e3d4-4179-88ad-d9b30aed5413');
-insert into product_facets (product_id, facet_id) values ('cce0a4d9-5449-4445-85eb-4811744035fa', 'ea0f0848-db86-4856-a0e0-62a5e7c9479e');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('2cc5bbaf-cb62-42b5-a493-1442ca572f4e', 'Triphala Powder', 'triphala-powder', 'A traditional Ayurvedic blend of three dried fruits (amla, bibhitaki, and haritaki), ground fine. Stirred into warm water, it''s one of the most common everyday picks for digestive support in Ayurvedic practice.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('4ecfbb72-2994-4a46-b7a8-0909b4c2d69a', '2cc5bbaf-cb62-42b5-a493-1442ca572f4e', '100g', 3200, 'NGN', 40, 10, false, 'SO-TRI-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('b8000059-efa3-4c89-a2f1-ee7788cc0a5a', '2cc5bbaf-cb62-42b5-a493-1442ca572f4e', '250g', 7000, 'NGN', 22, 10, false, 'SO-TRI-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('43387ca7-eac2-4b48-bf6f-e354cdc6c7f7', '2cc5bbaf-cb62-42b5-a493-1442ca572f4e', '500g', 12500, 'NGN', 10, 10, false, 'SO-TRI-500');
+insert into product_facets (product_id, facet_id) values ('2cc5bbaf-cb62-42b5-a493-1442ca572f4e', 'ff453f64-ad25-4b27-ad2b-6366dcb4cc02');
+insert into product_facets (product_id, facet_id) values ('2cc5bbaf-cb62-42b5-a493-1442ca572f4e', 'ffc0b626-c773-4c35-b28f-f65363057f9b');
+insert into product_facets (product_id, facet_id) values ('2cc5bbaf-cb62-42b5-a493-1442ca572f4e', '1dc3e690-7627-4df6-94d1-6327100c11cf');
 
 -- Ashwagandha Root
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('27fe120c-7ad5-4ca8-a51a-c9047effc76e', 'Ashwagandha Root', 'ashwagandha-root', 'Whole, dried ashwagandha root pieces for simmering into a traditional decoction. A cornerstone of Ayurvedic practice, ashwagandha is reached for as part of routines built around steady stress response and restful sleep.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('30a77d67-e641-4197-8bb2-921124c1cfcc', '27fe120c-7ad5-4ca8-a51a-c9047effc76e', '100g', 3800, 'NGN', 29, 10, false, 'SO-ASH-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('0e3aca29-9f9f-4c36-9eea-36c0c22f1f3b', '27fe120c-7ad5-4ca8-a51a-c9047effc76e', '250g', 8200, 'NGN', 11, 10, false, 'SO-ASH-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('c35bc580-6db0-48a4-a87c-3987e56a73a7', '27fe120c-7ad5-4ca8-a51a-c9047effc76e', '500g', 15000, 'NGN', 0, 10, false, 'SO-ASH-500');
-insert into product_facets (product_id, facet_id) values ('27fe120c-7ad5-4ca8-a51a-c9047effc76e', '9c6a7e07-534c-4cd0-ac49-067887157dae');
-insert into product_facets (product_id, facet_id) values ('27fe120c-7ad5-4ca8-a51a-c9047effc76e', '655d1277-e3d4-4179-88ad-d9b30aed5413');
-insert into product_facets (product_id, facet_id) values ('27fe120c-7ad5-4ca8-a51a-c9047effc76e', 'f3fc50c0-3371-4f67-a7dc-737a215ad37d');
-insert into product_facets (product_id, facet_id) values ('27fe120c-7ad5-4ca8-a51a-c9047effc76e', '97ba120a-a538-41fd-af5d-085965e50035');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('52572da1-687c-4f16-909b-42129de18ace', 'Ashwagandha Root', 'ashwagandha-root', 'Whole, dried ashwagandha root pieces for simmering into a traditional decoction. A cornerstone of Ayurvedic practice, it''s commonly worked into evening routines to support a steadier response to stress and better sleep.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('62eb944f-e875-45c8-bc4f-f3d6de037780', '52572da1-687c-4f16-909b-42129de18ace', '100g', 3800, 'NGN', 29, 10, false, 'SO-ASH-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('ff5013dc-b4ec-4686-a894-9c8b42da46a2', '52572da1-687c-4f16-909b-42129de18ace', '250g', 8200, 'NGN', 11, 10, false, 'SO-ASH-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('09125964-2ebe-4237-94ae-ea4d6c496cf6', '52572da1-687c-4f16-909b-42129de18ace', '500g', 15000, 'NGN', 0, 10, false, 'SO-ASH-500');
+insert into product_facets (product_id, facet_id) values ('52572da1-687c-4f16-909b-42129de18ace', 'b575b25d-aed7-4b3d-8a7f-fbd36ba84fb4');
+insert into product_facets (product_id, facet_id) values ('52572da1-687c-4f16-909b-42129de18ace', 'ffc0b626-c773-4c35-b28f-f65363057f9b');
+insert into product_facets (product_id, facet_id) values ('52572da1-687c-4f16-909b-42129de18ace', 'a1edd207-8462-4d84-ba2c-04e0458c9cb9');
+insert into product_facets (product_id, facet_id) values ('52572da1-687c-4f16-909b-42129de18ace', '530853af-82d6-4161-93db-ef3d062e1750');
 
 -- Manjakani (Oak Galls)
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', 'Manjakani (Oak Galls)', 'manjakani-oak-galls', 'Dried oak galls, ground to a fine powder, drawn from a women''s wellness tradition practiced across South and Southeast Asia. Traditionally prepared as a wash as part of postpartum and everyday feminine care routines.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('431226ac-d613-482c-98c8-7a4b516dd54e', '3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', '100g', 6500, 'NGN', 17, 10, false, 'SO-MAN-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('c8eaebdd-8e5b-4e46-be5f-9de6670771c9', '3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', '250g', 14000, 'NGN', 5, 10, false, 'SO-MAN-250');
-insert into product_facets (product_id, facet_id) values ('3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', 'f47e42de-fcd4-4f92-909b-d617ce00e4cc');
-insert into product_facets (product_id, facet_id) values ('3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', '655d1277-e3d4-4179-88ad-d9b30aed5413');
-insert into product_facets (product_id, facet_id) values ('3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', '51d12053-460d-4288-89fd-23cd919b9503');
-insert into product_facets (product_id, facet_id) values ('3eb2e76f-cc3a-42a2-bfec-9535cde93e8d', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('5b88d6c6-fa3a-44fa-af68-472db3f46fe9', 'Manjakani (Oak Galls)', 'manjakani-oak-galls', 'Dried oak galls, ground to a fine powder, drawn from a women''s wellness tradition practiced across South and Southeast Asia. Traditionally prepared as a wash as part of postpartum and everyday feminine care routines.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('14de5513-ad3c-475d-a28b-6b6b84f727bb', '5b88d6c6-fa3a-44fa-af68-472db3f46fe9', '100g', 6500, 'NGN', 17, 10, false, 'SO-MAN-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('caaa03c9-a70d-40e3-8981-d3b03aeee043', '5b88d6c6-fa3a-44fa-af68-472db3f46fe9', '250g', 14000, 'NGN', 5, 10, false, 'SO-MAN-250');
+insert into product_facets (product_id, facet_id) values ('5b88d6c6-fa3a-44fa-af68-472db3f46fe9', 'ff453f64-ad25-4b27-ad2b-6366dcb4cc02');
+insert into product_facets (product_id, facet_id) values ('5b88d6c6-fa3a-44fa-af68-472db3f46fe9', 'ffc0b626-c773-4c35-b28f-f65363057f9b');
+insert into product_facets (product_id, facet_id) values ('5b88d6c6-fa3a-44fa-af68-472db3f46fe9', 'bea4a4ae-dd41-4078-9eff-03e60874b19b');
+insert into product_facets (product_id, facet_id) values ('5b88d6c6-fa3a-44fa-af68-472db3f46fe9', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
 
 -- Olive Leaves
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('d4e3065b-bb5c-4cce-a6bc-c70a2826f124', 'Olive Leaves', 'olive-leaves', 'Whole, air-dried olive leaves for a mild, herbaceous infusion. A staple of Mediterranean-African herbal tradition, olive leaf tea is a longstanding pick for everyday immune and heart-health routines.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('80f6d1f1-dbb5-4a0c-9230-e9b5aa8b9de7', 'd4e3065b-bb5c-4cce-a6bc-c70a2826f124', '100g', 3000, 'NGN', 48, 10, false, 'SO-OLV-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('5485a9b8-3102-4ac2-be1e-e20892532f2d', 'd4e3065b-bb5c-4cce-a6bc-c70a2826f124', '250g', 6500, 'NGN', 26, 10, false, 'SO-OLV-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('b85815ba-86e3-4658-a168-e6ae63cb0e13', 'd4e3065b-bb5c-4cce-a6bc-c70a2826f124', '500g', 11500, 'NGN', 9, 10, false, 'SO-OLV-500');
-insert into product_facets (product_id, facet_id) values ('d4e3065b-bb5c-4cce-a6bc-c70a2826f124', 'f04830d8-e6c6-4281-ad30-35730c551c1f');
-insert into product_facets (product_id, facet_id) values ('d4e3065b-bb5c-4cce-a6bc-c70a2826f124', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('d4e3065b-bb5c-4cce-a6bc-c70a2826f124', '077ea120-39f5-4f15-af06-ed841a0ee873');
-insert into product_facets (product_id, facet_id) values ('d4e3065b-bb5c-4cce-a6bc-c70a2826f124', 'e4780b71-ad98-4879-8172-db65d4d7fd30');
-insert into product_facets (product_id, facet_id) values ('d4e3065b-bb5c-4cce-a6bc-c70a2826f124', 'b8ae1945-1256-42ed-9780-157e8cebe095');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', 'Olive Leaves', 'olive-leaves', 'Whole, air-dried olive leaves for a mild, herbaceous infusion. Part of Mediterranean and African herbal tradition alike, olive leaf tea has long been a daily habit for supporting immune function and heart health.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('73408d7d-2e28-4c90-b822-ea83a9af0d32', '680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '100g', 3000, 'NGN', 48, 10, false, 'SO-OLV-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('eab3e22d-9ca0-4133-a4ad-3df0ed1c6492', '680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '250g', 6500, 'NGN', 26, 10, false, 'SO-OLV-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('1bc33675-d01c-452c-9c24-852cd57d1718', '680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '500g', 11500, 'NGN', 9, 10, false, 'SO-OLV-500');
+insert into product_facets (product_id, facet_id) values ('680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '4ac0f1a0-8583-411a-8137-5217b57d8f2a');
+insert into product_facets (product_id, facet_id) values ('680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '201b4c8f-0378-4a45-b5f8-6826c3b19ba0');
+insert into product_facets (product_id, facet_id) values ('680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '49bd8950-bf58-448c-8353-adf18053a489');
+insert into product_facets (product_id, facet_id) values ('680bbbc8-5802-4eaa-9ca6-abaeeeaffd9b', '8b721008-5f1c-42c6-ac7d-6771dc4c80bc');
 
 -- Wormwood
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('858c13ad-c49b-438c-afa3-e21e4f3ca831', 'Wormwood', 'wormwood', 'Dried wormwood leaf and stem, cut for steeping into a traditional bitter infusion. Long used across African herbal practice as part of routines built around digestive comfort. Its flavor is intensely bitter by design — start with a short steep.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('9dd01a75-6487-4a07-bc2a-95c7ce99abc5', '858c13ad-c49b-438c-afa3-e21e4f3ca831', '100g', 3400, 'NGN', 31, 10, false, 'SO-WRM-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('dcae8220-8cc8-4ca1-872b-d47210f91f91', '858c13ad-c49b-438c-afa3-e21e4f3ca831', '250g', 7200, 'NGN', 15, 10, false, 'SO-WRM-250');
-insert into product_facets (product_id, facet_id) values ('858c13ad-c49b-438c-afa3-e21e4f3ca831', 'f04830d8-e6c6-4281-ad30-35730c551c1f');
-insert into product_facets (product_id, facet_id) values ('858c13ad-c49b-438c-afa3-e21e4f3ca831', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('858c13ad-c49b-438c-afa3-e21e4f3ca831', 'ea0f0848-db86-4856-a0e0-62a5e7c9479e');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('8085d4d7-97cf-46c1-b87d-29c4be602273', 'Wormwood', 'wormwood', 'Dried wormwood leaf and stem, cut for steeping into a traditional bitter infusion. Long used across African herbal practice to ease digestive discomfort. Its flavor is intensely bitter by design, so start with a short steep.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('e4d67245-7f16-40ed-a1ec-6154221871e4', '8085d4d7-97cf-46c1-b87d-29c4be602273', '100g', 3400, 'NGN', 31, 10, false, 'SO-WRM-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('31805388-5c29-4c10-8cf4-37fcd8fe491d', '8085d4d7-97cf-46c1-b87d-29c4be602273', '250g', 7200, 'NGN', 15, 10, false, 'SO-WRM-250');
+insert into product_facets (product_id, facet_id) values ('8085d4d7-97cf-46c1-b87d-29c4be602273', '4ac0f1a0-8583-411a-8137-5217b57d8f2a');
+insert into product_facets (product_id, facet_id) values ('8085d4d7-97cf-46c1-b87d-29c4be602273', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('8085d4d7-97cf-46c1-b87d-29c4be602273', '1dc3e690-7627-4df6-94d1-6327100c11cf');
 
 -- Black Walnut Hull
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('cf49cf26-5082-4a9f-ba95-7e9dd19cf454', 'Black Walnut Hull', 'black-walnut-hull', 'Dried, cracked black walnut hull for simmering into a traditional decoction. A longstanding African herbal staple, reached for as part of digestive-support and clear-skin routines.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('7ac16f8c-6e98-443d-a9e4-4d136d58f887', 'cf49cf26-5082-4a9f-ba95-7e9dd19cf454', '100g', 3600, 'NGN', 24, 10, false, 'SO-BWH-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('4b8d74d0-25bb-4fb8-9a46-78901d11690f', 'cf49cf26-5082-4a9f-ba95-7e9dd19cf454', '250g', 7800, 'NGN', 8, 10, false, 'SO-BWH-250');
-insert into product_facets (product_id, facet_id) values ('cf49cf26-5082-4a9f-ba95-7e9dd19cf454', '7136538f-ad7e-47c8-ab6c-ee3af17e179a');
-insert into product_facets (product_id, facet_id) values ('cf49cf26-5082-4a9f-ba95-7e9dd19cf454', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('cf49cf26-5082-4a9f-ba95-7e9dd19cf454', 'ea0f0848-db86-4856-a0e0-62a5e7c9479e');
-insert into product_facets (product_id, facet_id) values ('cf49cf26-5082-4a9f-ba95-7e9dd19cf454', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('b234a767-35c8-485c-ab99-75ec6f7787ed', 'Black Walnut Hull', 'black-walnut-hull', 'Dried, cracked black walnut hull for simmering into a traditional decoction. A longstanding staple of African herbal practice, used to support digestion and clearer-looking skin.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('1909c043-ea0f-4544-b9d4-0071204390c8', 'b234a767-35c8-485c-ab99-75ec6f7787ed', '100g', 3600, 'NGN', 24, 10, false, 'SO-BWH-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('6d60a36e-e769-45f8-b4b9-76323e6c6746', 'b234a767-35c8-485c-ab99-75ec6f7787ed', '250g', 7800, 'NGN', 8, 10, false, 'SO-BWH-250');
+insert into product_facets (product_id, facet_id) values ('b234a767-35c8-485c-ab99-75ec6f7787ed', 'ff7eef86-e1b3-4b23-86f2-719be2521287');
+insert into product_facets (product_id, facet_id) values ('b234a767-35c8-485c-ab99-75ec6f7787ed', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('b234a767-35c8-485c-ab99-75ec6f7787ed', '1dc3e690-7627-4df6-94d1-6327100c11cf');
+insert into product_facets (product_id, facet_id) values ('b234a767-35c8-485c-ab99-75ec6f7787ed', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
 
 -- Whole Cloves
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', 'Whole Cloves', 'whole-cloves', 'Sun-dried whole clove buds with their deep, warming aroma intact. A cooking and wellness staple in equal measure — simmer a few into tea, or grind fresh as needed for the fullest flavor and support for everyday digestion and immunity.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('7a8e6eb4-d984-4a0b-90d2-ba7fd42e51ba', 'ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', '100g', 2600, 'NGN', 60, 10, false, 'SO-CLV-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('69b4e8fb-19d6-4c38-897e-3af47e42707d', 'ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', '250g', 5600, 'NGN', 34, 10, false, 'SO-CLV-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('7c09a79c-82d1-4bdc-8f2f-41b023f8f787', 'ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', '500g', 10000, 'NGN', 19, 10, false, 'SO-CLV-500');
-insert into product_facets (product_id, facet_id) values ('ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', 'ae5f9cec-cc77-4139-8aaf-74bb3f4d3025');
-insert into product_facets (product_id, facet_id) values ('ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', 'ea0f0848-db86-4856-a0e0-62a5e7c9479e');
-insert into product_facets (product_id, facet_id) values ('ff2fab9c-8797-429e-9ef6-d83a40f2e0ac', '077ea120-39f5-4f15-af06-ed841a0ee873');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('47a8093c-635a-4696-80d7-5f0ff5e9b28f', 'Whole Cloves', 'whole-cloves', 'Sun-dried whole clove buds with their deep, warming aroma intact. Just as at home in the kitchen as in a wellness routine. Simmer a few into tea, or grind fresh as needed for the fullest flavor.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('44533368-c80e-4bad-a957-354fb9d4e2e6', '47a8093c-635a-4696-80d7-5f0ff5e9b28f', '100g', 2600, 'NGN', 60, 10, false, 'SO-CLV-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('1321a9e1-ac81-4a39-8e03-4bc9c42fdb43', '47a8093c-635a-4696-80d7-5f0ff5e9b28f', '250g', 5600, 'NGN', 34, 10, false, 'SO-CLV-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('815dafe1-8b89-4172-9b64-a5bc4fc34602', '47a8093c-635a-4696-80d7-5f0ff5e9b28f', '500g', 10000, 'NGN', 19, 10, false, 'SO-CLV-500');
+insert into product_facets (product_id, facet_id) values ('47a8093c-635a-4696-80d7-5f0ff5e9b28f', '29997bc9-861b-4c59-87b2-745394ca0181');
+insert into product_facets (product_id, facet_id) values ('47a8093c-635a-4696-80d7-5f0ff5e9b28f', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('47a8093c-635a-4696-80d7-5f0ff5e9b28f', '1dc3e690-7627-4df6-94d1-6327100c11cf');
+insert into product_facets (product_id, facet_id) values ('47a8093c-635a-4696-80d7-5f0ff5e9b28f', '201b4c8f-0378-4a45-b5f8-6826c3b19ba0');
 
 -- Avocado Oil
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', 'Avocado Oil', 'avocado-oil', 'Cold-pressed, deep-green avocado oil, rich and fast-absorbing. A West African beauty-routine staple for softening dry skin and taming stubborn hair ends.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('d5e7fbf7-902b-44b7-8665-e0cad7db9b8d', '464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', '100ml', 4600, 'NGN', 27, 10, false, 'SO-AVO-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('555c7861-d81c-4549-b9a7-ecd2e9fba08f', '464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', '250ml', 9800, 'NGN', 12, 10, false, 'SO-AVO-250');
-insert into product_facets (product_id, facet_id) values ('464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', '09e56965-e7e2-4ac7-8ecd-a2687848da9d');
-insert into product_facets (product_id, facet_id) values ('464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
-insert into product_facets (product_id, facet_id) values ('464e40dd-2b0a-4e58-a5d3-2ad2c4a7b215', '57feba67-3ec3-42fc-8d2f-0b189b136ba6');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('49dca759-6938-4a3a-8b7f-79834712492c', 'Avocado Oil', 'avocado-oil', 'Cold-pressed, deep-green avocado oil, rich and fast-absorbing. A West African beauty-routine staple for softening dry skin and taming stubborn hair ends.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('b1a5606a-3d30-45e7-8935-c6eea72f9471', '49dca759-6938-4a3a-8b7f-79834712492c', '100ml', 4600, 'NGN', 27, 10, false, 'SO-AVO-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('2dc369ee-99bc-41da-8eb0-b1209e8df735', '49dca759-6938-4a3a-8b7f-79834712492c', '250ml', 9800, 'NGN', 12, 10, false, 'SO-AVO-250');
+insert into product_facets (product_id, facet_id) values ('49dca759-6938-4a3a-8b7f-79834712492c', 'a724c0df-a980-4506-b2d8-c323187cb673');
+insert into product_facets (product_id, facet_id) values ('49dca759-6938-4a3a-8b7f-79834712492c', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('49dca759-6938-4a3a-8b7f-79834712492c', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
+insert into product_facets (product_id, facet_id) values ('49dca759-6938-4a3a-8b7f-79834712492c', 'd0fae58b-f0d9-4448-8ea6-d7eb30e335ea');
 
 -- Jojoba Oil
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('3c975baf-0286-4ff0-9193-a660c5a57af1', 'Jojoba Oil', 'jojoba-oil', 'Light, close-to-skin''s-own jojoba oil that absorbs without a greasy finish. A gentle daily pick for face, body, and scalp — and a common base oil in homemade pet paw and nose balms.', 'published', true, 'A widely used base oil in DIY paw-balm recipes thanks to its gentle, non-greasy profile. Use a light layer and keep it away from your pet''s eyes.');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('a688f01c-23dd-4510-9f47-ca17023307b6', '3c975baf-0286-4ff0-9193-a660c5a57af1', '100ml', 5000, 'NGN', 21, 10, false, 'SO-JOJ-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('00f098b4-880f-46f7-910e-d5c9c934cdc1', '3c975baf-0286-4ff0-9193-a660c5a57af1', '250ml', 10800, 'NGN', 3, 10, false, 'SO-JOJ-250');
-insert into product_facets (product_id, facet_id) values ('3c975baf-0286-4ff0-9193-a660c5a57af1', '09e56965-e7e2-4ac7-8ecd-a2687848da9d');
-insert into product_facets (product_id, facet_id) values ('3c975baf-0286-4ff0-9193-a660c5a57af1', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('3c975baf-0286-4ff0-9193-a660c5a57af1', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
-insert into product_facets (product_id, facet_id) values ('3c975baf-0286-4ff0-9193-a660c5a57af1', '57feba67-3ec3-42fc-8d2f-0b189b136ba6');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('316cac31-a4d1-41ac-b5b4-6bb48c0031df', 'Jojoba Oil', 'jojoba-oil', 'Light, close-to-skin''s-own jojoba oil that absorbs without a greasy finish. A gentle daily pick for face, body, and scalp, and a common base oil in homemade pet paw and nose balms.', 'published', true, 'A widely used base oil in DIY paw-balm recipes thanks to its gentle, non-greasy profile. Use a light layer and keep it away from your pet''s eyes.');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('2f67e00c-0b94-4c21-be58-1628fb2608af', '316cac31-a4d1-41ac-b5b4-6bb48c0031df', '100ml', 5000, 'NGN', 21, 10, false, 'SO-JOJ-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('a6a362f9-2139-42af-ba66-bcca2ba5b4dc', '316cac31-a4d1-41ac-b5b4-6bb48c0031df', '250ml', 10800, 'NGN', 3, 10, false, 'SO-JOJ-250');
+insert into product_facets (product_id, facet_id) values ('316cac31-a4d1-41ac-b5b4-6bb48c0031df', 'a724c0df-a980-4506-b2d8-c323187cb673');
+insert into product_facets (product_id, facet_id) values ('316cac31-a4d1-41ac-b5b4-6bb48c0031df', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('316cac31-a4d1-41ac-b5b4-6bb48c0031df', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
+insert into product_facets (product_id, facet_id) values ('316cac31-a4d1-41ac-b5b4-6bb48c0031df', 'd0fae58b-f0d9-4448-8ea6-d7eb30e335ea');
 
 -- Coconut Oil
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('ccc8b995-429e-4bd6-8624-178a361c0f76', 'Coconut Oil', 'coconut-oil', 'Unrefined, cold-pressed coconut oil that goes solid below room temperature and melts on contact with skin. A do-everything staple for cooking, hair, and skin routines alike.', 'published', true, 'A small, occasional spoonful is a common treat addition for dogs. Introduce gradually and check with your vet first if your pet has a sensitive stomach.');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('bdf45583-a0f4-4c7c-862a-c9058a632ecb', 'ccc8b995-429e-4bd6-8624-178a361c0f76', '250g', 4200, 'NGN', 44, 10, false, 'SO-COC-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('0c5a7c0d-581b-414a-85f4-16509b025e25', 'ccc8b995-429e-4bd6-8624-178a361c0f76', '500g', 7800, 'NGN', 25, 10, false, 'SO-COC-500');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('4cc2c44e-2416-424a-8afe-eb5fd98225f5', 'ccc8b995-429e-4bd6-8624-178a361c0f76', '1kg', 14000, 'NGN', 13, 10, false, 'SO-COC-1000');
-insert into product_facets (product_id, facet_id) values ('ccc8b995-429e-4bd6-8624-178a361c0f76', '09e56965-e7e2-4ac7-8ecd-a2687848da9d');
-insert into product_facets (product_id, facet_id) values ('ccc8b995-429e-4bd6-8624-178a361c0f76', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('ccc8b995-429e-4bd6-8624-178a361c0f76', '57feba67-3ec3-42fc-8d2f-0b189b136ba6');
-insert into product_facets (product_id, facet_id) values ('ccc8b995-429e-4bd6-8624-178a361c0f76', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('e160a94c-5b52-4ba7-b9ee-302e0767e011', 'Coconut Oil', 'coconut-oil', 'Unrefined, cold-pressed coconut oil that goes solid below room temperature and melts on contact with skin. A do-everything staple for cooking, hair, and skin routines alike.', 'published', true, 'A small, occasional spoonful is a common treat addition for dogs. Introduce gradually and check with your vet first if your pet has a sensitive stomach.');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('8cf5d105-742e-44f7-9fe5-0a00490ff793', 'e160a94c-5b52-4ba7-b9ee-302e0767e011', '250g', 4200, 'NGN', 44, 10, false, 'SO-COC-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('2552908a-ac2f-4669-ab78-044207d79041', 'e160a94c-5b52-4ba7-b9ee-302e0767e011', '500g', 7800, 'NGN', 25, 10, false, 'SO-COC-500');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('5995510b-1e07-4732-baec-00aaaba4d0b8', 'e160a94c-5b52-4ba7-b9ee-302e0767e011', '1kg', 14000, 'NGN', 13, 10, false, 'SO-COC-1000');
+insert into product_facets (product_id, facet_id) values ('e160a94c-5b52-4ba7-b9ee-302e0767e011', 'a724c0df-a980-4506-b2d8-c323187cb673');
+insert into product_facets (product_id, facet_id) values ('e160a94c-5b52-4ba7-b9ee-302e0767e011', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('e160a94c-5b52-4ba7-b9ee-302e0767e011', 'd0fae58b-f0d9-4448-8ea6-d7eb30e335ea');
+insert into product_facets (product_id, facet_id) values ('e160a94c-5b52-4ba7-b9ee-302e0767e011', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
 
 -- Raw Shea Butter
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('9dde77fe-f8eb-419e-a889-915659404c77', 'Raw Shea Butter', 'raw-shea-butter', 'Unrefined, ivory-toned shea butter, hand-whipped from shea nuts in the West African tradition it''s named for. Rich and deeply moisturizing — scoop a small amount and warm it between your palms before applying.', 'published', true, 'Raw shea butter is a common ingredient in homemade paw-balm recipes. Apply a thin layer and monitor to make sure your pet doesn''t lick it off immediately.');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('3797fbae-9b19-4377-8b3a-dbae890c6afa', '9dde77fe-f8eb-419e-a889-915659404c77', '100g', 3000, 'NGN', 52, 10, false, 'SO-SHE-100');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('60fc895c-3deb-44b5-9b63-096d0bf8efd2', '9dde77fe-f8eb-419e-a889-915659404c77', '250g', 6500, 'NGN', 28, 10, false, 'SO-SHE-250');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('d638ffce-d496-4137-8eef-69d97f2b4212', '9dde77fe-f8eb-419e-a889-915659404c77', '500g', 11500, 'NGN', 6, 10, false, 'SO-SHE-500');
-insert into product_facets (product_id, facet_id) values ('9dde77fe-f8eb-419e-a889-915659404c77', '09e56965-e7e2-4ac7-8ecd-a2687848da9d');
-insert into product_facets (product_id, facet_id) values ('9dde77fe-f8eb-419e-a889-915659404c77', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('9dde77fe-f8eb-419e-a889-915659404c77', '41276bb8-ca92-464e-bbb1-fc23232bc6b7');
-insert into product_facets (product_id, facet_id) values ('9dde77fe-f8eb-419e-a889-915659404c77', '57feba67-3ec3-42fc-8d2f-0b189b136ba6');
-insert into product_facets (product_id, facet_id) values ('9dde77fe-f8eb-419e-a889-915659404c77', 'aed21c24-26b8-41ef-9631-1e20fabc93bc');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('207bb778-0abf-43f0-9776-308d8d2e2cc6', 'Raw Shea Butter', 'raw-shea-butter', 'Unrefined, ivory-toned shea butter, hand-whipped from shea nuts in the West African tradition it''s named for. Rich and deeply moisturizing. Scoop a small amount and warm it between your palms before applying.', 'published', true, 'Raw shea butter is a common ingredient in homemade paw-balm recipes. Apply a thin layer and monitor to make sure your pet doesn''t lick it off immediately.');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('5b9575bf-8ca8-480e-b1b5-64628801e384', '207bb778-0abf-43f0-9776-308d8d2e2cc6', '100g', 3000, 'NGN', 52, 10, false, 'SO-SHE-100');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('af24d9c2-42fc-4dc1-8ed3-5700942379fa', '207bb778-0abf-43f0-9776-308d8d2e2cc6', '250g', 6500, 'NGN', 28, 10, false, 'SO-SHE-250');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('e54a34e3-1b62-43a4-b152-8c21bfbe86e9', '207bb778-0abf-43f0-9776-308d8d2e2cc6', '500g', 11500, 'NGN', 6, 10, false, 'SO-SHE-500');
+insert into product_facets (product_id, facet_id) values ('207bb778-0abf-43f0-9776-308d8d2e2cc6', 'a724c0df-a980-4506-b2d8-c323187cb673');
+insert into product_facets (product_id, facet_id) values ('207bb778-0abf-43f0-9776-308d8d2e2cc6', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('207bb778-0abf-43f0-9776-308d8d2e2cc6', 'aa38ed59-489b-44f6-ab86-66d92d6118f5');
+insert into product_facets (product_id, facet_id) values ('207bb778-0abf-43f0-9776-308d8d2e2cc6', 'd0fae58b-f0d9-4448-8ea6-d7eb30e335ea');
+insert into product_facets (product_id, facet_id) values ('207bb778-0abf-43f0-9776-308d8d2e2cc6', 'f3d1200f-28a8-45f3-b3b6-8f00f8251bc7');
 
 -- Frankincense Oil
-insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', 'Frankincense Oil', 'frankincense-oil', 'Steam-distilled frankincense oil from resin tapped in the Horn of Africa tradition. Warm, resinous, and grounding — a drop or two blended into a carrier oil is a longstanding pick for evening wind-down and post-movement massage routines.', 'published', false, null);
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('4be28401-4ffd-401f-8d64-dac2e5a248fe', '02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', '30ml', 8500, 'NGN', 19, 10, false, 'SO-FRA-30');
-insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('f9998c57-e906-420b-a9d0-ab2a4c7ba57f', '02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', '100ml', 22000, 'NGN', 4, 10, false, 'SO-FRA-100');
-insert into product_facets (product_id, facet_id) values ('02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', '09e56965-e7e2-4ac7-8ecd-a2687848da9d');
-insert into product_facets (product_id, facet_id) values ('02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', '67905d9d-0a45-452f-9dbd-df88ef290126');
-insert into product_facets (product_id, facet_id) values ('02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', 'aed21c24-26b8-41ef-9631-1e20fabc93bc');
-insert into product_facets (product_id, facet_id) values ('02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', 'f3fc50c0-3371-4f67-a7dc-737a215ad37d');
-insert into product_facets (product_id, facet_id) values ('02379c5b-fff0-43fe-8d45-d6ed1ba15ad3', '077ea120-39f5-4f15-af06-ed841a0ee873');
+insert into products (id, name, slug, description, status, is_pet_safe, pet_safe_note) values ('c0da4df3-7de8-4a85-84bd-aefb5a556fae', 'Frankincense Oil', 'frankincense-oil', 'Steam-distilled frankincense oil from resin tapped in the Horn of Africa tradition. Warm, resinous, and grounding. A drop or two blended into a carrier oil suits an evening wind-down or a post-workout massage equally well.', 'published', false, null);
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('e19bf614-3ee5-4487-a5d6-e429c292a19b', 'c0da4df3-7de8-4a85-84bd-aefb5a556fae', '30ml', 8500, 'NGN', 19, 10, false, 'SO-FRA-30');
+insert into product_variants (id, product_id, size_label, price, currency, stock_quantity, low_stock_threshold, subscription_eligible, sku) values ('1057ab6f-571f-41ac-9bc3-e8e34965915e', 'c0da4df3-7de8-4a85-84bd-aefb5a556fae', '100ml', 22000, 'NGN', 4, 10, false, 'SO-FRA-100');
+insert into product_facets (product_id, facet_id) values ('c0da4df3-7de8-4a85-84bd-aefb5a556fae', 'a724c0df-a980-4506-b2d8-c323187cb673');
+insert into product_facets (product_id, facet_id) values ('c0da4df3-7de8-4a85-84bd-aefb5a556fae', '3701886b-55ac-4f55-824d-10a355c2189e');
+insert into product_facets (product_id, facet_id) values ('c0da4df3-7de8-4a85-84bd-aefb5a556fae', 'f3d1200f-28a8-45f3-b3b6-8f00f8251bc7');
+insert into product_facets (product_id, facet_id) values ('c0da4df3-7de8-4a85-84bd-aefb5a556fae', 'a1edd207-8462-4d84-ba2c-04e0458c9cb9');
+insert into product_facets (product_id, facet_id) values ('c0da4df3-7de8-4a85-84bd-aefb5a556fae', '201b4c8f-0378-4a45-b5f8-6826c3b19ba0');
 
