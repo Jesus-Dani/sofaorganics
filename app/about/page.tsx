@@ -37,13 +37,13 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src="/images/hero/hero-flatlay.jpeg"
             alt="Mortar bowl of dried herbs and a kraft pouch of Sofa Organics gingko leaves"
             fill
             sizes="(min-width: 768px) 45vw, 100vw"
-            className="object-cover"
+            className="object-cover object-[65%_center]"
           />
         </div>
       </div>

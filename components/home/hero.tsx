@@ -39,7 +39,7 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative aspect-[5/4] overflow-hidden">
+        <div className="relative aspect-[16/10] overflow-hidden">
           <Image
             src="/images/hero/hero-flatlay.jpeg"
             alt="Mortar bowl of dried herbs, a dropper bottle, and a kraft pouch of Sofa Organics gingko leaves on a sunlit table"
