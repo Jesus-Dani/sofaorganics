@@ -26,7 +26,7 @@ export function PrimaryNav() {
           }
 
           return (
-            <NavigationMenu.Item key={item.label}>
+            <NavigationMenu.Item key={item.label} className="relative">
               <NavigationMenu.Trigger className="group flex items-center gap-1.5 py-4 text-[14.5px] text-text data-[state=open]:text-primary">
                 {item.label}
                 <CaretDown
