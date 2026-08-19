@@ -12,8 +12,6 @@ export function Hero() {
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent sm:to-background/0" />
-
       <div className="wrap relative flex h-full items-center">
         <div className="max-w-md">
           <h1 className="font-serif text-[28px] leading-[1.15] text-text sm:text-4xl md:text-[44px]">
