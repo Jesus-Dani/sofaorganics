@@ -4,10 +4,10 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 const TILES = [
   {
-    title: "Botanicals",
+    title: "Whole Leaves",
     tagline: "Roots, barks, and whole leaves, from root to bloom.",
     href: "/shop/type/whole-leaves",
-    cta: "Shop Botanicals",
+    cta: "Shop Whole Leaves",
     image: "/images/categories/botanicals.jpeg",
     alt: "A circular arrangement of ground spices and botanicals in small bowls and spoons",
   },
