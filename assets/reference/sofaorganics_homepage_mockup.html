@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofa Organics — Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --olive:#4E5026;
+    --olive-dark:#3C3D1D;
+    --sage:#C8BA7E;
+    --sage-light:#E9E3CE;
+    --terra:#CB6843;
+    --terra-light:#F5DED4;
+    --lily:#F6F2EB;
+    --lily-alt:#EFE9DE;
+    --espresso:#49392C;
+    --espresso-muted:#8A7B6E;
+    --rose:#EAD9D6;
+    --rose-deep:#E3C9C6;
+    --peach:#EFCBA3;
+    --peach-deep:#E8BC8D;
+    --white:#FFFFFF;
+    --border:#E4DFD3;
+    --radius-soft:14px;
+    --radius-pill:999px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Karla', sans-serif;
+    color:var(--espresso);
+    background:var(--lily);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Playfair Display', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--espresso);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+  .placeholder-photo{
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Karla',sans-serif;font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;color:rgba(73,57,44,.45);
+    background:repeating-linear-gradient(135deg, rgba(73,57,44,.05) 0 10px, rgba(73,57,44,.02) 10px 20px);
+    text-align:center;padding:12px;
+  }
+
+  /* ---------- Promo bar ---------- */
+  .promo-bar{
+    background:var(--olive);
+    color:var(--lily);
+    text-align:center;
+    font-size:13px;
+    letter-spacing:.02em;
+    padding:9px 16px;
+  }
+  .promo-bar a{text-decoration:underline;font-weight:600;}
+
+  /* ---------- Header ---------- */
+  header{background:var(--lily);}
+  .header-top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 0 18px;
+    gap:32px;
+  }
+  .logo{text-align:left;line-height:1.05;}
+  .logo .brand{font-size:30px;font-weight:700;letter-spacing:.02em;}
+  .logo .sub{font-size:12px;letter-spacing:.28em;color:var(--espresso);margin-top:2px;}
+  .logo .est{font-size:10px;letter-spacing:.18em;color:var(--espresso-muted);margin-top:4px;}
+
+  .search{
+    flex:1;max-width:520px;
+    display:flex;align-items:stretch;
+    border:1px solid var(--border);
+    background:var(--white);
+    border-radius:var(--radius-pill);
+    overflow:hidden;
+  }
+  .search input{
+    flex:1;border:none;outline:none;background:transparent;
+    padding:13px 20px;font-family:'Karla',sans-serif;font-size:14px;color:var(--espresso);
+  }
+  .search input::placeholder{color:var(--espresso-muted);}
+  .search button{
+    background:var(--olive);border:none;color:var(--lily);
+    padding:0 20px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  }
+
+  .header-actions{display:flex;align-items:center;gap:26px;font-size:14px;white-space:nowrap;}
+  .header-actions .item{display:flex;align-items:center;gap:6px;}
+  .cart-badge{
+    position:relative;
+  }
+  .cart-count{
+    position:absolute;top:-8px;right:-9px;
+    background:var(--terra);color:var(--white);
+    font-size:10px;font-weight:700;
+    width:16px;height:16px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  nav{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex;align-items:center;gap:32px;padding:14px 32px;font-size:14.5px;flex-wrap:wrap;}
+  nav a{white-space:nowrap;}
+  nav a.deals{color:var(--terra);font-weight:600;}
+  nav a.wholesale{
+    background:var(--lily-alt);
+    padding:8px 16px;border-radius:var(--radius-pill);
+    display:inline-flex;align-items:center;gap:6px;
+    font-weight:500;
+  }
+  nav a.commercial{display:inline-flex;align-items:center;gap:5px;margin-left:auto;color:var(--espresso-muted);}
+
+  /* ---------- Hero ---------- */
+  .hero{background:var(--lily-alt);}
+  .hero .wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+    padding:72px 32px 72px;
+  }
+  .hero h1{font-size:44px;line-height:1.15;font-weight:500;}
+  .hero p.lede{
+    font-size:16px;line-height:1.6;color:var(--espresso-muted);
+    max-width:420px;margin:20px 0 28px;
+  }
+  .btn-primary{
+    display:inline-block;background:var(--olive);color:var(--lily);
+    padding:15px 30px;border-radius:var(--radius-pill);
+    font-size:14.5px;font-weight:600;letter-spacing:.01em;
+    border:none;cursor:pointer;
+  }
+  .hero-trust{display:flex;gap:34px;margin-top:38px;}
+  .hero-trust .t-item{display:flex;flex-direction:column;align-items:flex-start;gap:8px;max-width:110px;}
+  .hero-trust .t-item span{font-size:12.5px;line-height:1.3;color:var(--espresso);}
+  .hero-trust svg{stroke:var(--olive);}
+
+  .hero-photo{
+    aspect-ratio:5/4;border-radius:var(--radius-soft);
+    background:linear-gradient(155deg,#E2D3BE,#D8C6AC);
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:64px 0;}
+  .section-head{
+    display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;
+  }
+  .section-head h2{font-size:28px;}
+  .link-arrow{color:var(--terra);font-weight:600;font-size:14px;white-space:nowrap;}
+
+  /* ---------- Category tiles ---------- */
+  .categories{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .cat-tile{
+    position:relative;border-radius:var(--radius-soft);overflow:hidden;
+    aspect-ratio:16/10;
+    padding:32px;display:flex;flex-direction:column;justify-content:flex-end;
+  }
+  .cat-tile.botanicals{background:linear-gradient(160deg,var(--rose),var(--rose-deep));}
+  .cat-tile.herbs{background:linear-gradient(160deg,var(--peach),var(--peach-deep));}
+  .cat-photo{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse at 60% 35%, rgba(255,255,255,.35), transparent 60%);
+  }
+  .cat-tile .cat-copy{position:relative;z-index:1;}
+  .cat-tile h3{font-size:26px;margin-bottom:6px;}
+  .cat-tile p{margin:0 0 10px;font-size:14px;color:var(--espresso);opacity:.85;}
+  .cat-tile .shop-link{font-size:13.5px;font-weight:600;color:var(--espresso);}
+
+  /* ---------- Bestsellers ---------- */
+  .product-row{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative;
+  }
+  .product-card{
+    background:var(--white);border:1px solid var(--border);border-radius:12px;
+    overflow:hidden;
+  }
+  .product-photo{
+    aspect-ratio:1/1;
+    background:linear-gradient(160deg,#EFE9DE,#E4DCC9);
+    position:relative;
+  }
+  .jar{
+    position:absolute;left:50%;bottom:14%;transform:translateX(-50%);
+    width:46%;height:62%;background:var(--lily);
+    border:1px solid var(--border);border-radius:6px 6px 3px 3px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:6px;
+  }
+  .jar .cap{
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    width:60%;height:16px;background:linear-gradient(90deg,#D9A98F,#C97F5F);
+    border-radius:4px;
+  }
+  .jar .brand{font-family:'Playfair Display',serif;font-size:10px;font-weight:700;letter-spacing:.05em;}
+  .jar .name{font-size:8.5px;font-weight:700;margin-top:3px;text-transform:uppercase;letter-spacing:.03em;}
+  .jar .tag{font-size:6.5px;color:var(--espresso-muted);margin-top:2px;}
+  .product-info{padding:16px;}
+  .product-info .pname{font-size:14.5px;font-weight:600;margin-bottom:6px;}
+  .price-row{display:flex;align-items:center;justify-content:space-between;}
+  .price{font-weight:700;font-size:15px;}
+  .add-btn{
+    width:26px;height:26px;border-radius:50%;background:var(--olive);color:var(--lily);
+    border:none;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;
+  }
+  .carousel-nav{
+    position:absolute;right:-18px;top:38%;
+    width:38px;height:38px;border-radius:50%;background:var(--white);
+    border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 10px rgba(73,57,44,.08);
+  }
+
+  /* ---------- Trust band ---------- */
+  .trust-band{background:var(--lily-alt);}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+  .trust-item{display:flex;align-items:flex-start;gap:14px;}
+  .trust-icon{
+    width:46px;height:46px;border-radius:50%;border:1px solid var(--espresso);
+    flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  }
+  .trust-item h4{font-family:'Karla',sans-serif;font-size:14.5px;font-weight:700;margin:0 0 4px;}
+  .trust-item p{margin:0;font-size:13px;color:var(--espresso-muted);line-height:1.4;}
+
+  /* ---------- Blog teaser ---------- */
+  .blog-teaser .wrap{display:grid;grid-template-columns:0.9fr 1.6fr;gap:28px;align-items:end;}
+  .blog-teaser h2{font-size:28px;margin-bottom:10px;}
+  .blog-teaser p{color:var(--espresso-muted);font-size:14.5px;margin:0 0 14px;max-width:280px;}
+  .blog-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .blog-photo{aspect-ratio:4/5;border-radius:10px;background:linear-gradient(160deg,#E7DFCF,#D9CDB5);}
+
+  footer{
+    background:var(--olive);color:var(--lily);
+    text-align:center;font-size:13px;padding:26px 16px;
+  }
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .header-top{flex-wrap:wrap;}
+    .search{order:3;max-width:100%;}
+    .product-row{grid-template-columns:repeat(2,1fr);}
+    .categories{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:1fr 1fr;}
+    .blog-teaser .wrap{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="promo-bar">Join our Mailing List for 10% off your First Order!</div>
+
+  <header>
+    <div class="wrap header-top">
+      <div class="logo">
+        <div class="brand">SOFA</div>
+        <div class="sub">— ORGANICS —</div>
+        <div class="est">— EST. 2026 —</div>
+      </div>
+
+      <div class="search">
+        <input type="text" placeholder="Search products, articles">
+        <button aria-label="Search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <a class="item" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg> Sign in</a>
+        <a class="item cart-badge" href="#">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          Cart
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+
+    <nav>
+      <div class="wrap">
+        <a href="#">Herbs &amp; Teas</a>
+        <a href="#">Wellness</a>
+        <a href="#">By Health Goal</a>
+        <a href="#">Best Sellers</a>
+        <a class="deals" href="#">Deals</a>
+        <a class="wholesale" href="#">Apply for Wholesale
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="commercial" href="#">Commercial Ingredients
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding:0;">
+    <div class="wrap">
+      <div>
+        <h1>Rooted in Nature.<br>Made for Wellness.</h1>
+        <p class="lede">Premium herbs, botanicals and natural essentials for a healthier, more balanced you.</p>
+        <button class="btn-primary">Shop Now</button>
+
+        <div class="hero-trust">
+          <div class="t-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 8 20 5c-.4 3.3-.5 12-8 15" /></svg>
+            <span>100% Natural</span>
+          </div>
+          <div class="t-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 2v6L4 20a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2L15 8V2"/><line x1="9" y1="2" x2="15" y2="2"/></svg>
+            <span>No Additives</span>
+          </div>
+          <div class="t-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6z"/></svg>
+            <span>Rooted in Wellness</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo placeholder-photo">Photography placeholder — mortar bowl, dropper bottle &amp; kraft pouch flat-lay</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Shop by Category</h2>
+        <a class="link-arrow" href="#">View all categories →</a>
+      </div>
+      <div class="categories">
+        <div class="cat-tile botanicals">
+          <div class="cat-photo placeholder-photo" style="position:absolute;inset:0;">Photography placeholder — botanicals bowls</div>
+          <div class="cat-copy">
+            <h3>Botanicals</h3>
+            <p>From root to bloom.</p>
+            <a class="shop-link" href="#">Shop Botanicals →</a>
+          </div>
+        </div>
+        <div class="cat-tile herbs">
+          <div class="cat-photo placeholder-photo" style="position:absolute;inset:0;">Photography placeholder — herbs &amp; spices bowls</div>
+          <div class="cat-copy">
+            <h3>Herbs &amp; Spices</h3>
+            <p>Flavorful essentials for cooking and wellness.</p>
+            <a class="shop-link" href="#">Shop Herbs &amp; Spices →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Bestsellers</h2>
+        <a class="link-arrow" href="#">View all bestsellers →</a>
+      </div>
+      <div style="position:relative;">
+        <div class="product-row">
+          <div class="product-card">
+            <div class="product-photo">
+              <div class="jar"><div class="cap"></div><div class="brand">SOFA<br>ORGANICS</div><div class="name">Sea Moss<br>Blend</div><div class="tag">NET 2 oz (56g)</div></div>
+            </div>
+            <div class="product-info">
+              <div class="pname">Sea Moss Blend</div>
+              <div class="price-row"><span class="price">₦7,500</span><button class="add-btn">+</button></div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-photo">
+              <div class="jar"><div class="cap"></div><div class="brand">SOFA<br>ORGANICS</div><div class="name">Turmeric<br>Blend</div><div class="tag">NET 2 oz (56g)</div></div>
+            </div>
+            <div class="product-info">
+              <div class="pname">Turmeric Blend</div>
+              <div class="price-row"><span class="price">₦6,500</span><button class="add-btn">+</button></div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-photo">
+              <div class="jar"><div class="cap"></div><div class="brand">SOFA<br>ORGANICS</div><div class="name">Elderberry<br>Blend</div><div class="tag">NET 2 oz (56g)</div></div>
+            </div>
+            <div class="product-info">
+              <div class="pname">Elderberry Blend</div>
+              <div class="price-row"><span class="price">₦7,000</span><button class="add-btn">+</button></div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-photo">
+              <div class="jar"><div class="cap"></div><div class="brand">SOFA<br>ORGANICS</div><div class="name">Digestive<br>Blend</div><div class="tag">NET 2 oz (56g)</div></div>
+            </div>
+            <div class="product-info">
+              <div class="pname">Digestive Blend</div>
+              <div class="price-row"><span class="price">₦6,500</span><button class="add-btn">+</button></div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-photo">
+              <div class="jar"><div class="cap"></div><div class="brand">SOFA<br>ORGANICS</div><div class="name">Detox<br>Blend</div><div class="tag">NET 2 oz (56g)</div></div>
+            </div>
+            <div class="product-info">
+              <div class="pname">Detox Blend</div>
+              <div class="price-row"><span class="price">₦6,500</span><button class="add-btn">+</button></div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-nav" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-band">
+    <div class="wrap">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 8 20 5c-.4 3.3-.5 12-8 15" /></svg>
+          </div>
+          <div><h4>Pure &amp; Natural</h4><p>No artificial ingredients or preservatives.</p></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-4.4 7-11a7 7 0 0 0-14 0c0 6.6 7 11 7 11z"/><circle cx="12" cy="11" r="2.5"/></svg>
+          </div>
+          <div><h4>Ethically Sourced</h4><p>Sustainably sourced from trusted farms.</p></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/></svg>
+          </div>
+          <div><h4>Quality You Can Trust</h4><p>Carefully tested for purity and potency.</p></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+          </div>
+          <div><h4>Fast &amp; Reliable</h4><p>Delivery to your doorstep, every time.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-teaser">
+    <div class="wrap">
+      <div>
+        <h2>Wellness, the natural way</h2>
+        <p>Tips, remedies and inspiration for a balanced life.</p>
+        <a class="link-arrow" href="#">Read our articles →</a>
+      </div>
+      <div class="blog-photos">
+        <div class="blog-photo placeholder-photo">Photo — tea</div>
+        <div class="blog-photo placeholder-photo">Photo — dropper bottles</div>
+        <div class="blog-photo placeholder-photo">Photo — herbs in bowl</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Sofa Organics — homepage mockup · built from client-supplied reference &amp; Sage Garden palette
+  </footer>
+
+</body>
+</html>

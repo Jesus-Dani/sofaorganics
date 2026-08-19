@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif font-medium text-text;
+  }
+}
+
+@layer utilities {
+  .wrap {
+    @apply mx-auto w-full max-w-content px-6 md:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.28em] text-text-muted;
+  }
+}
