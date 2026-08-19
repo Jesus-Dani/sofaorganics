@@ -10,26 +10,36 @@ const TRUST_POINTS = [
 
 export function Hero() {
   return (
-    <section className="bg-background-alt">
-      <div className="wrap grid items-center gap-14 py-16 md:grid-cols-2 md:py-24">
-        <div>
-          <p className="eyebrow mb-4">Est. 2026 · Port Harcourt</p>
-          <h1 className="max-w-xl font-serif text-4xl leading-[1.15] text-text md:text-[44px]">
+    <section className="relative aspect-video w-full overflow-hidden bg-background-alt">
+      <Image
+        src="/images/hero/hero-flatlay.jpeg"
+        alt="Mortar bowl of dried herbs, a dropper bottle, and a kraft pouch of Sofa Organics gingko leaves on a sunlit table"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent sm:to-background/0" />
+
+      <div className="wrap relative flex h-full items-center">
+        <div className="max-w-md">
+          <p className="eyebrow mb-3 sm:mb-4">Est. 2026 · Port Harcourt</p>
+          <h1 className="font-serif text-[28px] leading-[1.15] text-text sm:text-4xl md:text-[44px]">
             Herbs your grandmother would recognize.
           </h1>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-text-muted">
+          <p className="mt-4 hidden text-base leading-relaxed text-text-muted sm:block">
             Sofa Organics sources Ayurvedic and African herbs, spices, and oils the way they&apos;ve
             always been prepared — whole, unformulated, and explained plainly, so you know what
             you&apos;re putting in your body and why.
           </p>
           <Link
             href="/shop"
-            className="mt-8 inline-block bg-primary px-8 py-4 text-[14.5px] font-medium text-background transition-opacity hover:opacity-90"
+            className="mt-5 inline-block bg-primary px-6 py-3.5 text-[14.5px] font-medium text-background transition-opacity hover:opacity-90 sm:mt-8 sm:px-8 sm:py-4"
           >
             Shop the catalog
           </Link>
 
-          <dl className="mt-12 flex flex-wrap gap-x-9 gap-y-5">
+          <dl className="mt-6 hidden flex-wrap gap-x-9 gap-y-5 md:mt-12 md:flex">
             {TRUST_POINTS.map(({ icon: Icon, label }) => (
               <div key={label} className="flex max-w-[130px] flex-col items-start gap-2">
                 <Icon size={22} weight="light" className="text-primary" aria-hidden />
@@ -37,17 +47,6 @@ export function Hero() {
               </div>
             ))}
           </dl>
-        </div>
-
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <Image
-            src="/images/hero/hero-flatlay.jpeg"
-            alt="Mortar bowl of dried herbs, a dropper bottle, and a kraft pouch of Sofa Organics gingko leaves on a sunlit table"
-            fill
-            priority
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
-          />
         </div>
       </div>
     </section>
