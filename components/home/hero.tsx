@@ -1,12 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Leaf, Flask, HandHeart } from "@phosphor-icons/react/dist/ssr";
-
-const TRUST_POINTS = [
-  { icon: Leaf, label: "Hand-sourced, not mass-farmed" },
-  { icon: Flask, label: "No fillers or additives" },
-  { icon: HandHeart, label: "Rooted in root-cause practice" },
-];
 
 export function Hero() {
   return (
@@ -32,15 +25,6 @@ export function Hero() {
           >
             Shop the catalog
           </Link>
-
-          <dl className="mt-6 hidden flex-wrap gap-x-9 gap-y-5 md:mt-12 md:flex">
-            {TRUST_POINTS.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex max-w-[130px] flex-col items-start gap-2">
-                <Icon size={22} weight="light" className="text-primary" aria-hidden />
-                <dt className="text-xs leading-snug text-text">{label}</dt>
-              </div>
-            ))}
-          </dl>
         </div>
       </div>
     </section>
