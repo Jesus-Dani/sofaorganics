@@ -102,17 +102,19 @@ export function CartDrawer() {
                   {formatCurrency(subtotal, lines[0]?.currency ?? "NGN")}
                 </span>
               </div>
-              <button
-                type="button"
-                disabled
-                title="Checkout is coming in a later phase of the build"
-                className="w-full cursor-not-allowed bg-primary/50 py-3.5 text-sm font-medium text-background"
-              >
-                Checkout — coming soon
-              </button>
-              <p className="mt-2 text-center text-xs text-text-muted">
-                Shipping and tax are calculated at checkout. Order by WhatsApp for now.
-              </p>
+              <Dialog.Close asChild>
+                <Link
+                  href="/checkout"
+                  className="block w-full bg-primary py-3.5 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
+                >
+                  Proceed to Checkout
+                </Link>
+              </Dialog.Close>
+              <Dialog.Close asChild>
+                <Link href="/cart" className="mt-2 block text-center text-xs text-text-muted underline">
+                  View full cart
+                </Link>
+              </Dialog.Close>
             </div>
           )}
         </Dialog.Content>

@@ -8,11 +8,13 @@ test("home → filter shop by use case → open a product → add to cart", asyn
   await expect(page).toHaveURL(/\/shop\/type\/whole-leaves/);
 
   await page.getByRole("link", { name: "Memory & Focus" }).first().click();
-  await expect(page.getByRole("heading", { name: "Memory & Focus" })).toBeVisible();
+  await expect(page).toHaveURL(/use_case=memory-focus/);
 
   await page.getByRole("link", { name: /Gingko Leaves/i }).first().click();
   await expect(page).toHaveURL(/\/products\/gingko-leaves/);
 
   await page.getByRole("button", { name: "Add to Cart" }).click();
-  await expect(page.getByRole("button", { name: /Open cart, 1 item/i })).toBeVisible();
+  // Radix Dialog marks the rest of the page aria-hidden while the cart drawer is
+  // open, so assert on the drawer's own content rather than the now-hidden header.
+  await expect(page.getByRole("heading", { name: "Your Cart (1)" })).toBeVisible();
 });

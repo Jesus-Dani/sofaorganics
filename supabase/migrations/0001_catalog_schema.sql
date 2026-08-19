@@ -11,6 +11,7 @@ create table products (
   description text not null, -- wellness-framed copy per PRD §4.2, never disease-cure claims
   status text not null default 'draft' check (status in ('draft', 'published', 'archived')),
   is_pet_safe boolean not null default false,
+  pet_safe_note text, -- shown in the PDP's collapsible pet-safe section when is_pet_safe is true
   search_vector tsvector generated always as (
     setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
     setweight(to_tsvector('english', coalesce(description, '')), 'B')

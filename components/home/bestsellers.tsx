@@ -14,7 +14,7 @@ export async function Bestsellers() {
             View all products →
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

@@ -26,7 +26,7 @@ const POINTS = [
 export function TrustBand() {
   return (
     <section className="border-y border-border bg-background-alt py-14">
-      <div className="wrap grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="wrap grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:grid-cols-4">
         {POINTS.map(({ icon: Icon, title, body }) => (
           <div key={title} className="flex items-start gap-4">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-text">

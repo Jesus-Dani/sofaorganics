@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "seed:generate": "tsx scripts/generate-seed-sql.ts > supabase/seed.sql"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -20,6 +21,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.3",
     "@radix-ui/react-popover": "^1.1.4",
     "@radix-ui/react-select": "^2.1.4",
+    "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.47.10",
     "@tanstack/react-query": "^5.62.11",
     "next": "^14.2.21",
@@ -41,6 +43,7 @@
     "jsdom": "^25.0.1",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.23.12",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   }

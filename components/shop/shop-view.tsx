@@ -28,8 +28,8 @@ export async function ShopView({
         {description && <p className="mt-2 text-text-muted">{description}</p>}
       </div>
 
-      <div className="grid gap-10 lg:grid-cols-[220px_1fr]">
-        <aside className="hidden lg:block">
+      <div className="grid gap-10 md:grid-cols-[220px_1fr]">
+        <aside className="hidden md:block">
           <FilterGroups query={query} />
         </aside>
 
@@ -49,7 +49,7 @@ export async function ShopView({
               <p className="text-text-muted">No products match these filters yet.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

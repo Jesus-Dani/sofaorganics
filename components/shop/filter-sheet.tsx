@@ -14,15 +14,15 @@ export function FilterSheet({ query }: { query: ShopQuery }) {
       <Dialog.Trigger asChild>
         <button
           type="button"
-          className="flex items-center gap-2 border border-border px-4 py-2.5 text-sm font-medium text-text lg:hidden"
+          className="flex items-center gap-2 border border-border px-4 py-2.5 text-sm font-medium text-text md:hidden"
         >
           <Sliders size={16} aria-hidden />
           Filters
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-text/40 lg:hidden" />
-        <Dialog.Content className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-tile bg-background p-6 lg:hidden">
+        <Dialog.Overlay className="fixed inset-0 z-40 bg-text/40 md:hidden" />
+        <Dialog.Content className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-tile bg-background p-6 md:hidden">
           <div className="mb-4 flex items-center justify-between">
             <Dialog.Title className="font-serif text-lg">Filters</Dialog.Title>
             <Dialog.Close asChild>
