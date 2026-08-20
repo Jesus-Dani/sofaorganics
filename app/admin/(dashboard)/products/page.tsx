@@ -89,7 +89,7 @@ export default async function AdminProductsPage({
                   </td>
                   <td className="px-4 py-3 text-right">
                     <DeleteButton
-                      onDelete={() => deleteProduct(product.id)}
+                      onDelete={deleteProduct.bind(null, product.id)}
                       confirmMessage={`Delete "${product.name}"? This can't be undone.`}
                     />
                   </td>

@@ -46,7 +46,7 @@ export default async function AdminBlogPage() {
                 </td>
                 <td className="px-4 py-3 text-right">
                   <DeleteButton
-                    onDelete={() => deleteBlogPost(post.id)}
+                    onDelete={deleteBlogPost.bind(null, post.id)}
                     confirmMessage={`Delete "${post.title}"? This can't be undone.`}
                   />
                 </td>
