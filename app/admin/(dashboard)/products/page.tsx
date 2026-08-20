@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { getAllProductsForAdmin } from "@/lib/admin/products";
+import { deleteProduct } from "@/lib/admin/actions";
+import { DeleteButton } from "@/components/admin/delete-button";
 import { StockBadge } from "@/components/product/stock-badge";
 import { aggregateStockStatus } from "@/lib/utils/stock-status";
 import { formatCurrency } from "@/lib/utils/format-currency";
@@ -62,6 +64,7 @@ export default async function AdminProductsPage({
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Stock</th>
               <th className="px-4 py-3">From</th>
+              <th className="px-4 py-3" />
             </tr>
           </thead>
           <tbody>
@@ -84,12 +87,18 @@ export default async function AdminProductsPage({
                   <td className="px-4 py-3 text-text-muted">
                     {lowest !== null ? formatCurrency(lowest, product.variants[0]?.currency ?? "NGN") : "No sizes yet"}
                   </td>
+                  <td className="px-4 py-3 text-right">
+                    <DeleteButton
+                      onDelete={() => deleteProduct(product.id)}
+                      confirmMessage={`Delete "${product.name}"? This can't be undone.`}
+                    />
+                  </td>
                 </tr>
               );
             })}
             {products.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-text-muted">
+                <td colSpan={5} className="px-4 py-8 text-center text-text-muted">
                   No products match.
                 </td>
               </tr>

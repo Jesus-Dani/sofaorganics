@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Plus, Trash, WarningCircle } from "@phosphor-icons/react/dist/ssr";
-import { upsertProduct } from "@/lib/admin/actions";
+import { deleteProduct, upsertProduct } from "@/lib/admin/actions";
 import { productFormSchema, STANDARD_SIZES, type ProductFormValues } from "@/lib/admin/schema";
 import { slugify } from "@/lib/utils/slugify";
 import { PhotoUploader } from "@/components/admin/photo-uploader";
 import { FacetPicker } from "@/components/admin/facet-picker";
+import { DeleteButton } from "@/components/admin/delete-button";
 import type { Product } from "@/lib/data/types";
 import type { FacetRow } from "@/types/database.types";
 
@@ -296,13 +297,21 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
       {saveError && <FieldError message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-primary px-8 py-3.5 text-sm font-medium text-background hover:opacity-90 disabled:opacity-60"
-      >
-        {isSubmitting ? "Saving…" : "Save product"}
-      </button>
+      <div className="flex items-center justify-between">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-primary px-8 py-3.5 text-sm font-medium text-background hover:opacity-90 disabled:opacity-60"
+        >
+          {isSubmitting ? "Saving…" : "Save product"}
+        </button>
+        <DeleteButton
+          onDelete={() => deleteProduct(product.id)}
+          confirmMessage={`Delete "${product.name}"? This can't be undone.`}
+          redirectTo="/admin/products"
+          label="Delete product"
+        />
+      </div>
     </form>
   );
 }

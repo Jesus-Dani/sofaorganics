@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { getAllPostsForAdmin } from "@/lib/admin/blog";
+import { deleteBlogPost } from "@/lib/admin/actions";
+import { DeleteButton } from "@/components/admin/delete-button";
 
 export const metadata = { title: "Blog · Admin" };
 
@@ -27,6 +29,7 @@ export default async function AdminBlogPage() {
               <th className="px-4 py-3">Title</th>
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Published</th>
+              <th className="px-4 py-3" />
             </tr>
           </thead>
           <tbody>
@@ -41,11 +44,17 @@ export default async function AdminBlogPage() {
                 <td className="px-4 py-3 text-text-muted">
                   {post.published_at ? new Date(post.published_at).toLocaleDateString() : "Not published"}
                 </td>
+                <td className="px-4 py-3 text-right">
+                  <DeleteButton
+                    onDelete={() => deleteBlogPost(post.id)}
+                    confirmMessage={`Delete "${post.title}"? This can't be undone.`}
+                  />
+                </td>
               </tr>
             ))}
             {posts.length === 0 && (
               <tr>
-                <td colSpan={3} className="px-4 py-8 text-center text-text-muted">
+                <td colSpan={4} className="px-4 py-8 text-center text-text-muted">
                   No posts yet.
                 </td>
               </tr>

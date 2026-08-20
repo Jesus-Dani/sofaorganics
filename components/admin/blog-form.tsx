@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
-import { upsertBlogPost } from "@/lib/admin/actions";
+import { deleteBlogPost, upsertBlogPost } from "@/lib/admin/actions";
 import { blogPostFormSchema, type BlogPostFormValues } from "@/lib/admin/schema";
 import { slugify } from "@/lib/utils/slugify";
 import { CoverImageUploader } from "@/components/admin/cover-image-uploader";
 import { TiptapEditor } from "@/components/admin/tiptap-editor";
 import { RelatedProductsPicker, type PickableProduct } from "@/components/admin/related-products-picker";
+import { DeleteButton } from "@/components/admin/delete-button";
 import type { BlogPostRow } from "@/types/database.types";
 
 export function BlogForm({ post, products }: { post: BlogPostRow; products: PickableProduct[] }) {
@@ -119,13 +120,21 @@ export function BlogForm({ post, products }: { post: BlogPostRow; products: Pick
       {saveError && <FieldError message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-primary px-8 py-3.5 text-sm font-medium text-background hover:opacity-90 disabled:opacity-60"
-      >
-        {isSubmitting ? "Saving…" : "Save post"}
-      </button>
+      <div className="flex items-center justify-between">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-primary px-8 py-3.5 text-sm font-medium text-background hover:opacity-90 disabled:opacity-60"
+        >
+          {isSubmitting ? "Saving…" : "Save post"}
+        </button>
+        <DeleteButton
+          onDelete={() => deleteBlogPost(post.id)}
+          confirmMessage={`Delete "${post.title}"? This can't be undone.`}
+          redirectTo="/admin/blog"
+          label="Delete post"
+        />
+      </div>
     </form>
   );
 }

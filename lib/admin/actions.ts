@@ -101,6 +101,37 @@ export async function upsertProduct(values: ProductFormValues) {
   revalidatePath(`/products/${parsed.slug}`);
 }
 
+export async function deleteProduct(id: string) {
+  await requireAdmin();
+  const supabase = createSupabaseServerClient();
+
+  // Cleans up uploaded photos first — cascading the DB row wouldn't remove the
+  // actual Storage objects, just the product_images rows pointing at them.
+  const { data: images } = await supabase.from("product_images").select("storage_path").eq("product_id", id);
+  const paths = (images ?? [])
+    .map((img) => {
+      const marker = "/object/public/product-images/";
+      const idx = img.storage_path.indexOf(marker);
+      return idx === -1 ? null : img.storage_path.slice(idx + marker.length);
+    })
+    .filter((p): p is string => Boolean(p));
+  if (paths.length > 0) {
+    await supabase.storage.from("product-images").remove(paths);
+  }
+
+  const { error } = await supabase.from("products").delete().eq("id", id);
+  if (error) {
+    if (error.code === "23503") {
+      throw new Error("This product has order history and can't be deleted — set it to Archived instead.");
+    }
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/admin/products");
+  revalidatePath("/shop");
+  revalidatePath("/");
+}
+
 export async function createFacet(facetType: FacetType, label: string) {
   await requireAdmin();
   const type = facetTypeSchema.parse(facetType);
