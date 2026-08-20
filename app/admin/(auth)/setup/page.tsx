@@ -14,13 +14,16 @@ const setupSchema = z.object({
 });
 type SetupValues = z.infer<typeof setupSchema>;
 
-type Status = "checking" | "closed" | "already-admin" | "needs-signup" | "needs-claim";
+type Status = "checking" | "closed" | "already-admin" | "form" | "claiming";
 
 /**
- * Self-closing bootstrap for the one admin account (PRD §7). Works whether or
- * not the project requires email confirmation: if signUp() doesn't return an
- * active session, this page still offers a "Claim Admin Access" button for
- * whenever the user comes back signed in.
+ * Self-closing bootstrap for the one admin account (PRD §7). One form, no
+ * separate manual "claim" step: submitting tries sign-in then sign-up, and
+ * claims automatically the moment a session exists. If email confirmation is
+ * on and no session comes back, the same form stays up so re-submitting the
+ * same details after confirming finishes the job. If the user arrives already
+ * signed in (e.g. clicked a confirmation link), claiming happens immediately
+ * on load with no button to click.
  */
 export default function AdminSetupPage() {
   const router = useRouter();
@@ -31,6 +34,17 @@ export default function AdminSetupPage() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<SetupValues>({ resolver: zodResolver(setupSchema) });
+
+  const claimAdmin = async () => {
+    const supabase = createSupabaseBrowserClient();
+    const { error: claimError } = await supabase.rpc("claim_admin_bootstrap");
+    if (claimError) {
+      setError(claimError.message);
+      setStatus("form");
+      return;
+    }
+    router.push("/admin");
+  };
 
   useEffect(() => {
     const supabase = createSupabaseBrowserClient();
@@ -44,23 +58,19 @@ export default function AdminSetupPage() {
         return;
       }
       const { data: userData } = await supabase.auth.getUser();
-      setStatus(userData.user ? "needs-claim" : "needs-signup");
+      if (userData.user) {
+        setStatus("claiming");
+        await claimAdmin();
+        return;
+      }
+      setStatus("form");
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const claimAdmin = async () => {
-    setError(null);
-    const supabase = createSupabaseBrowserClient();
-    const { error: claimError } = await supabase.rpc("claim_admin_bootstrap");
-    if (claimError) {
-      setError(claimError.message);
-      return;
-    }
-    router.push("/admin");
-  };
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     setError(null);
+
     const supabase = createSupabaseBrowserClient();
 
     // Try signing in first — covers "signed up earlier but the session was
@@ -68,6 +78,7 @@ export default function AdminSetupPage() {
     // signs non-admins back out and would wipe this session again.
     const signInResult = await supabase.auth.signInWithPassword({ email, password });
     if (signInResult.data.session) {
+      setStatus("claiming");
       await claimAdmin();
       return;
     }
@@ -78,10 +89,10 @@ export default function AdminSetupPage() {
       return;
     }
     if (!data.session) {
-      setStatus("needs-claim");
-      setError("Check your email to confirm your account, then come back to this page and sign in to finish setup.");
+      setError("Check your email to confirm your account, then submit this form again with the same details to finish.");
       return;
     }
+    setStatus("claiming");
     await claimAdmin();
   });
 
@@ -90,6 +101,7 @@ export default function AdminSetupPage() {
       <p className="eyebrow mb-4 text-center">Admin Setup</p>
 
       {status === "checking" && <p className="text-center text-text-muted">Checking…</p>}
+      {status === "claiming" && <p className="text-center text-text-muted">Setting up your admin account…</p>}
 
       {status === "closed" && (
         <p className="text-center text-text-muted">
@@ -103,25 +115,11 @@ export default function AdminSetupPage() {
         </p>
       )}
 
-      {status === "needs-claim" && (
-        <div className="text-center">
-          <p className="mb-4 text-text-muted">
-            Signed in and ready. Claim this account as the store&apos;s one admin account.
-          </p>
-          <button
-            type="button"
-            onClick={claimAdmin}
-            className="w-full bg-primary py-3.5 text-sm font-medium text-background hover:opacity-90"
-          >
-            Claim Admin Access
-          </button>
-        </div>
-      )}
-
-      {status === "needs-signup" && (
+      {status === "form" && (
         <form onSubmit={onSubmit} className="space-y-4">
           <p className="text-center text-sm text-text-muted">
-            Create the one admin account for Sofa Organics.
+            Enter the email and password for the store&apos;s one admin account. If it doesn&apos;t exist yet, this
+            creates it.
           </p>
           <div>
             <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-text">
@@ -162,7 +160,7 @@ export default function AdminSetupPage() {
             disabled={isSubmitting}
             className="w-full bg-primary py-3.5 text-sm font-medium text-background hover:opacity-90 disabled:opacity-60"
           >
-            {isSubmitting ? "Creating…" : "Create Admin Account"}
+            {isSubmitting ? "Continuing…" : "Continue"}
           </button>
         </form>
       )}
