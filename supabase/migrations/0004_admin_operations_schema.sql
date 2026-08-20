@@ -13,21 +13,32 @@
 -- Admin read/write access on checkout tables (0002 only had guest-RPC access)
 -- ---------------------------------------------------------------------------
 
+drop policy if exists "Admins can read all orders" on orders;
 create policy "Admins can read all orders" on orders for select using (is_admin(auth.uid()));
+drop policy if exists "Admins can update orders" on orders;
 create policy "Admins can update orders" on orders for update using (is_admin(auth.uid()));
 
+drop policy if exists "Admins can read all order items" on order_items;
 create policy "Admins can read all order items" on order_items for select using (is_admin(auth.uid()));
 
+drop policy if exists "Admins can read all addresses" on addresses;
 create policy "Admins can read all addresses" on addresses for select using (is_admin(auth.uid()));
 
+drop policy if exists "Admins can read all customer profiles" on customer_profiles;
 create policy "Admins can read all customer profiles" on customer_profiles for select using (is_admin(auth.uid()));
 
+drop policy if exists "Admins can insert shipping rules" on shipping_rules;
 create policy "Admins can insert shipping rules" on shipping_rules for insert with check (is_admin(auth.uid()));
+drop policy if exists "Admins can update shipping rules" on shipping_rules;
 create policy "Admins can update shipping rules" on shipping_rules for update using (is_admin(auth.uid()));
+drop policy if exists "Admins can delete shipping rules" on shipping_rules;
 create policy "Admins can delete shipping rules" on shipping_rules for delete using (is_admin(auth.uid()));
 
+drop policy if exists "Admins can insert tax rules" on tax_rules;
 create policy "Admins can insert tax rules" on tax_rules for insert with check (is_admin(auth.uid()));
+drop policy if exists "Admins can update tax rules" on tax_rules;
 create policy "Admins can update tax rules" on tax_rules for update using (is_admin(auth.uid()));
+drop policy if exists "Admins can delete tax rules" on tax_rules;
 create policy "Admins can delete tax rules" on tax_rules for delete using (is_admin(auth.uid()));
 
 -- ---------------------------------------------------------------------------
@@ -202,7 +213,7 @@ grant execute on function admin_list_customers(uuid, text) to authenticated;
 -- site_content — TRD §2.6 / §6.7, CMS-editable legal/policy pages
 -- ---------------------------------------------------------------------------
 
-create table site_content (
+create table if not exists site_content (
   id uuid primary key default gen_random_uuid(),
   key text not null unique,
   body_richtext text not null default '',
@@ -211,21 +222,25 @@ create table site_content (
 
 alter table site_content enable row level security;
 
+drop policy if exists "Site content is publicly readable" on site_content;
 create policy "Site content is publicly readable" on site_content for select using (true);
+drop policy if exists "Admins can insert site content" on site_content;
 create policy "Admins can insert site content" on site_content for insert with check (is_admin(auth.uid()));
+drop policy if exists "Admins can update site content" on site_content;
 create policy "Admins can update site content" on site_content for update using (is_admin(auth.uid()));
 
 insert into site_content (key, body_richtext) values
   ('disclaimer', '<p>The products sold on this site are traditional herbs, spices, and oils. They are not intended to diagnose, treat, cure, or prevent any disease, and no statement on this site has been evaluated by a regulatory body such as NAFDAC.</p><p>Product descriptions reflect traditional and wellness-support use only. If you are pregnant, nursing, taking medication, or managing a medical condition, speak with a qualified healthcare provider before using any herbal product.</p><p>Pet-safe notes on individual product pages are general guidance, not veterinary advice. Check with your vet before introducing any new product to your pet''s routine.</p>'),
   ('returns_policy', '<p>Because these are consumable herbal products, we can only accept returns on unopened, unused items in their original packaging, requested within 7 days of delivery.</p><p>If an item arrives damaged, incorrect, or defective, contact us within 48 hours of delivery with a photo and we''ll arrange a replacement or refund at no cost to you.</p><p>To start a return, message us on WhatsApp or use the contact form with your order details.</p>'),
   ('privacy_policy', '<p>We collect the information needed to fulfil an order (name, contact details, and shipping address), and, if you create an account, your order history and saved details.</p><p>Payment is processed by Paystack; we never see or store your full card details. We use your email or phone number only to send order updates, unless you''ve opted into other communication.</p><p>We don''t sell your personal information to third parties. You can ask us to update or delete your data at any time by contacting us.</p>'),
-  ('terms', '<p>By placing an order with Sofa Organics, you agree to provide accurate shipping and contact information, and to pay the listed price in effect at checkout, including any applicable shipping and tax.</p><p>Prices, stock levels, and product availability are subject to change without notice. Orders are confirmed once payment is received; we''ll contact you directly if an item you ordered goes out of stock before we can fulfil it.</p><p>Use of this site is also governed by our Disclaimer and Privacy Policy, linked in the footer.</p>');
+  ('terms', '<p>By placing an order with Sofa Organics, you agree to provide accurate shipping and contact information, and to pay the listed price in effect at checkout, including any applicable shipping and tax.</p><p>Prices, stock levels, and product availability are subject to change without notice. Orders are confirmed once payment is received; we''ll contact you directly if an item you ordered goes out of stock before we can fulfil it.</p><p>Use of this site is also governed by our Disclaimer and Privacy Policy, linked in the footer.</p>')
+on conflict (key) do nothing;
 
 -- ---------------------------------------------------------------------------
 -- store_settings — TRD §2.8 / §6.8, single-row settings table
 -- ---------------------------------------------------------------------------
 
-create table store_settings (
+create table if not exists store_settings (
   id uuid primary key default gen_random_uuid(),
   business_name text not null default '',
   whatsapp_number text,
@@ -237,8 +252,11 @@ create table store_settings (
 
 alter table store_settings enable row level security;
 
+drop policy if exists "Store settings are publicly readable" on store_settings;
 create policy "Store settings are publicly readable" on store_settings for select using (true);
+drop policy if exists "Admins can update store settings" on store_settings;
 create policy "Admins can update store settings" on store_settings for update using (is_admin(auth.uid()));
 
-insert into store_settings (business_name, whatsapp_number, contact_email, social_links) values
-  ('Sofa Organics', '2348032343038', 'hello@sofaorganics.com', '{}'::jsonb);
+insert into store_settings (business_name, whatsapp_number, contact_email, social_links)
+select 'Sofa Organics', '2348032343038', 'hello@sofaorganics.com', '{}'::jsonb
+where not exists (select 1 from store_settings);
