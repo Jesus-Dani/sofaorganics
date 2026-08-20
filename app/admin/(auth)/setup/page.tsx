@@ -62,6 +62,16 @@ export default function AdminSetupPage() {
   const onSubmit = handleSubmit(async ({ email, password }) => {
     setError(null);
     const supabase = createSupabaseBrowserClient();
+
+    // Try signing in first — covers "signed up earlier but the session was
+    // lost before claiming" without needing /admin/login, which (correctly)
+    // signs non-admins back out and would wipe this session again.
+    const signInResult = await supabase.auth.signInWithPassword({ email, password });
+    if (signInResult.data.session) {
+      await claimAdmin();
+      return;
+    }
+
     const { data, error: signUpError } = await supabase.auth.signUp({ email, password });
     if (signUpError) {
       setError(signUpError.message);
