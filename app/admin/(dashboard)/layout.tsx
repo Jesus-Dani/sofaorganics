@@ -1,11 +1,26 @@
 import Link from "next/link";
-import { Package, NotePencil } from "@phosphor-icons/react/dist/ssr";
+import {
+  SquaresFour,
+  Package,
+  ShoppingBag,
+  Users,
+  Truck,
+  NotePencil,
+  FileText,
+  Gear,
+} from "@phosphor-icons/react/dist/ssr";
 import { requireAdmin } from "@/lib/admin/auth";
 import { SignOutButton } from "@/components/admin/sign-out-button";
 
 const NAV = [
+  { label: "Dashboard", href: "/admin", icon: SquaresFour },
   { label: "Products", href: "/admin/products", icon: Package },
+  { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
+  { label: "Customers", href: "/admin/customers", icon: Users },
+  { label: "Shipping & Tax", href: "/admin/shipping-tax", icon: Truck },
   { label: "Blog", href: "/admin/blog", icon: NotePencil },
+  { label: "Site Content", href: "/admin/site-content", icon: FileText },
+  { label: "Settings", href: "/admin/settings", icon: Gear },
 ];
 
 export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {

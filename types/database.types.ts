@@ -256,6 +256,29 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["blog_posts"]["Insert"]>;
         Relationships: [];
       };
+      site_content: {
+        Row: { id: string; key: string; body_richtext: string; updated_at: string };
+        Insert: Omit<Database["public"]["Tables"]["site_content"]["Row"], "id" | "updated_at"> & {
+          id?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["site_content"]["Insert"]>;
+        Relationships: [];
+      };
+      store_settings: {
+        Row: {
+          id: string;
+          business_name: string;
+          whatsapp_number: string | null;
+          contact_email: string | null;
+          social_links: Record<string, string>;
+          notify_on_new_order: boolean;
+          notify_on_low_stock: boolean;
+        };
+        Insert: Omit<Database["public"]["Tables"]["store_settings"]["Row"], "id"> & { id?: string };
+        Update: Partial<Database["public"]["Tables"]["store_settings"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Functions: {
       is_admin: {
@@ -298,8 +321,42 @@ export interface Database {
         Args: { p_order_id: string; p_customer_id: string };
         Returns: void;
       };
+      create_manual_order: {
+        Args: {
+          p_line_items: { variant_id: string; quantity: number; unit_price: number }[];
+          p_customer: { name: string; phone: string };
+          p_payment_method: string;
+          p_shipping?: {
+            line1: string;
+            line2?: string | null;
+            city: string;
+            state: string;
+            country?: string;
+            postal_code?: string | null;
+          } | null;
+        };
+        Returns: string;
+      };
+      admin_list_customers: {
+        Args: { p_customer_id?: string | null; p_guest_key?: string | null };
+        Returns: CustomerSummary[];
+      };
     };
   };
+}
+
+export interface CustomerSummary {
+  customer_key: string;
+  customer_id: string | null;
+  is_guest: boolean;
+  full_name: string | null;
+  email: string | null;
+  phone: string | null;
+  order_count: number;
+  total_spent: number;
+  avg_order_value: number;
+  first_order_at: string;
+  last_order_at: string;
 }
 
 export interface OrderConfirmation {
@@ -341,3 +398,9 @@ export type FacetRow = Database["public"]["Tables"]["facets"]["Row"];
 export type ShippingRuleRow = Database["public"]["Tables"]["shipping_rules"]["Row"];
 export type TaxRuleRow = Database["public"]["Tables"]["tax_rules"]["Row"];
 export type BlogPostRow = Database["public"]["Tables"]["blog_posts"]["Row"];
+export type OrderRow = Database["public"]["Tables"]["orders"]["Row"];
+export type OrderItemRow = Database["public"]["Tables"]["order_items"]["Row"];
+export type AddressRow = Database["public"]["Tables"]["addresses"]["Row"];
+export type SiteContentRow = Database["public"]["Tables"]["site_content"]["Row"];
+export type StoreSettingsRow = Database["public"]["Tables"]["store_settings"]["Row"];
+export type SiteContentKey = "disclaimer" | "returns_policy" | "privacy_policy" | "terms";

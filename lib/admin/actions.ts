@@ -7,11 +7,22 @@ import { slugify } from "@/lib/utils/slugify";
 import {
   blogPostFormSchema,
   facetTypeSchema,
+  manualOrderFormSchema,
+  orderStatusSchema,
   productFormSchema,
+  shippingRuleFormSchema,
+  siteContentFormSchema,
+  storeSettingsFormSchema,
+  taxRuleFormSchema,
   type BlogPostFormValues,
+  type ManualOrderFormValues,
   type ProductFormValues,
+  type ShippingRuleFormValues,
+  type SiteContentFormValues,
+  type StoreSettingsFormValues,
+  type TaxRuleFormValues,
 } from "@/lib/admin/schema";
-import type { FacetType } from "@/types/database.types";
+import type { FacetType, OrderStatus } from "@/types/database.types";
 
 function randomSuffix(): string {
   return Math.random().toString(36).slice(2, 8);
@@ -214,4 +225,126 @@ export async function deleteBlogPost(id: string) {
   if (error) throw new Error(error.message);
   revalidatePath("/admin/blog");
   revalidatePath("/blog");
+}
+
+export async function updateOrderStatus(id: string, status: OrderStatus) {
+  await requireAdmin();
+  const parsed = orderStatusSchema.parse(status);
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase.from("orders").update({ status: parsed }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/orders");
+  revalidatePath(`/admin/orders/${id}`);
+}
+
+export async function createManualOrder(values: ManualOrderFormValues): Promise<string> {
+  await requireAdmin();
+  const parsed = manualOrderFormSchema.parse(values);
+  const supabase = createSupabaseServerClient();
+
+  const { data, error } = await supabase.rpc("create_manual_order", {
+    p_line_items: parsed.lineItems.map((item) => ({
+      variant_id: item.variantId,
+      quantity: item.quantity,
+      unit_price: item.unitPrice,
+    })),
+    p_customer: { name: parsed.customerName, phone: parsed.customerPhone },
+    p_payment_method: parsed.paymentMethod,
+    p_shipping: parsed.shipping
+      ? {
+          line1: parsed.shipping.line1,
+          line2: parsed.shipping.line2 || null,
+          city: parsed.shipping.city,
+          state: parsed.shipping.state,
+          country: parsed.shipping.country,
+          postal_code: parsed.shipping.postalCode || null,
+        }
+      : null,
+  });
+
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/orders");
+  revalidatePath("/admin/customers");
+  return data;
+}
+
+export async function upsertShippingRule(values: ShippingRuleFormValues) {
+  await requireAdmin();
+  const parsed = shippingRuleFormSchema.parse(values);
+  const supabase = createSupabaseServerClient();
+
+  const { error } = parsed.id
+    ? await supabase
+        .from("shipping_rules")
+        .update({ zone_name: parsed.zoneName, rate: parsed.rate })
+        .eq("id", parsed.id)
+    : await supabase
+        .from("shipping_rules")
+        .insert({ zone_name: parsed.zoneName, rate: parsed.rate, rate_type: "flat", min_weight: null, max_weight: null });
+
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/shipping-tax");
+}
+
+export async function deleteShippingRule(id: string) {
+  await requireAdmin();
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase.from("shipping_rules").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/shipping-tax");
+}
+
+export async function upsertTaxRule(values: TaxRuleFormValues) {
+  await requireAdmin();
+  const parsed = taxRuleFormSchema.parse(values);
+  const supabase = createSupabaseServerClient();
+
+  const { error } = parsed.id
+    ? await supabase
+        .from("tax_rules")
+        .update({ region: parsed.region, rate_percent: parsed.ratePercent })
+        .eq("id", parsed.id)
+    : await supabase.from("tax_rules").insert({ region: parsed.region, rate_percent: parsed.ratePercent });
+
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/shipping-tax");
+}
+
+export async function deleteTaxRule(id: string) {
+  await requireAdmin();
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase.from("tax_rules").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/shipping-tax");
+}
+
+export async function upsertSiteContent(values: SiteContentFormValues) {
+  await requireAdmin();
+  const parsed = siteContentFormSchema.parse(values);
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase
+    .from("site_content")
+    .update({ body_richtext: parsed.bodyRichtext, updated_at: new Date().toISOString() })
+    .eq("key", parsed.key);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/site-content");
+  revalidatePath(`/legal/${parsed.key.replace(/_/g, "-")}`);
+}
+
+export async function upsertStoreSettings(id: string, values: StoreSettingsFormValues) {
+  await requireAdmin();
+  const parsed = storeSettingsFormSchema.parse(values);
+  const supabase = createSupabaseServerClient();
+  const { error } = await supabase
+    .from("store_settings")
+    .update({
+      business_name: parsed.businessName,
+      whatsapp_number: parsed.whatsappNumber || null,
+      contact_email: parsed.contactEmail || null,
+      notify_on_new_order: parsed.notifyOnNewOrder,
+      notify_on_low_stock: parsed.notifyOnLowStock,
+    })
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/settings");
 }
