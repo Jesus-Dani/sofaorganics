@@ -22,15 +22,26 @@ export async function middleware(request: NextRequest) {
 
   if (isAdminPath && !isPublicAdminPath) {
     if (!user) {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+      return redirectPreservingCookies(request, response, "/admin/login");
     }
     const { data: isAdmin } = await supabase.rpc("is_admin", { uid: user.id });
     if (!isAdmin) {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+      return redirectPreservingCookies(request, response, "/admin/login");
     }
   }
 
   return response;
+}
+
+// getUser() above may have just rotated the refresh token, writing the new cookie onto
+// `response`. A bare NextResponse.redirect(...) is a brand-new response with none of
+// that — the browser would keep the now-invalidated old cookie, and every request after
+// this one would fail to refresh, bouncing back to login permanently until cookies are
+// cleared. Copying response's cookies onto the redirect keeps the rotation intact.
+function redirectPreservingCookies(request: NextRequest, response: NextResponse, path: string) {
+  const redirectResponse = NextResponse.redirect(new URL(path, request.url));
+  response.cookies.getAll().forEach((cookie) => redirectResponse.cookies.set(cookie));
+  return redirectResponse;
 }
 
 export const config = {
