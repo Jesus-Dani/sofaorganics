@@ -98,10 +98,14 @@ export async function upsertProduct(values: ProductFormValues) {
   const { error: deleteFacetsError } = await supabase.from("product_facets").delete().eq("product_id", parsed.id);
   if (deleteFacetsError) throw new Error(deleteFacetsError.message);
 
-  if (parsed.facetIds.length > 0) {
+  const uniqueFacetIds = [...new Set(parsed.facetIds)];
+  if (uniqueFacetIds.length > 0) {
     const { error: insertFacetsError } = await supabase
       .from("product_facets")
-      .insert(parsed.facetIds.map((facet_id) => ({ product_id: parsed.id, facet_id })));
+      .upsert(
+        uniqueFacetIds.map((facet_id) => ({ product_id: parsed.id, facet_id })),
+        { onConflict: "product_id,facet_id", ignoreDuplicates: true }
+      );
     if (insertFacetsError) throw new Error(insertFacetsError.message);
   }
 
