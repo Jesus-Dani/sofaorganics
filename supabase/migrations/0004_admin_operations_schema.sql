@@ -182,12 +182,12 @@ begin
 
   return query
   select
-    coalesce(o.customer_id::text, lower(o.guest_email), o.guest_phone) as customer_key,
+    coalesce(o.customer_id::text, lower(o.guest_email), o.guest_phone)::text as customer_key,
     o.customer_id,
     (o.customer_id is null) as is_guest,
-    coalesce(cp.full_name, max(o.guest_name)) as full_name,
-    coalesce(u.email, max(o.guest_email)) as email,
-    coalesce(cp.phone, max(o.guest_phone)) as phone,
+    coalesce(cp.full_name, max(o.guest_name))::text as full_name,
+    coalesce(u.email::text, max(o.guest_email))::text as email,
+    coalesce(cp.phone, max(o.guest_phone))::text as phone,
     count(*) as order_count,
     sum(o.grand_total) as total_spent,
     avg(o.grand_total) as avg_order_value,
