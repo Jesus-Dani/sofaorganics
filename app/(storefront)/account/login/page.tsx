@@ -35,7 +35,6 @@ export default function AccountLoginPage() {
       return;
     }
     router.push("/account");
-    router.refresh();
   });
 
   const handleForgotPassword = async () => {

@@ -42,7 +42,6 @@ export default function AccountSignupPage() {
 
     await supabase.from("customer_profiles").update({ full_name: fullName }).eq("id", data.user.id);
     router.push("/account");
-    router.refresh();
   });
 
   if (needsConfirmation) {
