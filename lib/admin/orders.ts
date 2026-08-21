@@ -63,21 +63,23 @@ export async function getOrderForAdmin(id: string): Promise<OrderDetail | null> 
   if (error) throw error;
   if (!order) return null;
 
-  const { data: items, error: itemsError } = await supabase
-    .from("order_items")
-    .select("id, quantity, unit_price, is_subscription, product_variants(size_label, products(name, slug))")
-    .eq("order_id", id);
-  if (itemsError) throw itemsError;
-
-  let shippingAddress: OrderDetail["shipping_address"] = null;
-  if (order.shipping_address_id) {
-    const { data: address } = await supabase
-      .from("addresses")
-      .select("line1, line2, city, state, country, postal_code")
-      .eq("id", order.shipping_address_id)
-      .maybeSingle();
-    shippingAddress = address ?? null;
-  }
+  // Items and the shipping address both only depend on `order`, not on each other — fetch concurrently.
+  const [itemsResult, addressResult] = await Promise.all([
+    supabase
+      .from("order_items")
+      .select("id, quantity, unit_price, is_subscription, product_variants(size_label, products(name, slug))")
+      .eq("order_id", id),
+    order.shipping_address_id
+      ? supabase
+          .from("addresses")
+          .select("line1, line2, city, state, country, postal_code")
+          .eq("id", order.shipping_address_id)
+          .maybeSingle()
+      : Promise.resolve({ data: null, error: null }),
+  ]);
+  if (itemsResult.error) throw itemsResult.error;
+  const items = itemsResult.data;
+  const shippingAddress: OrderDetail["shipping_address"] = addressResult.data ?? null;
 
   type ItemRow = {
     id: string;

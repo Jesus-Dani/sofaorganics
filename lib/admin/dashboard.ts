@@ -17,14 +17,23 @@ export async function getDashboardStats(rangeDays: number): Promise<DashboardSta
 
   const since = new Date(Date.now() - rangeDays * 24 * 60 * 60 * 1000).toISOString();
 
-  const { data: orders, error: ordersError } = await supabase
-    .from("orders")
-    .select("*")
-    .neq("status", "cancelled")
-    .gte("created_at", since)
-    .order("created_at", { ascending: false });
-  if (ordersError) throw ordersError;
+  // Orders and low-stock are independent of each other — no reason to await them sequentially.
+  const [ordersResult, lowStockResult] = await Promise.all([
+    supabase
+      .from("orders")
+      .select("*")
+      .neq("status", "cancelled")
+      .gte("created_at", since)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("product_variants")
+      .select("stock_quantity, low_stock_threshold, size_label, products!inner(name, status)")
+      .eq("products.status", "published"),
+  ]);
+  if (ordersResult.error) throw ordersResult.error;
+  if (lowStockResult.error) throw lowStockResult.error;
 
+  const orders = ordersResult.data;
   const revenue = orders.reduce((sum, o) => sum + o.grand_total, 0);
   const orderIds = orders.map((o) => o.id);
 
@@ -57,14 +66,8 @@ export async function getDashboardStats(rangeDays: number): Promise<DashboardSta
       .slice(0, 5);
   }
 
-  const { data: lowStock, error: lowStockError } = await supabase
-    .from("product_variants")
-    .select("stock_quantity, low_stock_threshold, size_label, products!inner(name, status)")
-    .eq("products.status", "published");
-  if (lowStockError) throw lowStockError;
-
   type VariantRow = { stock_quantity: number; low_stock_threshold: number; size_label: string; products: { name: string } };
-  const lowStockVariants = (lowStock as unknown as VariantRow[])
+  const lowStockVariants = (lowStockResult.data as unknown as VariantRow[])
     .filter((v) => v.stock_quantity <= v.low_stock_threshold)
     .map((v) => ({
       productName: v.products.name,
