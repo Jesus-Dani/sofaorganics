@@ -1,25 +1,41 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { WHATSAPP_LINK } from "@/lib/nav-config";
+import { requireCustomer } from "@/lib/customer/auth";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { AccountSignOutButton } from "@/components/account/sign-out-button";
 
-export const metadata: Metadata = { title: "Account" };
+export const metadata = { title: "My Account" };
 
-export default function AccountPage() {
+export default async function AccountPage() {
+  const customerId = await requireCustomer();
+  const supabase = createSupabaseServerClient();
+  const { data: profile } = await supabase
+    .from("customer_profiles")
+    .select("full_name, phone")
+    .eq("id", customerId)
+    .maybeSingle();
+
   return (
-    <div className="wrap py-20 text-center">
-      <p className="eyebrow mb-4">Account</p>
-      <h1 className="text-[28px]">Accounts are on the way.</h1>
-      <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-text-muted">
-        Sign-in, order history, and wishlist are being built next. For now, browse the shop as a
-        guest (your cart stays on this device), or reach us on WhatsApp for anything account-related.
-      </p>
-      <div className="mt-7 flex items-center justify-center gap-4">
-        <Link href="/shop" className="bg-primary px-6 py-3 text-sm font-medium text-background">
-          Continue shopping
+    <div className="wrap max-w-2xl py-14 md:py-20">
+      <p className="eyebrow mb-2">My Account</p>
+      <h1 className="text-[28px]">{profile?.full_name ? `Welcome back, ${profile.full_name.split(" ")[0]}` : "Welcome back"}</h1>
+
+      <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <Link href="/account/orders" className="border border-border p-6 text-center hover:border-primary">
+          <p className="font-serif text-lg">Orders</p>
+          <p className="mt-1 text-sm text-text-muted">History & Buy Again</p>
         </Link>
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary underline">
-          Message us
-        </a>
+        <Link href="/account/wishlist" className="border border-border p-6 text-center hover:border-primary">
+          <p className="font-serif text-lg">Wishlist</p>
+          <p className="mt-1 text-sm text-text-muted">Saved items</p>
+        </Link>
+        <Link href="/account/addresses" className="border border-border p-6 text-center hover:border-primary">
+          <p className="font-serif text-lg">Addresses</p>
+          <p className="mt-1 text-sm text-text-muted">Saved shipping details</p>
+        </Link>
+      </div>
+
+      <div className="mt-10">
+        <AccountSignOutButton />
       </div>
     </div>
   );

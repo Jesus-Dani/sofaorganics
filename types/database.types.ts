@@ -144,6 +144,28 @@ export interface Database {
           },
         ];
       };
+      wishlist_items: {
+        Row: { id: string; customer_id: string; product_variant_id: string; created_at: string };
+        Insert: Omit<Database["public"]["Tables"]["wishlist_items"]["Row"], "id" | "created_at"> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["wishlist_items"]["Insert"]>;
+        Relationships: [
+          {
+            foreignKeyName: "wishlist_items_customer_id_fkey";
+            columns: ["customer_id"];
+            referencedRelation: "customer_profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "wishlist_items_product_variant_id_fkey";
+            columns: ["product_variant_id"];
+            referencedRelation: "product_variants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       shipping_rules: {
         Row: {
           id: string;
@@ -341,6 +363,10 @@ export interface Database {
         Args: { p_customer_id?: string | null; p_guest_key?: string | null };
         Returns: CustomerSummary[];
       };
+      record_paystack_reference: {
+        Args: { p_order_id: string; p_reference: string };
+        Returns: void;
+      };
     };
   };
 }
@@ -404,3 +430,5 @@ export type AddressRow = Database["public"]["Tables"]["addresses"]["Row"];
 export type SiteContentRow = Database["public"]["Tables"]["site_content"]["Row"];
 export type StoreSettingsRow = Database["public"]["Tables"]["store_settings"]["Row"];
 export type SiteContentKey = "disclaimer" | "returns_policy" | "privacy_policy" | "terms";
+export type CustomerProfileRow = Database["public"]["Tables"]["customer_profiles"]["Row"];
+export type WishlistItemRow = Database["public"]["Tables"]["wishlist_items"]["Row"];

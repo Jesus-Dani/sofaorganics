@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { updateSupabaseSession } from "@/lib/supabase/middleware";
 
 const ADMIN_PUBLIC_PATHS = ["/admin/login", "/admin/setup"];
+const ACCOUNT_PUBLIC_PATHS = ["/account/login", "/account/signup", "/account/reset-password"];
 
 export async function middleware(request: NextRequest) {
   // Next.js prefetches every visible Link's RSC payload in the background. If a
@@ -28,6 +29,13 @@ export async function middleware(request: NextRequest) {
     if (!isAdmin) {
       return redirectPreservingCookies(request, response, "/admin/login");
     }
+  }
+
+  const isAccountPath = pathname.startsWith("/account");
+  const isPublicAccountPath = ACCOUNT_PUBLIC_PATHS.some((p) => pathname.startsWith(p));
+
+  if (isAccountPath && !isPublicAccountPath && !user) {
+    return redirectPreservingCookies(request, response, "/account/login");
   }
 
   return response;

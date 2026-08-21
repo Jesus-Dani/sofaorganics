@@ -5,17 +5,21 @@ import { formatCurrency } from "@/lib/utils/format-currency";
 import { aggregateStockStatus } from "@/lib/utils/stock-status";
 import { StockBadge } from "@/components/product/stock-badge";
 import { PlaceholderPhoto } from "@/components/ui/placeholder-photo";
+import { WishlistToggleButton } from "@/components/product/wishlist-toggle-button";
+import { getWishlistedVariantIds } from "@/lib/customer/wishlist";
 
-export function ProductCard({ product }: { product: Product }) {
-  const lowestPrice = Math.min(...product.variants.map((v) => v.price));
-  const currency = product.variants[0]?.currency ?? "NGN";
+export async function ProductCard({ product }: { product: Product }) {
+  const lowestPriceVariant =
+    product.variants.length > 0 ? product.variants.reduce((min, v) => (v.price < min.price ? v : min)) : undefined;
+  const currency = lowestPriceVariant?.currency ?? "NGN";
   const status = aggregateStockStatus(product.variants.map((v) => v.stockStatus));
   const cover = product.images[0];
+  const wishlistedIds = lowestPriceVariant ? await getWishlistedVariantIds() : null;
 
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group block border border-border bg-background transition-colors hover:border-primary"
+      className="group relative block border border-border bg-background transition-colors hover:border-primary"
     >
       <div className="relative aspect-square overflow-hidden bg-background-alt">
         {cover && !cover.isPlaceholder ? (
@@ -29,11 +33,18 @@ export function ProductCard({ product }: { product: Product }) {
         ) : (
           <PlaceholderPhoto label={cover?.alt ?? product.name} />
         )}
+        {lowestPriceVariant && (
+          <WishlistToggleButton
+            variantId={lowestPriceVariant.id}
+            initialSaved={wishlistedIds?.has(lowestPriceVariant.id) ?? false}
+            className="absolute right-2 top-2"
+          />
+        )}
       </div>
       <div className="space-y-2 p-4">
         <h3 className="font-serif text-base text-text">{product.name}</h3>
         <StockBadge status={status} />
-        <p className="text-sm font-semibold text-text">From {formatCurrency(lowestPrice, currency)}</p>
+        <p className="text-sm font-semibold text-text">From {formatCurrency(lowestPriceVariant?.price ?? 0, currency)}</p>
       </div>
     </Link>
   );

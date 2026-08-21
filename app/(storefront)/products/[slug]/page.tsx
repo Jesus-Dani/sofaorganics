@@ -8,6 +8,7 @@ import { PetSafeBadge } from "@/components/product/pet-safe-badge";
 import { PetSafeNotes } from "@/components/product/pet-safe-notes";
 import { AddToCartForm } from "@/components/product/add-to-cart-form";
 import { RelatedProducts } from "@/components/product/related-products";
+import { getWishlistedVariantIds } from "@/lib/customer/wishlist";
 
 export function generateStaticParams() {
   return SEED_PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -24,6 +25,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) notFound();
 
   const related = await getRelatedProducts(product);
+  const wishlistedVariantIds = [...(await getWishlistedVariantIds())];
 
   return (
     <div className="wrap py-10 md:py-14">
@@ -36,7 +38,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           {product.isPetSafe && <PetSafeBadge className="mt-3" />}
 
           <div className="mt-6">
-            <AddToCartForm product={product} />
+            <AddToCartForm product={product} wishlistedVariantIds={wishlistedVariantIds} />
           </div>
 
           <p className="mt-8 max-w-prose text-[15px] leading-relaxed text-text-muted">{product.description}</p>

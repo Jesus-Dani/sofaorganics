@@ -26,6 +26,7 @@ export async function initializeTransaction(params: {
   amountNaira: number;
   reference: string;
   callbackUrl: string;
+  metadata?: Record<string, string>;
 }): Promise<InitializeTransactionResult> {
   const response = await fetch(`${PAYSTACK_BASE_URL}/transaction/initialize`, {
     method: "POST",
@@ -38,6 +39,7 @@ export async function initializeTransaction(params: {
       amount: Math.round(params.amountNaira * 100), // Paystack expects kobo
       reference: params.reference,
       callback_url: params.callbackUrl,
+      metadata: params.metadata,
     }),
   });
 

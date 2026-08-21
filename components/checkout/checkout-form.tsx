@@ -9,7 +9,7 @@ import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { useCart } from "@/components/cart/cart-context";
 import { checkoutSchema, type CheckoutValues } from "@/lib/checkout/schema";
 import { formatCurrency } from "@/lib/utils/format-currency";
-import type { ShippingRuleRow } from "@/types/database.types";
+import type { AddressRow, ShippingRuleRow } from "@/types/database.types";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -21,7 +21,15 @@ function FieldError({ message }: { message?: string }) {
   );
 }
 
-export function CheckoutForm({ zones, taxRatePercent }: { zones: ShippingRuleRow[]; taxRatePercent: number }) {
+export function CheckoutForm({
+  zones,
+  taxRatePercent,
+  savedAddresses,
+}: {
+  zones: ShippingRuleRow[];
+  taxRatePercent: number;
+  savedAddresses: AddressRow[];
+}) {
   const router = useRouter();
   const { lines, subtotal, clearCart } = useCart();
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -30,6 +38,7 @@ export function CheckoutForm({ zones, taxRatePercent }: { zones: ShippingRuleRow
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<CheckoutValues>({
     resolver: zodResolver(checkoutSchema),
@@ -126,6 +135,32 @@ export function CheckoutForm({ zones, taxRatePercent }: { zones: ShippingRuleRow
 
         <section>
           <h2 className="mb-4 text-lg font-serif">Shipping address</h2>
+          {savedAddresses.length > 0 && (
+            <div className="mb-4">
+              <label className="mb-1.5 block text-sm font-medium text-text">Use a saved address</label>
+              <select
+                defaultValue=""
+                onChange={(e) => {
+                  const address = savedAddresses.find((a) => a.id === e.target.value);
+                  if (!address) return;
+                  setValue("line1", address.line1);
+                  setValue("line2", address.line2 ?? "");
+                  setValue("city", address.city);
+                  setValue("state", address.state);
+                  setValue("postalCode", address.postal_code ?? "");
+                }}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+              >
+                <option value="">Enter a new address below…</option>
+                {savedAddresses.map((address) => (
+                  <option key={address.id} value={address.id}>
+                    {address.label ? `${address.label} — ` : ""}
+                    {address.line1}, {address.city}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label htmlFor="line1" className="mb-1.5 block text-sm font-medium text-text">

@@ -6,9 +6,16 @@ import { CaretDown, Check, Minus, Plus } from "@phosphor-icons/react/dist/ssr";
 import type { Product } from "@/lib/data/types";
 import { formatCurrency } from "@/lib/utils/format-currency";
 import { StockBadge } from "@/components/product/stock-badge";
+import { WishlistToggleButton } from "@/components/product/wishlist-toggle-button";
 import { useCart } from "@/components/cart/cart-context";
 
-export function AddToCartForm({ product }: { product: Product }) {
+export function AddToCartForm({
+  product,
+  wishlistedVariantIds,
+}: {
+  product: Product;
+  wishlistedVariantIds: string[];
+}) {
   const { addLine, openCart } = useCart();
   const [variantId, setVariantId] = useState(product.variants[0]?.id ?? "");
   const [quantity, setQuantity] = useState(1);
@@ -109,6 +116,13 @@ export function AddToCartForm({ product }: { product: Product }) {
         >
           {outOfStock ? "Out of Stock" : justAdded ? "Added" : "Add to Cart"}
         </button>
+
+        <WishlistToggleButton
+          key={variant.id}
+          variantId={variant.id}
+          initialSaved={wishlistedVariantIds.includes(variant.id)}
+          className="h-[46px] w-[46px] border border-border"
+        />
       </div>
 
       <button type="button" onClick={openCart} className="text-xs text-text-muted underline">
