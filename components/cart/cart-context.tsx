@@ -22,6 +22,12 @@ export interface CartLine {
 
 interface CartContextValue {
   lines: CartLine[];
+  /** True once the initial read from localStorage has completed — callers that need to
+   * mutate the cart on mount (e.g. clearing it) must wait for this, or their change can
+   * be silently overwritten: child effects fire before parent effects on initial mount,
+   * so a child clearing the cart before CartProvider's own hydration effect runs would
+   * just get overwritten a moment later when hydration sets lines from localStorage. */
+  hydrated: boolean;
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
@@ -91,6 +97,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const subtotal = lines.reduce((sum, l) => sum + l.quantity * l.unitPrice, 0);
     return {
       lines,
+      hydrated,
       isOpen,
       openCart: () => setIsOpen(true),
       closeCart: () => setIsOpen(false),
@@ -101,7 +108,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       itemCount,
       subtotal,
     };
-  }, [lines, isOpen, addLine, removeLine, setQuantity, clearCart]);
+  }, [lines, hydrated, isOpen, addLine, removeLine, setQuantity, clearCart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
