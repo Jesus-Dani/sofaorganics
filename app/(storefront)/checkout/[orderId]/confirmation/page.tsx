@@ -5,6 +5,7 @@ import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { formatCurrency } from "@/lib/utils/format-currency";
 import { CreateAccountPrompt } from "@/components/checkout/create-account-prompt";
+import { ClearCartOnMount } from "@/components/checkout/clear-cart-on-mount";
 
 export const metadata: Metadata = { title: "Order Confirmed" };
 
@@ -16,6 +17,7 @@ export default async function ConfirmationPage({ params }: { params: { orderId: 
 
   return (
     <div className="wrap max-w-2xl py-14 md:py-20">
+      <ClearCartOnMount shouldClear={order.status !== "pending"} />
       <div className="text-center">
         <CheckCircle size={40} weight="fill" className="mx-auto text-primary" aria-hidden />
         <p className="eyebrow mt-4 mb-2">

@@ -31,7 +31,7 @@ export function CheckoutForm({
   savedAddresses: AddressRow[];
 }) {
   const router = useRouter();
-  const { lines, subtotal, clearCart } = useCart();
+  const { lines, subtotal } = useCart();
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
@@ -82,7 +82,11 @@ export function CheckoutForm({
         throw new Error(json.error ?? "Something went wrong placing your order.");
       }
 
-      clearCart();
+      // Cart is cleared once we actually reach the confirmation page (a real "paid"
+      // signal), not here — clearing it now, while this form is still mounted, made
+      // it re-render with lines.length === 0 and flash the "cart is empty" state
+      // before the navigation to /pay (and then Paystack) even finished. It also
+      // wiped the cart even if the customer abandoned payment on Paystack.
       router.push(`/checkout/${json.orderId}/pay`);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong placing your order.");
