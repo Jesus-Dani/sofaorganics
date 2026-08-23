@@ -9,11 +9,19 @@ import { z } from "zod";
 import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
-const signupSchema = z.object({
-  fullName: z.string().trim().min(2, "Enter your name"),
-  email: z.string().trim().email("Enter a valid email address"),
-  password: z.string().min(8, "At least 8 characters"),
-});
+const signupSchema = z
+  .object({
+    firstName: z.string().trim().min(1, "Enter your first name"),
+    lastName: z.string().trim().min(1, "Enter your last name"),
+    phone: z.string().trim().min(7, "Enter a valid phone number"),
+    email: z.string().trim().email("Enter a valid email address"),
+    password: z.string().min(8, "At least 8 characters"),
+    confirmPassword: z.string().min(8, "At least 8 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 type SignupValues = z.infer<typeof signupSchema>;
 
 export default function AccountSignupPage() {
@@ -37,7 +45,7 @@ function AccountSignupForm() {
     formState: { errors, isSubmitting },
   } = useForm<SignupValues>({ resolver: zodResolver(signupSchema) });
 
-  const onSubmit = handleSubmit(async ({ fullName, email, password }) => {
+  const onSubmit = handleSubmit(async ({ firstName, lastName, phone, email, password }) => {
     setError(null);
     const supabase = createSupabaseBrowserClient();
     const { data, error: signUpError } = await supabase.auth.signUp({ email, password });
@@ -51,7 +59,12 @@ function AccountSignupForm() {
       return;
     }
 
-    await supabase.from("customer_profiles").update({ full_name: fullName }).eq("id", data.user.id);
+    // Upsert rather than update: the auth.users insert trigger normally creates this
+    // row already, but upserting is resilient even if that row doesn't exist yet for
+    // any reason, instead of silently no-op'ing like a plain update would.
+    await supabase
+      .from("customer_profiles")
+      .upsert({ id: data.user.id, full_name: `${firstName} ${lastName}`.trim(), phone }, { onConflict: "id" });
     router.push(redirectTo);
   });
 
@@ -76,19 +89,54 @@ function AccountSignupForm() {
       <h1 className="mb-6 text-center text-2xl">Create an account</h1>
 
       <form onSubmit={onSubmit} className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="firstName" className="mb-1.5 block text-sm font-medium text-text">
+              First name
+            </label>
+            <input
+              id="firstName"
+              {...register("firstName")}
+              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            />
+            {errors.firstName && (
+              <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
+                <WarningCircle size={13} aria-hidden />
+                {errors.firstName.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <label htmlFor="lastName" className="mb-1.5 block text-sm font-medium text-text">
+              Last name
+            </label>
+            <input
+              id="lastName"
+              {...register("lastName")}
+              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            />
+            {errors.lastName && (
+              <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
+                <WarningCircle size={13} aria-hidden />
+                {errors.lastName.message}
+              </p>
+            )}
+          </div>
+        </div>
         <div>
-          <label htmlFor="fullName" className="mb-1.5 block text-sm font-medium text-text">
-            Full name
+          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-text">
+            Phone number
           </label>
           <input
-            id="fullName"
-            {...register("fullName")}
+            id="phone"
+            type="tel"
+            {...register("phone")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.fullName && (
+          {errors.phone && (
             <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
               <WarningCircle size={13} aria-hidden />
-              {errors.fullName.message}
+              {errors.phone.message}
             </p>
           )}
         </div>
@@ -123,6 +171,23 @@ function AccountSignupForm() {
             <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
               <WarningCircle size={13} aria-hidden />
               {errors.password.message}
+            </p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="confirmPassword" className="mb-1.5 block text-sm font-medium text-text">
+            Confirm password
+          </label>
+          <input
+            id="confirmPassword"
+            type="password"
+            {...register("confirmPassword")}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+          />
+          {errors.confirmPassword && (
+            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
+              <WarningCircle size={13} aria-hidden />
+              {errors.confirmPassword.message}
             </p>
           )}
         </div>
