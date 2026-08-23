@@ -11,7 +11,7 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
 
   return (
     <div className="max-w-2xl">
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl">{order.guest_name ?? order.guest_email ?? "Registered customer"}</h1>
           <p className="mt-1 text-sm text-text-muted">
@@ -22,7 +22,7 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
         <OrderStatusSelect orderId={order.id} status={order.status} />
       </div>
 
-      <section className="mb-8 border border-border">
+      <section className="mb-8 overflow-x-auto border border-border">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-background-alt text-left text-xs uppercase text-text-muted">
@@ -45,7 +45,7 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
         </table>
       </section>
 
-      <section className="mb-8 grid grid-cols-2 gap-8">
+      <section className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <h2 className="mb-3 text-sm font-semibold uppercase text-text-muted">Customer</h2>
           <p className="text-sm text-text">{order.guest_name ?? "—"}</p>

@@ -21,9 +21,9 @@ export default async function AdminDashboardPage({
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl">Dashboard</h1>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {RANGES.map((range) => (
             <Link
               key={range.value}
@@ -38,7 +38,7 @@ export default async function AdminDashboardPage({
         </div>
       </div>
 
-      <div className="mb-8 grid grid-cols-2 gap-4">
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="border border-border p-5">
           <p className="text-xs uppercase text-text-muted">Revenue</p>
           <p className="mt-1 text-2xl text-text">{formatCurrency(stats.revenue, "NGN")}</p>
@@ -49,7 +49,7 @@ export default async function AdminDashboardPage({
         </div>
       </div>
 
-      <div className="mb-8 grid grid-cols-2 gap-8">
+      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
         <section>
           <h2 className="mb-3 text-lg font-semibold text-text">Top products</h2>
           <div className="border border-border">
@@ -83,8 +83,8 @@ export default async function AdminDashboardPage({
 
       <section>
         <h2 className="mb-3 text-lg font-semibold text-text">Recent orders</h2>
-        <div className="border border-border">
-          <table className="w-full text-sm">
+        <div className="overflow-x-auto border border-border">
+          <table className="w-full min-w-[560px] text-sm">
             <thead>
               <tr className="border-b border-border bg-background-alt text-left text-xs uppercase text-text-muted">
                 <th className="px-4 py-3">Customer</th>

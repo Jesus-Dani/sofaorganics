@@ -120,7 +120,7 @@ export function BlogForm({ post, products }: { post: BlogPostRow; products: Pick
       {saveError && <FieldError message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <button
           type="submit"
           disabled={isSubmitting}

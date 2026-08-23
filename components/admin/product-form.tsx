@@ -160,7 +160,7 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
                   {isLocked && <span className="text-xs font-normal text-text-muted">(saved, set stock to 0 to retire)</span>}
                 </label>
                 {isChecked && (
-                  <div className="mt-2 grid grid-cols-3 gap-3">
+                  <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div>
                       <label className="mb-1 block text-xs text-text-muted">Price (₦)</label>
                       <input
@@ -199,7 +199,10 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
               if ((STANDARD_SIZES as readonly string[]).includes(field.sizeLabel)) return null;
               const isLocked = Boolean(field.id);
               return (
-                <div key={field.id} className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] items-end gap-2 border border-border p-3">
+                <div
+                  key={field.id}
+                  className="grid grid-cols-1 items-end gap-2 border border-border p-3 sm:grid-cols-[1fr_1fr_1fr_1fr_auto]"
+                >
                   <div>
                     <label className="mb-1 block text-xs text-text-muted">Size label</label>
                     <input
@@ -298,7 +301,7 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
       {saveError && <FieldError message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <button
           type="submit"
           disabled={isSubmitting}

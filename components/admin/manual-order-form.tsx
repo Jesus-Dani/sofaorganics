@@ -91,7 +91,10 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
             {fields.map((field, index) => {
               const variant = variants.find((v) => v.variantId === field.variantId);
               return (
-                <div key={field.id} className="grid grid-cols-[1fr_100px_140px_auto] items-end gap-2 border border-border p-3">
+                <div
+                  key={field.id}
+                  className="grid grid-cols-1 items-end gap-2 border border-border p-3 sm:grid-cols-[1fr_100px_140px_auto]"
+                >
                   <div>
                     <p className="text-xs text-text-muted">Product</p>
                     <p className="text-sm text-text">
@@ -172,16 +175,16 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
           Add a shipping address
         </label>
         {includeShipping && (
-          <div className="mt-3 grid grid-cols-2 gap-3">
+          <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <input
               {...register("shipping.line1")}
               placeholder="Address line 1"
-              className="col-span-2 border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none sm:col-span-2"
             />
             <input
               {...register("shipping.line2")}
               placeholder="Address line 2 (optional)"
-              className="col-span-2 border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none sm:col-span-2"
             />
             <input
               {...register("shipping.city")}

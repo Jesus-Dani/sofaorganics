@@ -27,9 +27,9 @@ export default async function AdminOrdersPage({
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl">Orders</h1>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <a
             href="/admin/orders/export"
             className="border border-border px-4 py-2.5 text-sm font-medium text-text hover:border-primary"
@@ -46,12 +46,12 @@ export default async function AdminOrdersPage({
         </div>
       </div>
 
-      <form className="mb-5 flex gap-3">
+      <form className="mb-5 flex flex-col gap-3 sm:flex-row">
         <input
           name="q"
           defaultValue={search}
           placeholder="Search by name, email, or phone"
-          className="flex-1 max-w-xs border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="flex-1 border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none sm:max-w-xs"
         />
         <select
           name="status"
@@ -79,7 +79,7 @@ export default async function AdminOrdersPage({
         </button>
       </form>
 
-      <div className="border border-border">
+      <div className="overflow-x-auto border border-border">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-background-alt text-left text-xs uppercase text-text-muted">

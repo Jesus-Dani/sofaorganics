@@ -15,7 +15,7 @@ export default async function AdminCustomerDetailPage({ params }: { params: { ke
       <h1 className="mb-1 text-2xl">{customer.full_name ?? "Unnamed customer"}</h1>
       <p className="mb-6 text-sm text-text-muted">{customer.is_guest ? "Guest / Manual customer" : "Registered account"}</p>
 
-      <section className="mb-8 grid grid-cols-2 gap-8">
+      <section className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <h2 className="mb-3 text-sm font-semibold uppercase text-text-muted">Contact</h2>
           <p className="text-sm text-text-muted">{customer.email ?? "No email"}</p>
@@ -37,7 +37,7 @@ export default async function AdminCustomerDetailPage({ params }: { params: { ke
 
       <section>
         <h2 className="mb-3 text-lg font-semibold text-text">Order history</h2>
-        <div className="border border-border">
+        <div className="overflow-x-auto border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-background-alt text-left text-xs uppercase text-text-muted">

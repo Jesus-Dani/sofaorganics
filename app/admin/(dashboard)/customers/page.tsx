@@ -10,7 +10,7 @@ export default async function AdminCustomersPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl">Customers</h1>
         <a
           href="/admin/customers/export"
@@ -20,7 +20,7 @@ export default async function AdminCustomersPage() {
         </a>
       </div>
 
-      <div className="border border-border">
+      <div className="overflow-x-auto border border-border">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-background-alt text-left text-xs uppercase text-text-muted">

@@ -38,8 +38,8 @@ export function EditableRulesTable<T extends { id: string }>({
   confirmMessage: (rule: T) => string;
 }) {
   return (
-    <div className="border border-border">
-      <table className="w-full text-sm">
+    <div className="overflow-x-auto border border-border">
+      <table className="w-full min-w-[480px] text-sm">
         <thead>
           <tr className="border-b border-border bg-background-alt text-left text-xs uppercase text-text-muted">
             <th className="px-4 py-3">{column1Label}</th>
