@@ -7,7 +7,7 @@ import { MobileNav } from "@/components/nav/mobile-nav";
 import { SearchBar } from "@/components/nav/search-bar";
 import { useCart } from "@/components/cart/cart-context";
 
-export function Header() {
+export function Header({ isSignedIn }: { isSignedIn: boolean }) {
   const { itemCount, openCart } = useCart();
 
   return (
@@ -30,9 +30,9 @@ export function Header() {
         <SearchBar className="hidden max-w-md flex-1 md:flex" />
 
         <div className="ml-auto flex items-center gap-5 text-sm">
-          <Link href="/account" className="hidden items-center gap-1.5 sm:flex">
+          <Link href={isSignedIn ? "/account" : "/account/login"} className="hidden items-center gap-1.5 sm:flex">
             <User size={18} aria-hidden />
-            Sign in
+            {isSignedIn ? "Account" : "Sign in"}
           </Link>
           <button
             type="button"
