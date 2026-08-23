@@ -7,7 +7,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { List, X, CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { PRIMARY_NAV } from "@/lib/nav-config";
 
-export function MobileNav() {
+export function MobileNav({ isSignedIn }: { isSignedIn: boolean }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -85,7 +85,13 @@ export function MobileNav() {
             </Accordion.Root>
 
             <div className="mt-6 flex flex-col gap-3 text-sm">
-              <Link href="/account" onClick={() => setOpen(false)}>Account</Link>
+              <Link
+                href={isSignedIn ? "/account" : "/account/login"}
+                prefetch={false}
+                onClick={() => setOpen(false)}
+              >
+                {isSignedIn ? "Account" : "Sign in"}
+              </Link>
             </div>
           </nav>
         </Dialog.Content>

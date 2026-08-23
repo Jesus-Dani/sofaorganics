@@ -21,7 +21,13 @@ export function FacetPicker({
   const [newLabel, setNewLabel] = useState("");
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
-  const options = allFacets.filter((f) => f.facet_type === facetType);
+  // Newly created facets aren't in `allFacets` until the parent's data reloads (e.g. after
+  // saving triggers router.refresh()) — without tracking them locally too, a facet just
+  // created via "Add" would vanish from view immediately, even though it saved correctly.
+  const [locallyCreated, setLocallyCreated] = useState<FacetRow[]>([]);
+  const options = [...allFacets, ...locallyCreated.filter((f) => !allFacets.some((existing) => existing.id === f.id))].filter(
+    (f) => f.facet_type === facetType
+  );
 
   const toggle = (id: string) => {
     onChange(selectedIds.includes(id) ? selectedIds.filter((x) => x !== id) : [...selectedIds, id]);
@@ -34,7 +40,7 @@ export function FacetPicker({
     startTransition(async () => {
       try {
         const facet = await createFacet(facetType, trimmed);
-        options.push(facet);
+        setLocallyCreated((prev) => [...prev, facet]);
         onChange([...selectedIds, facet.id]);
         setNewLabel("");
       } catch (err) {

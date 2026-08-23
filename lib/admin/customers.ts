@@ -37,8 +37,11 @@ export async function getCustomerOrders(customer: CustomerSummary): Promise<Orde
     query = query.eq("customer_id", customer.customer_id);
   } else if (customer.email) {
     query = query.is("customer_id", null).eq("guest_email", customer.email);
+  } else if (customer.phone) {
+    query = query.is("customer_id", null).eq("guest_phone", customer.phone);
   } else {
-    query = query.is("customer_id", null).eq("guest_phone", customer.phone ?? "");
+    // No email or phone on record for this customer — nothing to match orders against.
+    return [];
   }
 
   const { data, error } = await query;

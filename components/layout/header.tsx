@@ -20,7 +20,7 @@ export function Header({ isSignedIn }: { isSignedIn: boolean }) {
       </div>
 
       <div className="wrap flex items-center gap-6 py-5">
-        <MobileNav />
+        <MobileNav isSignedIn={isSignedIn} />
 
         <Link href="/" className="shrink-0 leading-none">
           <span className="block font-serif text-[26px] font-semibold tracking-wide text-text">SOFA</span>
@@ -30,7 +30,11 @@ export function Header({ isSignedIn }: { isSignedIn: boolean }) {
         <SearchBar className="hidden max-w-md flex-1 md:flex" />
 
         <div className="ml-auto flex items-center gap-5 text-sm">
-          <Link href={isSignedIn ? "/account" : "/account/login"} className="hidden items-center gap-1.5 sm:flex">
+          <Link
+            href={isSignedIn ? "/account" : "/account/login"}
+            prefetch={false}
+            className="hidden items-center gap-1.5 sm:flex"
+          >
             <User size={18} aria-hidden />
             {isSignedIn ? "Account" : "Sign in"}
           </Link>

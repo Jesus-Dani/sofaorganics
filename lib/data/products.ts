@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { mapProductRow, PRODUCT_SELECT, type ProductQueryRow } from "@/lib/data/map-product-row";
 import type { Product, ProductFilters } from "@/lib/data/types";
@@ -51,7 +52,9 @@ export async function getPublishedProducts(filters: ProductFilters = {}): Promis
   return (data as unknown as ProductQueryRow[]).map(mapProductRow);
 }
 
-export async function getProductBySlug(slug: string): Promise<Product | null> {
+// cache()'d because both generateMetadata() and the page component call this for the same
+// slug on every product-page render — without it, that's two identical DB round trips per visit.
+export const getProductBySlug = cache(async (slug: string): Promise<Product | null> => {
   const supabase = createSupabaseServerClient();
   const { data, error } = await supabase
     .from("products")
@@ -63,7 +66,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   if (error) throw error;
   if (!data) return null;
   return mapProductRow(data as unknown as ProductQueryRow);
-}
+});
 
 export async function searchProducts(query: string): Promise<Product[]> {
   const q = query.trim();

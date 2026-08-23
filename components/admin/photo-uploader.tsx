@@ -46,6 +46,7 @@ export function PhotoUploader({ productId, images }: { productId: string; images
   };
 
   const deleteImage = async (imageId: string) => {
+    if (!window.confirm("Delete this photo? This can't be undone.")) return;
     const supabase = createSupabaseBrowserClient();
     const { error: deleteError } = await supabase.from("product_images").delete().eq("id", imageId);
     if (deleteError) {

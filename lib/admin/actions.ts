@@ -53,61 +53,81 @@ export async function upsertProduct(values: ProductFormValues) {
   const parsed = productFormSchema.parse(values);
   const supabase = createSupabaseServerClient();
 
-  const { error: productError } = await supabase
-    .from("products")
-    .update({
-      name: parsed.name,
-      slug: parsed.slug,
-      description: parsed.description,
-      status: parsed.status,
-      is_pet_safe: parsed.isPetSafe,
-      pet_safe_note: parsed.isPetSafe ? parsed.petSafeNote ?? null : null,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", parsed.id);
-  if (productError) throw new Error(productError.message);
-
-  for (const variant of parsed.variants) {
-    if (variant.id) {
-      const { error } = await supabase
-        .from("product_variants")
-        .update({
-          size_label: variant.sizeLabel,
-          price: variant.price,
-          stock_quantity: variant.stockQuantity,
-          low_stock_threshold: variant.lowStockThreshold,
-          sku: variant.sku,
-        })
-        .eq("id", variant.id);
-      if (error) throw new Error(error.message);
-    } else {
-      const { error } = await supabase.from("product_variants").insert({
-        product_id: parsed.id,
-        size_label: variant.sizeLabel,
-        price: variant.price,
-        currency: "NGN",
-        stock_quantity: variant.stockQuantity,
-        low_stock_threshold: variant.lowStockThreshold,
-        subscription_eligible: false,
-        sku: variant.sku,
-      });
-      if (error) throw new Error(error.message);
-    }
-  }
-
-  const { error: deleteFacetsError } = await supabase.from("product_facets").delete().eq("product_id", parsed.id);
-  if (deleteFacetsError) throw new Error(deleteFacetsError.message);
-
+  const existingVariants = parsed.variants.filter((v) => v.id);
+  const newVariants = parsed.variants.filter((v) => !v.id);
   const uniqueFacetIds = [...new Set(parsed.facetIds)];
-  if (uniqueFacetIds.length > 0) {
-    const { error: insertFacetsError } = await supabase
-      .from("product_facets")
-      .upsert(
-        uniqueFacetIds.map((facet_id) => ({ product_id: parsed.id, facet_id })),
-        { onConflict: "product_id,facet_id", ignoreDuplicates: true }
-      );
-    if (insertFacetsError) throw new Error(insertFacetsError.message);
-  }
+
+  // The product update, variant writes, and facet replacement don't depend on each
+  // other (different rows, no FK ordering issue) — run them concurrently instead of
+  // one round trip at a time. Variant writes are also batched (one upsert call for
+  // existing variants, one insert for new ones) instead of a per-variant loop: besides
+  // being N round trips for N variants, a loop meant that one variant failing partway
+  // through (e.g. a duplicate SKU) left the earlier variants in the loop already
+  // committed with no rollback — a real partial-write bug, not just a perf concern.
+  const [productResult, existingVariantsResult, newVariantsResult, facetsResult] = await Promise.all([
+    supabase
+      .from("products")
+      .update({
+        name: parsed.name,
+        slug: parsed.slug,
+        description: parsed.description,
+        status: parsed.status,
+        is_pet_safe: parsed.isPetSafe,
+        pet_safe_note: parsed.isPetSafe ? parsed.petSafeNote ?? null : null,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", parsed.id),
+    // upsert() requires the full row shape, not just the changed columns — currency and
+    // subscription_eligible aren't editable from this form, so this pins them to the same
+    // values every insert already uses. Fine today since nothing in the app ever sets
+    // subscription_eligible true (Subscribe & Save is out of scope); revisit if that changes.
+    existingVariants.length > 0
+      ? supabase.from("product_variants").upsert(
+          existingVariants.map((v) => ({
+            id: v.id as string,
+            product_id: parsed.id,
+            size_label: v.sizeLabel,
+            price: v.price,
+            currency: "NGN",
+            stock_quantity: v.stockQuantity,
+            low_stock_threshold: v.lowStockThreshold,
+            subscription_eligible: false,
+            sku: v.sku,
+          })),
+          { onConflict: "id" }
+        )
+      : Promise.resolve({ error: null }),
+    newVariants.length > 0
+      ? supabase.from("product_variants").insert(
+          newVariants.map((v) => ({
+            product_id: parsed.id,
+            size_label: v.sizeLabel,
+            price: v.price,
+            currency: "NGN",
+            stock_quantity: v.stockQuantity,
+            low_stock_threshold: v.lowStockThreshold,
+            subscription_eligible: false,
+            sku: v.sku,
+          }))
+        )
+      : Promise.resolve({ error: null }),
+    (async () => {
+      const { error: deleteFacetsError } = await supabase.from("product_facets").delete().eq("product_id", parsed.id);
+      if (deleteFacetsError) return { error: deleteFacetsError };
+      if (uniqueFacetIds.length === 0) return { error: null };
+      return supabase
+        .from("product_facets")
+        .upsert(
+          uniqueFacetIds.map((facet_id) => ({ product_id: parsed.id, facet_id })),
+          { onConflict: "product_id,facet_id", ignoreDuplicates: true }
+        );
+    })(),
+  ]);
+
+  if (productResult.error) throw new Error(productResult.error.message);
+  if (existingVariantsResult.error) throw new Error(existingVariantsResult.error.message);
+  if (newVariantsResult.error) throw new Error(newVariantsResult.error.message);
+  if (facetsResult.error) throw new Error(facetsResult.error.message);
 
   revalidatePath("/admin/products");
   revalidatePath(`/admin/products/${parsed.id}/edit`);

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { BlogPostRow } from "@/types/database.types";
 
@@ -13,7 +14,9 @@ export async function getPublishedPosts(): Promise<BlogPostRow[]> {
   return data;
 }
 
-export async function getPublishedPostBySlug(slug: string): Promise<BlogPostRow | null> {
+// cache()'d because both generateMetadata() and the page component call this for the same
+// slug on every article render — without it, that's two identical DB round trips per visit.
+export const getPublishedPostBySlug = cache(async (slug: string): Promise<BlogPostRow | null> => {
   const supabase = createSupabaseServerClient();
   const { data, error } = await supabase
     .from("blog_posts")
@@ -24,4 +27,4 @@ export async function getPublishedPostBySlug(slug: string): Promise<BlogPostRow 
 
   if (error) throw error;
   return data;
-}
+});

@@ -42,7 +42,12 @@ export async function getAllOrdersForAdmin(
   if (filters.status) query = query.eq("status", filters.status);
   if (filters.source) query = query.eq("source", filters.source);
   if (filters.search) {
-    const term = filters.search.trim();
+    // Commas and parens are structural in PostgREST's .or() mini-language (comma
+    // separates conditions, parens group them) — a search term containing either
+    // (e.g. "Doe, Jane") would otherwise break the filter into a malformed clause
+    // and error out the whole query. Neither character is meaningful for a
+    // name/email/phone substring search, so stripping them is a safe fix.
+    const term = filters.search.trim().replace(/[,()]/g, "");
     query = query.or(`guest_name.ilike.%${term}%,guest_email.ilike.%${term}%,guest_phone.ilike.%${term}%`);
   }
 

@@ -24,8 +24,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const product = await getProductBySlug(params.slug);
   if (!product) notFound();
 
-  const related = await getRelatedProducts(product);
-  const wishlistedVariantIds = [...(await getWishlistedVariantIds())];
+  const [related, wishlistedIds] = await Promise.all([getRelatedProducts(product), getWishlistedVariantIds()]);
+  const wishlistedVariantIds = [...wishlistedIds];
 
   return (
     <div className="wrap py-10 md:py-14">

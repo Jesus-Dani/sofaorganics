@@ -37,7 +37,11 @@ export async function upsertAddress(values: AddressFormValues): Promise<void> {
   const supabase = createSupabaseServerClient();
 
   if (parsed.isDefault) {
-    await supabase.from("addresses").update({ is_default: false }).eq("customer_id", customerId);
+    const { error: clearDefaultError } = await supabase
+      .from("addresses")
+      .update({ is_default: false })
+      .eq("customer_id", customerId);
+    if (clearDefaultError) throw new Error(clearDefaultError.message);
   }
 
   const payload = {
