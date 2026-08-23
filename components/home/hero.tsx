@@ -13,7 +13,7 @@ export function Hero() {
         className="object-cover"
       />
       <div className="wrap relative flex h-full items-center">
-        <div className="max-w-md">
+        <div className="max-w-md bg-background/95 p-5 sm:bg-transparent sm:p-0">
           <h1 className="font-serif text-[28px] leading-[1.15] text-text sm:text-4xl md:text-[44px]">
             Herbs for a Healthier Life
           </h1>

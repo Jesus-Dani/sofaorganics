@@ -36,8 +36,8 @@ export default function AccountSignupPage() {
 function AccountSignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/account";
-  const loginHref = redirectTo !== "/account" ? `/account/login?redirectTo=${encodeURIComponent(redirectTo)}` : "/account/login";
+  const redirectTo = searchParams.get("redirectTo") || "/";
+  const loginHref = redirectTo !== "/" ? `/account/login?redirectTo=${encodeURIComponent(redirectTo)}` : "/account/login";
   const [error, setError] = useState<string | null>(null);
   const [needsConfirmation, setNeedsConfirmation] = useState(false);
   const {
