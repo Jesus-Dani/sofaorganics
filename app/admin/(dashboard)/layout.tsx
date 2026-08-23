@@ -10,7 +10,7 @@ import {
   Gear,
 } from "@phosphor-icons/react/dist/ssr";
 import { requireAdmin } from "@/lib/admin/auth";
-import { SignOutButton } from "@/components/admin/sign-out-button";
+import { SignOutButton } from "@/components/ui/sign-out-button";
 
 const NAV = [
   { label: "Dashboard", href: "/admin", icon: SquaresFour },
@@ -54,7 +54,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
           <Link href="/" prefetch={false} className="block text-sm text-text-muted hover:text-primary">
             View store →
           </Link>
-          <SignOutButton />
+          <SignOutButton redirectTo="/admin/login" />
         </div>
       </aside>
       <main className="flex-1 bg-background p-8">{children}</main>

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { deleteBlogPost, upsertBlogPost } from "@/lib/admin/actions";
 import { blogPostFormSchema, type BlogPostFormValues } from "@/lib/admin/schema";
 import { slugify } from "@/lib/utils/slugify";
@@ -12,6 +11,7 @@ import { CoverImageUploader } from "@/components/admin/cover-image-uploader";
 import { TiptapEditor } from "@/components/admin/tiptap-editor";
 import { RelatedProductsPicker, type PickableProduct } from "@/components/admin/related-products-picker";
 import { DeleteButton } from "@/components/admin/delete-button";
+import { FieldError } from "@/components/ui/field-error";
 import type { BlogPostRow } from "@/types/database.types";
 
 export function BlogForm({ post, products }: { post: BlogPostRow; products: PickableProduct[] }) {
@@ -136,15 +136,5 @@ export function BlogForm({ post, products }: { post: BlogPostRow; products: Pick
         />
       </div>
     </form>
-  );
-}
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-      <WarningCircle size={13} aria-hidden />
-      {message}
-    </p>
   );
 }

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { SignOut } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
-export function SignOutButton() {
+export function SignOutButton({ redirectTo }: { redirectTo: string }) {
   const router = useRouter();
 
   return (
@@ -13,8 +13,7 @@ export function SignOutButton() {
       onClick={async () => {
         const supabase = createSupabaseBrowserClient();
         await supabase.auth.signOut();
-        router.push("/admin/login");
-        router.refresh();
+        router.push(redirectTo);
       }}
       className="flex items-center gap-2 text-sm text-text-muted hover:text-accent"
     >

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { upsertStoreSettings } from "@/lib/admin/actions";
 import { storeSettingsFormSchema, type StoreSettingsFormValues } from "@/lib/admin/schema";
+import { FieldError } from "@/components/ui/field-error";
 import type { StoreSettingsRow } from "@/types/database.types";
 
 export function SettingsForm({ settings }: { settings: StoreSettingsRow }) {
@@ -95,15 +95,5 @@ export function SettingsForm({ settings }: { settings: StoreSettingsRow }) {
         {isSubmitting ? "Saving…" : "Save settings"}
       </button>
     </form>
-  );
-}
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-      <WarningCircle size={13} aria-hidden />
-      {message}
-    </p>
   );
 }

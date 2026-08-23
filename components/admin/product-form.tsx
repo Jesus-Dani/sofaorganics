@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
-import { Plus, Trash, WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { Plus, Trash } from "@phosphor-icons/react/dist/ssr";
 import { deleteProduct, upsertProduct } from "@/lib/admin/actions";
 import { productFormSchema, STANDARD_SIZES, type ProductFormValues } from "@/lib/admin/schema";
 import { slugify } from "@/lib/utils/slugify";
 import { PhotoUploader } from "@/components/admin/photo-uploader";
 import { FacetPicker } from "@/components/admin/facet-picker";
 import { DeleteButton } from "@/components/admin/delete-button";
+import { FieldError } from "@/components/ui/field-error";
 import type { Product } from "@/lib/data/types";
 import type { FacetRow } from "@/types/database.types";
 
@@ -320,14 +321,4 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
 function mergeFacetIds(allFacets: FacetRow[], current: string[], facetType: string, ids: string[]): string[] {
   const otherTypeIds = current.filter((id) => allFacets.find((f) => f.id === id)?.facet_type !== facetType);
   return [...otherTypeIds, ...ids];
-}
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-      <WarningCircle size={13} aria-hidden />
-      {message}
-    </p>
-  );
 }

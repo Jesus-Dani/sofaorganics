@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Trash, WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { Trash } from "@phosphor-icons/react/dist/ssr";
 import { createManualOrder } from "@/lib/admin/actions";
 import { manualOrderFormSchema, type ManualOrderFormValues } from "@/lib/admin/schema";
 import { formatCurrency } from "@/lib/utils/format-currency";
+import { FieldError } from "@/components/ui/field-error";
 import type { SellableVariant } from "@/lib/admin/products";
 
 export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
@@ -211,15 +212,5 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
         {isSubmitting ? "Creating…" : "Create order"}
       </button>
     </form>
-  );
-}
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-      <WarningCircle size={13} aria-hidden />
-      {message}
-    </p>
   );
 }

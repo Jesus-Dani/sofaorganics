@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireCustomer } from "@/lib/customer/auth";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { AccountSignOutButton } from "@/components/account/sign-out-button";
+import { SignOutButton } from "@/components/ui/sign-out-button";
 
 export const metadata = { title: "My Account" };
 
@@ -35,7 +35,7 @@ export default async function AccountPage() {
       </div>
 
       <div className="mt-10">
-        <AccountSignOutButton />
+        <SignOutButton redirectTo="/account/login" />
       </div>
     </div>
   );

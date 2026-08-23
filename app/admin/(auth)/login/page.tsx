@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { FieldError } from "@/components/ui/field-error";
 
 const loginSchema = z.object({
   email: z.string().trim().email("Enter a valid email address"),
@@ -40,7 +41,6 @@ export default function AdminLoginPage() {
     }
 
     router.push("/admin");
-    router.refresh();
   });
 
   return (
@@ -59,12 +59,7 @@ export default function AdminLoginPage() {
             {...register("email")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.email && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.email.message}
-            </p>
-          )}
+          <FieldError message={errors.email?.message} />
         </div>
         <div>
           <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-text">
@@ -76,12 +71,7 @@ export default function AdminLoginPage() {
             {...register("password")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.password && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.password.message}
-            </p>
-          )}
+          <FieldError message={errors.password?.message} />
         </div>
 
         {error && (

@@ -9,17 +9,8 @@ import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { useCart } from "@/components/cart/cart-context";
 import { checkoutSchema, type CheckoutValues } from "@/lib/checkout/schema";
 import { formatCurrency } from "@/lib/utils/format-currency";
+import { FieldError } from "@/components/ui/field-error";
 import type { AddressRow, ShippingRuleRow } from "@/types/database.types";
-
-function FieldError({ message }: { message?: string }) {
-  if (!message) return null;
-  return (
-    <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-      <WarningCircle size={13} aria-hidden />
-      {message}
-    </p>
-  );
-}
 
 export function CheckoutForm({
   zones,

@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { upsertAddress } from "@/lib/customer/actions";
 import { addressFormSchema, type AddressFormValues } from "@/lib/customer/schema";
+import { FieldError } from "@/components/ui/field-error";
 import type { AddressRow } from "@/types/database.types";
 
 export function AddressForm({ address, onDone }: { address?: AddressRow; onDone: () => void }) {
@@ -45,64 +45,67 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
   return (
     <form onSubmit={onSubmit} className="space-y-4 border border-border p-5">
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Label (optional)</label>
+        <label htmlFor="address-label" className="mb-1.5 block text-sm font-medium text-text">
+          Label (optional)
+        </label>
         <input
+          id="address-label"
           {...register("label")}
           placeholder="e.g. Home, Office"
           className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
         />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Street address</label>
+        <label htmlFor="address-line1" className="mb-1.5 block text-sm font-medium text-text">
+          Street address
+        </label>
         <input
+          id="address-line1"
           {...register("line1")}
           className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
         />
-        {errors.line1 && (
-          <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} aria-hidden />
-            {errors.line1.message}
-          </p>
-        )}
+        <FieldError message={errors.line1?.message} />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Apartment, suite, etc. (optional)</label>
+        <label htmlFor="address-line2" className="mb-1.5 block text-sm font-medium text-text">
+          Apartment, suite, etc. (optional)
+        </label>
         <input
+          id="address-line2"
           {...register("line2")}
           className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
         />
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-text">City</label>
+          <label htmlFor="address-city" className="mb-1.5 block text-sm font-medium text-text">
+            City
+          </label>
           <input
+            id="address-city"
             {...register("city")}
             className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.city && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.city.message}
-            </p>
-          )}
+          <FieldError message={errors.city?.message} />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-text">State</label>
+          <label htmlFor="address-state" className="mb-1.5 block text-sm font-medium text-text">
+            State
+          </label>
           <input
+            id="address-state"
             {...register("state")}
             className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.state && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.state.message}
-            </p>
-          )}
+          <FieldError message={errors.state?.message} />
         </div>
       </div>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Postal code (optional)</label>
+        <label htmlFor="address-postal-code" className="mb-1.5 block text-sm font-medium text-text">
+          Postal code (optional)
+        </label>
         <input
+          id="address-postal-code"
           {...register("postalCode")}
           className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
         />
@@ -112,12 +115,7 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
         Set as default address
       </label>
 
-      {saveError && (
-        <p className="flex items-center gap-1.5 text-xs text-accent">
-          <WarningCircle size={13} aria-hidden />
-          {saveError}
-        </p>
-      )}
+      <FieldError message={saveError ?? undefined} />
 
       <div className="flex gap-3">
         <button

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { FieldError } from "@/components/ui/field-error";
 
 const passwordSchema = z.object({
   password: z.string().min(8, "At least 8 characters"),
@@ -49,12 +50,7 @@ export default function ResetPasswordPage() {
             {...register("password")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.password && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.password.message}
-            </p>
-          )}
+          <FieldError message={errors.password?.message} />
         </div>
 
         {error && (

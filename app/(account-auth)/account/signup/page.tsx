@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { FieldError } from "@/components/ui/field-error";
 
 const signupSchema = z
   .object({
@@ -99,12 +100,7 @@ function AccountSignupForm() {
               {...register("firstName")}
               className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
             />
-            {errors.firstName && (
-              <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-                <WarningCircle size={13} aria-hidden />
-                {errors.firstName.message}
-              </p>
-            )}
+            <FieldError message={errors.firstName?.message} />
           </div>
           <div>
             <label htmlFor="lastName" className="mb-1.5 block text-sm font-medium text-text">
@@ -115,12 +111,7 @@ function AccountSignupForm() {
               {...register("lastName")}
               className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
             />
-            {errors.lastName && (
-              <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-                <WarningCircle size={13} aria-hidden />
-                {errors.lastName.message}
-              </p>
-            )}
+            <FieldError message={errors.lastName?.message} />
           </div>
         </div>
         <div>
@@ -133,12 +124,7 @@ function AccountSignupForm() {
             {...register("phone")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.phone && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.phone.message}
-            </p>
-          )}
+          <FieldError message={errors.phone?.message} />
         </div>
         <div>
           <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-text">
@@ -150,12 +136,7 @@ function AccountSignupForm() {
             {...register("email")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.email && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.email.message}
-            </p>
-          )}
+          <FieldError message={errors.email?.message} />
         </div>
         <div>
           <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-text">
@@ -167,12 +148,7 @@ function AccountSignupForm() {
             {...register("password")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.password && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.password.message}
-            </p>
-          )}
+          <FieldError message={errors.password?.message} />
         </div>
         <div>
           <label htmlFor="confirmPassword" className="mb-1.5 block text-sm font-medium text-text">
@@ -184,12 +160,7 @@ function AccountSignupForm() {
             {...register("confirmPassword")}
             className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
           />
-          {errors.confirmPassword && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
-              {errors.confirmPassword.message}
-            </p>
-          )}
+          <FieldError message={errors.confirmPassword?.message} />
         </div>
 
         {error && (

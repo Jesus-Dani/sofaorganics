@@ -4,7 +4,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { FieldError } from "@/components/ui/field-error";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Tell us your name"),
@@ -52,12 +52,7 @@ export function ContactForm() {
           {...register("name")}
           className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none"
         />
-        {errors.name && (
-          <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} aria-hidden />
-            {errors.name.message}
-          </p>
-        )}
+        <FieldError message={errors.name?.message} />
       </div>
 
       <div>
@@ -70,12 +65,7 @@ export function ContactForm() {
           {...register("email")}
           className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none"
         />
-        {errors.email && (
-          <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} aria-hidden />
-            {errors.email.message}
-          </p>
-        )}
+        <FieldError message={errors.email?.message} />
       </div>
 
       <div>
@@ -88,12 +78,7 @@ export function ContactForm() {
           {...register("message")}
           className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none"
         />
-        {errors.message && (
-          <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} aria-hidden />
-            {errors.message.message}
-          </p>
-        )}
+        <FieldError message={errors.message?.message} />
       </div>
 
       <button
