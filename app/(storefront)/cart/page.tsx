@@ -86,7 +86,8 @@ export default function CartPage() {
           </div>
           <p className="mt-1 text-xs text-text-muted">Shipping and tax are calculated at checkout.</p>
           <Link
-            href="/checkout"
+            href="/checkout/start"
+            prefetch={false}
             className="mt-5 block w-full bg-primary py-3.5 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
           >
             Proceed to Checkout

@@ -104,7 +104,8 @@ export function CartDrawer() {
               </div>
               <Dialog.Close asChild>
                 <Link
-                  href="/checkout"
+                  href="/checkout/start"
+                  prefetch={false}
                   className="block w-full bg-primary py-3.5 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
                 >
                   Proceed to Checkout

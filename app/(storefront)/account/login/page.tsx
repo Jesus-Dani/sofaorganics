@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,7 +16,17 @@ const loginSchema = z.object({
 type LoginValues = z.infer<typeof loginSchema>;
 
 export default function AccountLoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <AccountLoginForm />
+    </Suspense>
+  );
+}
+
+function AccountLoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") || "/account";
   const [error, setError] = useState<string | null>(null);
   const [resetSent, setResetSent] = useState(false);
   const {
@@ -34,7 +44,7 @@ export default function AccountLoginPage() {
       setError(signInError.message);
       return;
     }
-    router.push("/account");
+    router.push(redirectTo);
   });
 
   const handleForgotPassword = async () => {
@@ -113,7 +123,10 @@ export default function AccountLoginPage() {
         <button type="button" onClick={handleForgotPassword} className="text-text-muted underline hover:text-primary">
           Forgot password?
         </button>
-        <Link href="/account/signup" className="font-medium text-primary underline">
+        <Link
+          href={redirectTo !== "/account" ? `/account/signup?redirectTo=${encodeURIComponent(redirectTo)}` : "/account/signup"}
+          className="font-medium text-primary underline"
+        >
           Create an account
         </Link>
       </div>

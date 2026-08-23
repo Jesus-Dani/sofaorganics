@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,7 +17,18 @@ const signupSchema = z.object({
 type SignupValues = z.infer<typeof signupSchema>;
 
 export default function AccountSignupPage() {
+  return (
+    <Suspense fallback={null}>
+      <AccountSignupForm />
+    </Suspense>
+  );
+}
+
+function AccountSignupForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") || "/account";
+  const loginHref = redirectTo !== "/account" ? `/account/login?redirectTo=${encodeURIComponent(redirectTo)}` : "/account/login";
   const [error, setError] = useState<string | null>(null);
   const [needsConfirmation, setNeedsConfirmation] = useState(false);
   const {
@@ -41,7 +52,7 @@ export default function AccountSignupPage() {
     }
 
     await supabase.from("customer_profiles").update({ full_name: fullName }).eq("id", data.user.id);
-    router.push("/account");
+    router.push(redirectTo);
   });
 
   if (needsConfirmation) {
@@ -52,7 +63,7 @@ export default function AccountSignupPage() {
         <p className="mt-3 text-sm text-text-muted">
           We&apos;ve sent a confirmation link. Once you confirm, come back and sign in.
         </p>
-        <Link href="/account/login" className="mt-6 text-sm font-medium text-primary underline">
+        <Link href={loginHref} className="mt-6 text-sm font-medium text-primary underline">
           Go to sign in
         </Link>
       </div>
@@ -134,7 +145,7 @@ export default function AccountSignupPage() {
 
       <p className="mt-4 text-center text-xs text-text-muted">
         Already have an account?{" "}
-        <Link href="/account/login" className="font-medium text-primary underline">
+        <Link href={loginHref} className="font-medium text-primary underline">
           Sign in
         </Link>
       </p>
