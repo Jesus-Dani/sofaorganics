@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ArrowDown, ArrowUp, Trash, UploadSimple } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { uniqueId } from "@/lib/utils/unique-id";
 import type { ProductImage } from "@/lib/data/types";
 
 export function PhotoUploader({ productId, images }: { productId: string; images: ProductImage[] }) {
@@ -24,7 +25,7 @@ export function PhotoUploader({ productId, images }: { productId: string; images
       for (const file of Array.from(files)) {
         if (!file.type.startsWith("image/")) continue;
 
-        const path = `${productId}/${crypto.randomUUID()}-${file.name.replace(/\s+/g, "-")}`;
+        const path = `${productId}/${uniqueId()}-${file.name.replace(/\s+/g, "-")}`;
         const { error: uploadError } = await supabase.storage.from("product-images").upload(path, file);
         if (uploadError) throw uploadError;
 

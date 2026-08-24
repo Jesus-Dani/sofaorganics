@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import Image from "next/image";
 import { Trash, UploadSimple } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
+import { uniqueId } from "@/lib/utils/unique-id";
 
 export function CoverImageUploader({
   bucket,
@@ -25,7 +26,7 @@ export function CoverImageUploader({
     setIsUploading(true);
     try {
       const supabase = createSupabaseBrowserClient();
-      const path = `${folder}/${crypto.randomUUID()}-${file.name.replace(/\s+/g, "-")}`;
+      const path = `${folder}/${uniqueId()}-${file.name.replace(/\s+/g, "-")}`;
       const { error: uploadError } = await supabase.storage.from(bucket).upload(path, file);
       if (uploadError) throw uploadError;
       const { data } = supabase.storage.from(bucket).getPublicUrl(path);
