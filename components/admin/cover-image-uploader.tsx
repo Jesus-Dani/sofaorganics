@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useState } from "react";
 import Image from "next/image";
 import { Trash, UploadSimple } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
@@ -16,7 +16,7 @@ export function CoverImageUploader({
   value: string | null;
   onChange: (url: string | null) => void;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputId = useId();
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -55,20 +55,20 @@ export function CoverImageUploader({
 
   return (
     <div>
-      <div
-        onClick={() => inputRef.current?.click()}
+      <label
+        htmlFor={inputId}
         className="flex max-w-sm cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed border-border p-8 text-center hover:border-primary"
       >
         <UploadSimple size={20} className="text-text-muted" aria-hidden />
         <p className="text-sm text-text-muted">{isUploading ? "Uploading…" : "Click to upload a cover image"}</p>
         <input
-          ref={inputRef}
+          id={inputId}
           type="file"
           accept="image/*"
           className="hidden"
           onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])}
         />
-      </div>
+      </label>
       {error && <p className="mt-2 text-xs text-text">{error}</p>}
     </div>
   );

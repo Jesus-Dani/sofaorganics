@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ArrowDown, ArrowUp, Trash, UploadSimple } from "@phosphor-icons/react/dist/ssr";
@@ -9,7 +9,7 @@ import type { ProductImage } from "@/lib/data/types";
 
 export function PhotoUploader({ productId, images }: { productId: string; images: ProductImage[] }) {
   const router = useRouter();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputId = useId();
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +73,8 @@ export function PhotoUploader({ productId, images }: { productId: string; images
 
   return (
     <div>
-      <div
+      <label
+        htmlFor={inputId}
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true);
@@ -84,7 +85,6 @@ export function PhotoUploader({ productId, images }: { productId: string; images
           setIsDragging(false);
           if (e.dataTransfer.files.length > 0) uploadFiles(e.dataTransfer.files);
         }}
-        onClick={() => inputRef.current?.click()}
         className={`flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed p-8 text-center transition-colors ${
           isDragging ? "border-primary bg-primary-tint" : "border-border"
         }`}
@@ -94,14 +94,14 @@ export function PhotoUploader({ productId, images }: { productId: string; images
           {isUploading ? "Uploading…" : "Drag photos here, or click to browse"}
         </p>
         <input
-          ref={inputRef}
+          id={inputId}
           type="file"
           accept="image/*"
           multiple
           className="hidden"
           onChange={(e) => e.target.files && uploadFiles(e.target.files)}
         />
-      </div>
+      </label>
 
       {error && <p className="mt-2 text-xs text-text">{error}</p>}
 
