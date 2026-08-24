@@ -3,9 +3,15 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { initializeTransaction, verifyTransaction } from "@/lib/paystack/client";
-import { PaySimulator } from "@/components/checkout/pay-simulator";
+import { ManualPaymentInstructions } from "@/components/checkout/manual-payment-instructions";
 
 export const metadata: Metadata = { title: "Payment" };
+
+// Paystack is fully wired (see lib/paystack/client.ts) but intentionally not live —
+// only test-mode keys exist so far. Every customer gets the manual bank-transfer +
+// WhatsApp-receipt flow below regardless of PAYSTACK_SECRET_KEY until this is
+// flipped to true once real live keys are confirmed and tested.
+const PAYSTACK_LIVE = false;
 
 export default async function PayPage({
   params,
@@ -24,20 +30,20 @@ export default async function PayPage({
     redirect(`/checkout/${params.orderId}/confirmation`);
   }
 
-  // No PAYSTACK_SECRET_KEY configured yet — keep today's exact behavior, zero regression
-  // for any environment without real keys.
-  if (!process.env.PAYSTACK_SECRET_KEY) {
+  if (!PAYSTACK_LIVE) {
     return (
-      <div className="wrap max-w-lg py-16 text-center">
-        <p className="eyebrow mb-4">Order #{order.id.slice(0, 8)}</p>
-        <h1 className="text-[28px]">Complete your payment</h1>
-        <p className="mt-4 text-text-muted">
-          Real Paystack isn&apos;t connected yet, so this button stands in for it and keeps the flow
-          fully testable. It marks the order paid exactly the way the real webhook will.
-        </p>
-        <PaySimulator orderId={order.id} grandTotal={order.grand_total} currency={order.currency} />
-      </div>
+      <ManualPaymentInstructions
+        orderId={order.id}
+        guestName={order.guest_name}
+        grandTotal={order.grand_total}
+        currency={order.currency}
+        items={order.items}
+      />
     );
+  }
+
+  if (!process.env.PAYSTACK_SECRET_KEY) {
+    throw new Error("PAYSTACK_LIVE is true but PAYSTACK_SECRET_KEY is not set.");
   }
 
   const reference = firstParam(searchParams.reference) ?? firstParam(searchParams.trxref);

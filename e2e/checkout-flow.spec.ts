@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("cart → checkout → simulate payment → confirmation", async ({ page }) => {
+test("cart → checkout → manual payment instructions", async ({ page }) => {
   await page.goto("/products/gingko-leaves");
   await page.getByRole("button", { name: "Add to Cart" }).click();
   await expect(page.getByText("Your Cart (1)")).toBeVisible();
@@ -19,8 +19,12 @@ test("cart → checkout → simulate payment → confirmation", async ({ page })
   await page.waitForURL(/\/checkout\/.+\/pay/);
   await expect(page.getByText("Complete your payment")).toBeVisible();
 
-  await page.getByRole("button", { name: "Simulate Payment" }).click();
-  await page.waitForURL(/\/checkout\/.+\/confirmation/);
-  await expect(page.getByText(/Thank you, Ada/)).toBeVisible();
-  await expect(page.getByText(/paid/i)).toBeVisible();
+  // Manual bank-transfer + WhatsApp handoff — order stays pending until an
+  // admin confirms the transfer, so this flow ends here rather than at
+  // confirmation.
+  await expect(page.getByText("6632620644")).toBeVisible();
+  const whatsappLink = page.getByRole("link", { name: "Send receipt on WhatsApp" });
+  const href = await whatsappLink.getAttribute("href");
+  expect(href).toContain("https://wa.me/2348032343038?text=");
+  expect(decodeURIComponent(href ?? "")).toContain("Ada Obi");
 });
