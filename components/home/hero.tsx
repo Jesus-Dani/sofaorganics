@@ -13,15 +13,15 @@ export function Hero() {
         className="object-cover"
       />
       <div className="wrap relative flex h-full items-center">
-        <div className="max-w-md bg-background/95 p-5 sm:bg-transparent sm:p-0">
+        <div className="max-w-md">
           <h1 className="font-serif text-[28px] leading-[1.15] text-text sm:text-4xl md:text-[44px]">
             Herbs for a Healthier Life
           </h1>
           <Link
             href="/shop"
-            className="mt-5 inline-block bg-primary px-6 py-3.5 text-[14.5px] font-medium text-background transition-opacity hover:opacity-90 sm:mt-8 sm:px-8 sm:py-4"
+            className="mt-5 inline-block border-2 border-background px-6 py-3.5 text-[14.5px] font-medium text-background transition-colors hover:bg-background hover:text-primary sm:mt-8 sm:px-8 sm:py-4"
           >
-            Shop the catalog
+            Shop now
           </Link>
         </div>
       </div>
