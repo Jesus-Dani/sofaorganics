@@ -258,5 +258,5 @@ drop policy if exists "Admins can update store settings" on store_settings;
 create policy "Admins can update store settings" on store_settings for update using (is_admin(auth.uid()));
 
 insert into store_settings (business_name, whatsapp_number, contact_email, social_links)
-select 'Sofa Organics', '2348032343038', 'hello@sofaorganics.com', '{}'::jsonb
+select 'Sofa Organics', '2348032343038', 'consultingsofaorganics@gmail.com', '{}'::jsonb
 where not exists (select 1 from store_settings);

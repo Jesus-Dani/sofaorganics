@@ -28,9 +28,9 @@ export default function ContactPage() {
               <WhatsappLogo size={20} className="text-primary" aria-hidden />
               +234 803 234 3038
             </a>
-            <a href="mailto:hello@sofaorganics.com" className="flex items-center gap-3 text-[15px] text-text">
+            <a href="mailto:consultingsofaorganics@gmail.com" className="flex items-center gap-3 text-[15px] text-text">
               <EnvelopeSimple size={20} className="text-primary" aria-hidden />
-              hello@sofaorganics.com
+              consultingsofaorganics@gmail.com
             </a>
             <p className="flex items-center gap-3 text-[15px] text-text">
               <MapPin size={20} className="text-primary" aria-hidden />
