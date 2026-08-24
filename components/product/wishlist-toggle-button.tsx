@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { usePathname } from "next/navigation";
 import { Heart } from "@phosphor-icons/react/dist/ssr";
 import { toggleWishlistItem } from "@/lib/customer/actions";
 
@@ -15,6 +16,7 @@ export function WishlistToggleButton({
 }) {
   const [saved, setSaved] = useState(initialSaved);
   const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ export function WishlistToggleButton({
     setSaved(next);
     startTransition(async () => {
       try {
-        await toggleWishlistItem(variantId, saved);
+        await toggleWishlistItem(variantId, saved, pathname);
       } catch (err) {
         // A signed-out click makes the action redirect to /account/login — Next.js
         // signals that via a thrown error tagged with a NEXT_REDIRECT digest, which

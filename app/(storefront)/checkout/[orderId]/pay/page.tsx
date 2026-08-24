@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { initializeTransaction, verifyTransaction } from "@/lib/paystack/client";
 import { ManualPaymentInstructions } from "@/components/checkout/manual-payment-instructions";
+import { getCustomerId } from "@/lib/customer/auth";
 
 export const metadata: Metadata = { title: "Payment" };
 
@@ -31,6 +32,7 @@ export default async function PayPage({
   }
 
   if (!PAYSTACK_LIVE) {
+    const customerId = await getCustomerId();
     return (
       <ManualPaymentInstructions
         orderId={order.id}
@@ -38,6 +40,7 @@ export default async function PayPage({
         grandTotal={order.grand_total}
         currency={order.currency}
         items={order.items}
+        isSignedIn={Boolean(customerId)}
       />
     );
   }

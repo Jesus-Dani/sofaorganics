@@ -17,7 +17,17 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = await getProductBySlug(params.slug);
   if (!product) return { title: "Product not found" };
-  return { title: product.name, description: product.description };
+
+  const cover = product.images[0];
+  const images = cover && !cover.isPlaceholder ? [{ url: cover.src, alt: cover.alt }] : undefined;
+
+  return {
+    title: product.name,
+    description: product.description,
+    alternates: { canonical: `/products/${product.slug}` },
+    openGraph: { title: product.name, description: product.description, type: "website", images },
+    twitter: { card: "summary_large_image", title: product.name, description: product.description, images },
+  };
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {

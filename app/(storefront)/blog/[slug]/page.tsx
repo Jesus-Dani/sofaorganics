@@ -11,10 +11,26 @@ import { RelatedProducts } from "@/components/product/related-products";
 // isn't available at build time. Renders on demand instead (same reasoning as
 // products would need if they moved off the build-time seed list).
 
+/** Strip HTML tags and trim to a plain-text meta description. */
+function toDescription(bodyRichtext: string, maxLength = 155): string {
+  const text = bodyRichtext.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  return text.length > maxLength ? `${text.slice(0, maxLength - 1)}…` : text;
+}
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPublishedPostBySlug(params.slug);
   if (!post) return { title: "Article not found" };
-  return { title: post.title };
+
+  const description = toDescription(post.body_richtext);
+  const images = post.cover_image_path ? [{ url: post.cover_image_path }] : undefined;
+
+  return {
+    title: post.title,
+    description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: { title: post.title, description, type: "article", images },
+    twitter: { card: "summary_large_image", title: post.title, description, images },
+  };
 }
 
 export default async function BlogArticlePage({ params }: { params: { slug: string } }) {

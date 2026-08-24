@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Copy, Check } from "@phosphor-icons/react/dist/ssr";
 import { formatCurrency } from "@/lib/utils/format-currency";
 import { WHATSAPP_NUMBER } from "@/lib/nav-config";
@@ -22,12 +23,14 @@ export function ManualPaymentInstructions({
   grandTotal,
   currency,
   items,
+  isSignedIn,
 }: {
   orderId: string;
   guestName: string | null;
   grandTotal: number;
   currency: string;
   items: OrderItem[];
+  isSignedIn: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -103,6 +106,17 @@ export function ManualPaymentInstructions({
       <p className="mt-4 text-center text-xs text-text-muted">
         We&apos;ll update your order to Paid once we&apos;ve confirmed your transfer.
       </p>
+
+      <div className="mt-6 flex flex-col items-center gap-2 text-center text-sm">
+        {isSignedIn && (
+          <Link href={`/account/orders/${orderId}`} className="font-medium text-primary underline">
+            View this order in your account
+          </Link>
+        )}
+        <Link href="/shop" className="text-text-muted underline hover:text-primary">
+          Continue shopping
+        </Link>
+      </div>
     </div>
   );
 }

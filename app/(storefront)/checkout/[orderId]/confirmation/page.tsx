@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
+import { CheckCircle, Clock } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { formatCurrency } from "@/lib/utils/format-currency";
 import { CreateAccountPrompt } from "@/components/checkout/create-account-prompt";
@@ -14,17 +14,36 @@ export default async function ConfirmationPage({ params }: { params: { orderId: 
 
   if (error || !order) notFound();
 
+  const isPending = order.status === "pending";
+  const firstName = order.guest_name?.split(" ")[0] ?? "there";
+
   return (
     <div className="wrap max-w-2xl py-14 md:py-20">
       <div className="text-center">
-        <CheckCircle size={40} weight="fill" className="mx-auto text-primary" aria-hidden />
+        {isPending ? (
+          <Clock size={40} weight="fill" className="mx-auto text-secondary" aria-hidden />
+        ) : (
+          <CheckCircle size={40} weight="fill" className="mx-auto text-primary" aria-hidden />
+        )}
         <p className="eyebrow mt-4 mb-2">
-          Order #{order.id.slice(0, 8)} · {order.status === "paid" ? "Paid" : order.status}
+          Order #{order.id.slice(0, 8)} · {order.status === "paid" ? "Paid" : isPending ? "Payment pending" : order.status}
         </p>
-        <h1 className="text-[28px]">Thank you, {order.guest_name?.split(" ")[0] ?? "there"}.</h1>
+        <h1 className="text-[28px]">{isPending ? `Almost there, ${firstName}.` : `Thank you, ${firstName}.`}</h1>
         <p className="mt-2 text-text">
-          We&apos;ve got your order. A confirmation would normally go to {order.guest_email}, though
-          email sending isn&apos;t wired up yet, so this page is the record for now.
+          {isPending ? (
+            <>
+              We&apos;ve saved your order, but haven&apos;t received your payment yet.{" "}
+              <Link href={`/checkout/${order.id}/pay`} className="font-medium text-primary underline">
+                Complete your bank transfer
+              </Link>{" "}
+              and send your receipt on WhatsApp to confirm it.
+            </>
+          ) : (
+            <>
+              We&apos;ve got your order. A confirmation would normally go to {order.guest_email}, though
+              email sending isn&apos;t wired up yet, so this page is the record for now.
+            </>
+          )}
         </p>
       </div>
 

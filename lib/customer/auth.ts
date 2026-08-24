@@ -17,9 +17,17 @@ export const getCustomerId = cache(async (): Promise<string | null> => {
   return user?.id ?? null;
 });
 
-/** Use at the top of account Server Components/Server Actions. Redirects signed-out visitors to login. */
-export async function requireCustomer(): Promise<string> {
+/**
+ * Use at the top of account Server Components/Server Actions. Redirects signed-out
+ * visitors to login. Pass the page a signed-out visitor was actually on (e.g. via
+ * usePathname() in the calling Client Component) so login sends them back there
+ * instead of the generic /account dashboard — matters most for actions triggered
+ * from a shop-browsing context, like the wishlist toggle.
+ */
+export async function requireCustomer(redirectTo?: string): Promise<string> {
   const customerId = await getCustomerId();
-  if (!customerId) redirect("/account/login");
+  if (!customerId) {
+    redirect(redirectTo ? `/account/login?redirectTo=${encodeURIComponent(redirectTo)}` : "/account/login");
+  }
   return customerId;
 }

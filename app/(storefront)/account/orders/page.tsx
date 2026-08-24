@@ -14,6 +14,9 @@ const STATUS_LABEL: Record<string, string> = {
   refunded: "Refunded",
 };
 
+// Reordering something never actually fulfilled (still pending, or cancelled/refunded) reads oddly.
+const REORDERABLE_STATUSES = new Set(["paid", "shipped", "delivered"]);
+
 export default async function AccountOrdersPage() {
   const orders = await getOrdersForCustomer();
 
@@ -45,7 +48,16 @@ export default async function AccountOrdersPage() {
                 <div className="text-right">
                   <p className="font-medium text-text">{formatCurrency(order.grand_total, order.currency)}</p>
                   <div className="mt-2">
-                    <BuyAgainButton orderId={order.id} />
+                    {order.status === "pending" ? (
+                      <Link
+                        href={`/checkout/${order.id}/pay`}
+                        className="border border-primary px-4 py-2 text-xs font-medium text-primary hover:bg-primary hover:text-background"
+                      >
+                        Complete payment
+                      </Link>
+                    ) : REORDERABLE_STATUSES.has(order.status) ? (
+                      <BuyAgainButton orderId={order.id} />
+                    ) : null}
                   </div>
                 </div>
               </div>

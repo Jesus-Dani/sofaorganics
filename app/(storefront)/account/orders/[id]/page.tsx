@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getOrderForCustomer } from "@/lib/customer/orders";
 import { formatCurrency } from "@/lib/utils/format-currency";
@@ -14,6 +15,9 @@ const STATUS_LABEL: Record<string, string> = {
   refunded: "Refunded",
 };
 
+// Reordering something never actually fulfilled (still pending, or cancelled/refunded) reads oddly.
+const REORDERABLE_STATUSES = new Set(["paid", "shipped", "delivered"]);
+
 export default async function AccountOrderDetailPage({ params }: { params: { id: string } }) {
   const order = await getOrderForCustomer(params.id);
   if (!order) notFound();
@@ -23,7 +27,16 @@ export default async function AccountOrderDetailPage({ params }: { params: { id:
       <p className="eyebrow mb-2">My Account</p>
       <div className="flex items-center justify-between">
         <h1 className="text-[28px]">Order #{order.id.slice(0, 8)}</h1>
-        <BuyAgainButton orderId={order.id} />
+        {order.status === "pending" ? (
+          <Link
+            href={`/checkout/${order.id}/pay`}
+            className="border border-primary px-4 py-2 text-xs font-medium text-primary hover:bg-primary hover:text-background"
+          >
+            Complete payment
+          </Link>
+        ) : REORDERABLE_STATUSES.has(order.status) ? (
+          <BuyAgainButton orderId={order.id} />
+        ) : null}
       </div>
       <p className="mt-2 text-sm text-text-muted">
         {STATUS_LABEL[order.status] ?? order.status} · {new Date(order.created_at).toLocaleString()}

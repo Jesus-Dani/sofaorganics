@@ -10,8 +10,8 @@ export async function reorderItems(orderId: string): Promise<ReorderLine[]> {
   return getOrderLineItemsForReorder(orderId);
 }
 
-export async function toggleWishlistItem(variantId: string, isSaved: boolean): Promise<void> {
-  const customerId = await requireCustomer();
+export async function toggleWishlistItem(variantId: string, isSaved: boolean, currentPath?: string): Promise<void> {
+  const customerId = await requireCustomer(currentPath);
   const supabase = createSupabaseServerClient();
 
   if (isSaved) {
