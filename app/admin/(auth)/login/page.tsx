@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -89,6 +90,13 @@ export default function AdminLoginPage() {
           {isSubmitting ? "Signing in…" : "Sign in"}
         </button>
       </form>
+
+      <p className="mt-4 text-center text-xs text-text-muted">
+        Don&apos;t have an account?{" "}
+        <Link href="/admin/setup" className="font-medium text-primary underline">
+          Create one
+        </Link>
+      </p>
     </div>
   );
 }
