@@ -6,7 +6,7 @@ export async function Bestsellers() {
   const products = await getFeaturedProducts(5);
 
   return (
-    <section className="py-4 md:py-6">
+    <section className="py-16 md:py-20">
       <div className="wrap">
         <div className="mb-8 flex items-baseline justify-between">
           <h2 className="text-2xl">Bestsellers</h2>
