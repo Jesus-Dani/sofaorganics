@@ -15,11 +15,13 @@ export function Hero() {
       <div className="wrap relative flex h-full items-center">
         <div className="max-w-md">
           <h1 className="font-serif text-[28px] leading-[1.15] text-text sm:text-4xl md:text-[44px]">
-            Herbs for a Healthier Life
+            Herbs for a
+            <br />
+            Healthier Life
           </h1>
           <Link
             href="/shop"
-            className="mt-5 inline-block border-2 border-background px-6 py-3.5 text-[14.5px] font-medium text-background transition-colors hover:bg-background hover:text-primary sm:mt-8 sm:px-8 sm:py-4"
+            className="mt-10 inline-block text-[14.5px] font-medium text-background underline underline-offset-4 transition-opacity hover:opacity-80 sm:mt-14 sm:text-base"
           >
             Shop now
           </Link>
