@@ -16,6 +16,17 @@
   h3 {
     @apply font-serif font-medium text-text;
   }
+
+  /* iOS Safari auto-zooms on focus when an input's font-size is under 16px —
+     nearly every form input site-wide is text-sm (14px). Bump just the mobile
+     rendered size to stop the zoom, without changing the 14px desktop design. */
+  @media (max-width: 599px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
 }
 
 @layer utilities {
