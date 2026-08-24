@@ -30,6 +30,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const product = await getProductBySlug(params.slug);
   if (!product) notFound();
@@ -37,8 +39,31 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const [related, wishlistedIds] = await Promise.all([getRelatedProducts(product), getWishlistedVariantIds()]);
   const wishlistedVariantIds = [...wishlistedIds];
 
+  const cover = product.images[0];
+  const lowestPriceVariant =
+    product.variants.length > 0 ? product.variants.reduce((min, v) => (v.price < min.price ? v : min)) : undefined;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: cover && !cover.isPlaceholder ? [cover.src] : undefined,
+    offers: lowestPriceVariant
+      ? {
+          "@type": "Offer",
+          url: `${SITE_URL}/products/${product.slug}`,
+          priceCurrency: lowestPriceVariant.currency,
+          price: lowestPriceVariant.price,
+          availability: product.variants.some((v) => v.stockStatus !== "out_of_stock")
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock",
+        }
+      : undefined,
+  };
+
   return (
     <div className="wrap py-10 md:py-14">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       <div className="grid gap-12 md:grid-cols-2">
         <ProductGallery images={product.images} productName={product.name} />
 

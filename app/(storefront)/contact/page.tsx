@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { WhatsappLogo, EnvelopeSimple, MapPin } from "@phosphor-icons/react/dist/ssr";
-import { WHATSAPP_LINK } from "@/lib/nav-config";
+import { WHATSAPP_LINK, CONTACT_EMAIL } from "@/lib/nav-config";
 import { ContactForm } from "@/components/contact/contact-form";
 
 export const metadata: Metadata = { title: "Contact" };
@@ -28,9 +28,9 @@ export default function ContactPage() {
               <WhatsappLogo size={20} className="text-primary" aria-hidden />
               +234 803 234 3038
             </a>
-            <a href="mailto:consultingsofaorganics@gmail.com" className="flex items-center gap-3 text-[15px] text-text">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 text-[15px] text-text">
               <EnvelopeSimple size={20} className="text-primary" aria-hidden />
-              consultingsofaorganics@gmail.com
+              {CONTACT_EMAIL}
             </a>
             <p className="flex items-center gap-3 text-[15px] text-text">
               <MapPin size={20} className="text-primary" aria-hidden />

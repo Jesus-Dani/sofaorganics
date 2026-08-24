@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Karla } from "next/font/google";
 import { AppProviders } from "@/app/providers";
+import { CONTACT_EMAIL, WHATSAPP_NUMBER } from "@/lib/nav-config";
 import "@/app/globals.css";
 
 const playfair = Playfair_Display({
@@ -41,10 +42,26 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Sofa Organics",
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  email: CONTACT_EMAIL,
+  telephone: `+${WHATSAPP_NUMBER}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Port Harcourt",
+    addressCountry: "NG",
+  },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${karla.variable}`}>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

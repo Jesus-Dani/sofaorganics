@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { CaretDown, Check, Minus, Plus } from "@phosphor-icons/react/dist/ssr";
 import type { Product } from "@/lib/data/types";
@@ -20,16 +20,55 @@ export function AddToCartForm({
   const [variantId, setVariantId] = useState(product.variants[0]?.id ?? "");
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
+  const [showStickyBar, setShowStickyBar] = useState(false);
+  const mainButtonRef = useRef<HTMLButtonElement>(null);
 
   const variant = useMemo(
     () => product.variants.find((v) => v.id === variantId) ?? product.variants[0],
     [product.variants, variantId]
   );
 
+  // Sticky mobile bar only appears once the main Add to Cart button has scrolled
+  // out of view — avoids showing two identical calls-to-action at once.
+  useEffect(() => {
+    const target = mainButtonRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => entry && setShowStickyBar(!entry.isIntersecting),
+      { rootMargin: "0px 0px -10% 0px" }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  // The floating WhatsApp button shares the bottom-right corner with this bar —
+  // push it up out of the way while the sticky bar is showing.
+  useEffect(() => {
+    document.documentElement.style.setProperty("--whatsapp-bottom-offset", showStickyBar ? "5.5rem" : "1.5rem");
+    return () => document.documentElement.style.setProperty("--whatsapp-bottom-offset", "1.5rem");
+  }, [showStickyBar]);
+
   if (!variant) return null;
 
   const outOfStock = variant.stockStatus === "out_of_stock";
   const cover = product.images[0];
+
+  const handleAdd = () => {
+    addLine(
+      {
+        productSlug: product.slug,
+        productName: product.name,
+        image: cover && !cover.isPlaceholder ? cover.src : "",
+        sizeLabel: variant.sizeLabel,
+        variantId: variant.id,
+        unitPrice: variant.price,
+        currency: variant.currency,
+      },
+      quantity
+    );
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1500);
+  };
 
   return (
     <div className="space-y-5">
@@ -97,24 +136,10 @@ export function AddToCartForm({
         </div>
 
         <button
+          ref={mainButtonRef}
           type="button"
           disabled={outOfStock}
-          onClick={() => {
-            addLine(
-              {
-                productSlug: product.slug,
-                productName: product.name,
-                image: cover && !cover.isPlaceholder ? cover.src : "",
-                sizeLabel: variant.sizeLabel,
-                variantId: variant.id,
-                unitPrice: variant.price,
-                currency: variant.currency,
-              },
-              quantity
-            );
-            setJustAdded(true);
-            setTimeout(() => setJustAdded(false), 1500);
-          }}
+          onClick={handleAdd}
           className="flex-1 bg-primary py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:bg-background-alt disabled:text-text-muted"
         >
           {outOfStock ? "Out of Stock" : justAdded ? "Added" : "Add to Cart"}
@@ -131,6 +156,23 @@ export function AddToCartForm({
       <button type="button" onClick={openCart} className="text-xs text-text-muted underline">
         View cart
       </button>
+
+      <div
+        aria-hidden={!showStickyBar}
+        className={`fixed inset-x-0 bottom-0 z-30 flex items-center gap-4 border-t border-border bg-background px-5 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 md:hidden ${
+          showStickyBar ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
+        <p className="text-base font-semibold text-text">{formatCurrency(variant.price, variant.currency)}</p>
+        <button
+          type="button"
+          disabled={outOfStock || !showStickyBar}
+          onClick={handleAdd}
+          className="flex-1 bg-primary py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:bg-background-alt disabled:text-text-muted"
+        >
+          {outOfStock ? "Out of Stock" : justAdded ? "Added" : "Add to Cart"}
+        </button>
+      </div>
     </div>
   );
 }

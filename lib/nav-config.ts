@@ -38,3 +38,4 @@ export const TYPE_FACETS_FOR_FOOTER = TYPE_FACETS;
 
 export const WHATSAPP_NUMBER = "2348032343038";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
+export const CONTACT_EMAIL = "consultingsofaorganics@gmail.com";
