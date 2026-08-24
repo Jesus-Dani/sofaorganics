@@ -14,7 +14,7 @@ export default async function CheckoutStartPage() {
     <div className="mx-auto flex min-h-[70vh] max-w-sm flex-col justify-center px-6 py-16">
       <p className="eyebrow mb-2 text-center">Sofa Organics</p>
       <h1 className="mb-2 text-center text-2xl">Checkout</h1>
-      <p className="mb-8 text-center text-sm text-text-muted">
+      <p className="mb-8 text-center text-sm text-text">
         Sign in or create an account to save your details for next time, or continue as a guest.
       </p>
 

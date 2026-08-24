@@ -43,11 +43,11 @@ export default async function AdminCustomersPage() {
                     {customer.full_name ?? "Unnamed customer"}
                   </Link>
                 </td>
-                <td className="px-4 py-3 text-text-muted">{customer.email ?? customer.phone ?? "—"}</td>
-                <td className="px-4 py-3 text-text-muted">{customer.is_guest ? "Guest / Manual" : "Registered"}</td>
-                <td className="px-4 py-3 text-text-muted">{customer.order_count}</td>
-                <td className="px-4 py-3 text-text-muted">{formatCurrency(customer.total_spent, "NGN")}</td>
-                <td className="px-4 py-3 text-text-muted">{new Date(customer.last_order_at).toLocaleDateString()}</td>
+                <td className="px-4 py-3 text-text">{customer.email ?? customer.phone ?? "—"}</td>
+                <td className="px-4 py-3 text-text">{customer.is_guest ? "Guest / Manual" : "Registered"}</td>
+                <td className="px-4 py-3 text-text">{customer.order_count}</td>
+                <td className="px-4 py-3 text-text">{formatCurrency(customer.total_spent, "NGN")}</td>
+                <td className="px-4 py-3 text-text">{new Date(customer.last_order_at).toLocaleDateString()}</td>
               </tr>
             ))}
             {sorted.length === 0 && (

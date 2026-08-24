@@ -41,8 +41,8 @@ export default async function AdminBlogPage() {
                       {post.title}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-text-muted capitalize">{post.status}</td>
-                  <td className="px-4 py-3 text-text-muted">
+                  <td className="px-4 py-3 text-text capitalize">{post.status}</td>
+                  <td className="px-4 py-3 text-text">
                     {post.published_at ? new Date(post.published_at).toLocaleDateString() : "Not published"}
                   </td>
                   <td className="px-4 py-3 text-right">

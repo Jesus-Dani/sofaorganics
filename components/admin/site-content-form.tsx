@@ -36,7 +36,7 @@ export function SiteContentForm({ contentKey, bodyRichtext }: { contentKey: Site
         name="bodyRichtext"
         render={({ field }) => <TiptapEditor value={field.value} onChange={field.onChange} />}
       />
-      {saveError && <p className="text-sm text-accent">{saveError}</p>}
+      {saveError && <p className="text-sm text-text">{saveError}</p>}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
       <button
         type="submit"

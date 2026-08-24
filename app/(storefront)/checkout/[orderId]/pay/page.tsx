@@ -88,7 +88,7 @@ function PaymentFailedState({ orderId, message }: { orderId: string; message: st
   return (
     <div className="wrap max-w-lg py-16 text-center">
       <h1 className="text-[28px]">Payment didn&apos;t go through</h1>
-      <p className="mt-4 text-text-muted">{message}</p>
+      <p className="mt-4 text-text">{message}</p>
       <Link href={`/checkout/${orderId}/pay`} className="mt-6 inline-block bg-primary px-6 py-3 text-sm font-medium text-background">
         Try again
       </Link>

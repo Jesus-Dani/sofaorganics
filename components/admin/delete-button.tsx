@@ -49,7 +49,7 @@ export function DeleteButton({
         <Trash size={14} aria-hidden />
         {isPending ? "Deleting…" : label}
       </button>
-      {error && <span className="ml-2 text-xs text-accent">{error}</span>}
+      {error && <span className="ml-2 text-xs text-text">{error}</span>}
     </span>
   );
 }

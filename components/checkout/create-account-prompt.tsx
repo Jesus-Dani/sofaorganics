@@ -78,7 +78,7 @@ export function CreateAccountPrompt({ orderId, defaultEmail }: { orderId: string
   return (
     <div className="mt-8 border border-border p-6">
       <h2 className="font-serif text-lg">Save your details for next time?</h2>
-      <p className="mt-1 text-sm text-text-muted">
+      <p className="mt-1 text-sm text-text">
         Optional: create an account and this order will be attached to it. Full order history and
         Buy Again are coming in a later phase.
       </p>
@@ -91,11 +91,11 @@ export function CreateAccountPrompt({ orderId, defaultEmail }: { orderId: string
             id="account-email"
             type="email"
             {...register("email")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
           {errors.email && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
+            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-text">
+              <WarningCircle size={13} className="text-accent" aria-hidden />
               {errors.email.message}
             </p>
           )}
@@ -108,18 +108,18 @@ export function CreateAccountPrompt({ orderId, defaultEmail }: { orderId: string
             id="account-password"
             type="password"
             {...register("password")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
           {errors.password && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-accent">
-              <WarningCircle size={13} aria-hidden />
+            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-text">
+              <WarningCircle size={13} className="text-accent" aria-hidden />
               {errors.password.message}
             </p>
           )}
         </div>
         {error && (
-          <p className="sm:col-span-2 flex items-center gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} aria-hidden />
+          <p className="sm:col-span-2 flex items-center gap-1.5 text-xs text-text">
+            <WarningCircle size={13} className="text-accent" aria-hidden />
             {error}
           </p>
         )}

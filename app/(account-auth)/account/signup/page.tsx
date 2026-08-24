@@ -74,7 +74,7 @@ function AccountSignupForm() {
       <div className="mx-auto flex min-h-[70vh] max-w-sm flex-col justify-center px-6 py-16 text-center">
         <p className="eyebrow mb-4">Almost there</p>
         <h1 className="text-2xl">Check your email</h1>
-        <p className="mt-3 text-sm text-text-muted">
+        <p className="mt-3 text-sm text-text">
           We&apos;ve sent a confirmation link. Once you confirm, come back and sign in.
         </p>
         <Link href={loginHref} className="mt-6 text-sm font-medium text-primary underline">
@@ -98,9 +98,11 @@ function AccountSignupForm() {
             <input
               id="firstName"
               {...register("firstName")}
-              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.firstName}
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.firstName?.message} />
+            <FieldError id="firstName-error" message={errors.firstName?.message} />
           </div>
           <div>
             <label htmlFor="lastName" className="mb-1.5 block text-sm font-medium text-text">
@@ -109,9 +111,11 @@ function AccountSignupForm() {
             <input
               id="lastName"
               {...register("lastName")}
-              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.lastName}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.lastName?.message} />
+            <FieldError id="lastName-error" message={errors.lastName?.message} />
           </div>
         </div>
         <div>
@@ -122,9 +126,11 @@ function AccountSignupForm() {
             id="phone"
             type="tel"
             {...register("phone")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "phone-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.phone?.message} />
+          <FieldError id="phone-error" message={errors.phone?.message} />
         </div>
         <div>
           <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-text">
@@ -134,9 +140,11 @@ function AccountSignupForm() {
             id="email"
             type="email"
             {...register("email")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.email?.message} />
+          <FieldError id="email-error" message={errors.email?.message} />
         </div>
         <div>
           <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-text">
@@ -146,9 +154,11 @@ function AccountSignupForm() {
             id="password"
             type="password"
             {...register("password")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.password}
+            aria-describedby={errors.password ? "password-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.password?.message} />
+          <FieldError id="password-error" message={errors.password?.message} />
         </div>
         <div>
           <label htmlFor="confirmPassword" className="mb-1.5 block text-sm font-medium text-text">
@@ -158,14 +168,16 @@ function AccountSignupForm() {
             id="confirmPassword"
             type="password"
             {...register("confirmPassword")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.confirmPassword}
+            aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.confirmPassword?.message} />
+          <FieldError id="confirmPassword-error" message={errors.confirmPassword?.message} />
         </div>
 
         {error && (
-          <p className="flex items-start gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} className="mt-0.5 shrink-0" aria-hidden />
+          <p className="flex items-start gap-1.5 text-xs text-text">
+            <WarningCircle size={13} className="mt-0.5 shrink-0 text-accent" aria-hidden />
             {error}
           </p>
         )}

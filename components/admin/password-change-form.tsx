@@ -38,15 +38,18 @@ export function PasswordChangeForm() {
     <form onSubmit={onSubmit} className="max-w-lg space-y-4">
       <h2 className="text-lg font-semibold text-text">Change password</h2>
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">New password</label>
+        <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-text">New password</label>
         <input
+          id="password"
           type="password"
           {...register("password")}
-          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          aria-invalid={!!errors.password}
+          aria-describedby={errors.password ? "password-error" : undefined}
+          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
-        <FieldError message={errors.password?.message} />
+        <FieldError id="password-error" message={errors.password?.message} />
       </div>
-      <FieldError message={saveError ?? undefined} />
+      <FieldError id="password-save-error" message={saveError ?? undefined} />
       {savedAt && !saveError && <p className="text-sm text-primary">Password updated.</p>}
       <button
         type="submit"

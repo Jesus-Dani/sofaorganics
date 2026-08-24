@@ -61,7 +61,7 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search products by name or SKU"
-            className="w-full border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+            className="w-full border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
           {results.length > 0 && (
             <ul className="absolute z-10 mt-1 w-full border border-border bg-background shadow-lg">
@@ -78,7 +78,7 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
                     <span>
                       {variant.productName} — {variant.sizeLabel}
                     </span>
-                    <span className="text-text-muted">{formatCurrency(variant.price, variant.currency)}</span>
+                    <span className="text-text">{formatCurrency(variant.price, variant.currency)}</span>
                   </button>
                 </li>
               ))}
@@ -106,7 +106,7 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
                     <input
                       type="number"
                       {...register(`lineItems.${index}.quantity` as const)}
-                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                   <div>
@@ -115,7 +115,7 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
                       type="number"
                       step="0.01"
                       {...register(`lineItems.${index}.unitPrice` as const)}
-                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                   <button
@@ -131,7 +131,9 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
             })}
           </div>
         )}
-        {errors.lineItems && typeof errors.lineItems.message === "string" && <FieldError message={errors.lineItems.message} />}
+        {errors.lineItems && typeof errors.lineItems.message === "string" && (
+          <FieldError id="lineItems-error" message={errors.lineItems.message} />
+        )}
 
         {fields.length > 0 && (
           <p className="mt-3 text-right text-sm font-medium text-text">Total: {formatCurrency(total, "NGN")}</p>
@@ -142,29 +144,38 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
         <h2 className="mb-4 text-lg font-semibold text-text">Customer</h2>
         <div className="space-y-4">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-text">Name</label>
+            <label htmlFor="customerName" className="mb-1.5 block text-sm font-medium text-text">Name</label>
             <input
+              id="customerName"
               {...register("customerName")}
-              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.customerName}
+              aria-describedby={errors.customerName ? "customerName-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.customerName?.message} />
+            <FieldError id="customerName-error" message={errors.customerName?.message} />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-text">Phone</label>
+            <label htmlFor="customerPhone" className="mb-1.5 block text-sm font-medium text-text">Phone</label>
             <input
+              id="customerPhone"
               {...register("customerPhone")}
-              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.customerPhone}
+              aria-describedby={errors.customerPhone ? "customerPhone-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.customerPhone?.message} />
+            <FieldError id="customerPhone-error" message={errors.customerPhone?.message} />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-text">Payment method</label>
+            <label htmlFor="paymentMethod" className="mb-1.5 block text-sm font-medium text-text">Payment method</label>
             <input
+              id="paymentMethod"
               {...register("paymentMethod")}
               placeholder="e.g. Cash, Bank transfer, Paid via WhatsApp link"
-              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.paymentMethod}
+              aria-describedby={errors.paymentMethod ? "paymentMethod-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.paymentMethod?.message} />
+            <FieldError id="paymentMethod-error" message={errors.paymentMethod?.message} />
           </div>
         </div>
       </section>
@@ -179,33 +190,33 @@ export function ManualOrderForm({ variants }: { variants: SellableVariant[] }) {
             <input
               {...register("shipping.line1")}
               placeholder="Address line 1"
-              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none sm:col-span-2"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:col-span-2"
             />
             <input
               {...register("shipping.line2")}
               placeholder="Address line 2 (optional)"
-              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none sm:col-span-2"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:col-span-2"
             />
             <input
               {...register("shipping.city")}
               placeholder="City"
-              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
             <input
               {...register("shipping.state")}
               placeholder="State"
-              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
             <input
               {...register("shipping.postalCode")}
               placeholder="Postal code (optional)"
-              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+              className="border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
           </div>
         )}
       </section>
 
-      {submitError && <FieldError message={submitError} />}
+      {submitError && <FieldError id="submit-error" message={submitError} />}
 
       <button
         type="submit"

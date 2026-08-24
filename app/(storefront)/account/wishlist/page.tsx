@@ -17,7 +17,7 @@ export default async function WishlistPage() {
 
       {items.length === 0 ? (
         <div className="mt-10 border border-dashed border-border py-16 text-center">
-          <p className="text-text-muted">Nothing saved yet.</p>
+          <p className="text-text">Nothing saved yet.</p>
           <Link href="/shop" className="mt-4 inline-block text-sm font-medium text-primary underline">
             Browse the shop
           </Link>

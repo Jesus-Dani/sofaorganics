@@ -74,7 +74,7 @@ export default async function AdminDashboardPage({
                 <span className="text-sm text-text">
                   {v.productName} — {v.sizeLabel}
                 </span>
-                <span className="text-sm text-accent">{v.stockQuantity} left</span>
+                <span className="text-sm text-text">{v.stockQuantity} left</span>
               </div>
             ))}
           </div>
@@ -101,9 +101,9 @@ export default async function AdminDashboardPage({
                       {order.guest_name ?? order.guest_email ?? "Registered customer"}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-text-muted capitalize">{order.status}</td>
-                  <td className="px-4 py-3 text-text-muted">{formatCurrency(order.grand_total, order.currency)}</td>
-                  <td className="px-4 py-3 text-text-muted">{new Date(order.created_at).toLocaleDateString()}</td>
+                  <td className="px-4 py-3 text-text capitalize">{order.status}</td>
+                  <td className="px-4 py-3 text-text">{formatCurrency(order.grand_total, order.currency)}</td>
+                  <td className="px-4 py-3 text-text">{new Date(order.created_at).toLocaleDateString()}</td>
                 </tr>
               ))}
               {stats.recentOrders.length === 0 && (

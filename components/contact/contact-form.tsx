@@ -50,9 +50,11 @@ export function ContactForm() {
         <input
           id="name"
           {...register("name")}
-          className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none"
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "name-error" : undefined}
+          className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
-        <FieldError message={errors.name?.message} />
+        <FieldError id="name-error" message={errors.name?.message} />
       </div>
 
       <div>
@@ -63,9 +65,11 @@ export function ContactForm() {
           id="email"
           type="email"
           {...register("email")}
-          className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none"
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
+          className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
-        <FieldError message={errors.email?.message} />
+        <FieldError id="email-error" message={errors.email?.message} />
       </div>
 
       <div>
@@ -76,9 +80,11 @@ export function ContactForm() {
           id="message"
           rows={5}
           {...register("message")}
-          className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none"
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "message-error" : undefined}
+          className="w-full border border-border bg-background px-4 py-3 text-sm text-text focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
-        <FieldError message={errors.message?.message} />
+        <FieldError id="message-error" message={errors.message?.message} />
       </div>
 
       <button

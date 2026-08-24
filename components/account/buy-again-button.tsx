@@ -52,7 +52,7 @@ export function BuyAgainButton({ orderId }: { orderId: string }) {
       >
         {isPending ? "Adding…" : "Buy Again"}
       </button>
-      {error && <p className="mt-1 text-xs text-accent">{error}</p>}
+      {error && <p className="mt-1 text-xs text-text">{error}</p>}
     </div>
   );
 }

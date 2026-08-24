@@ -25,7 +25,7 @@ export async function ShopView({
     <div className="wrap py-10 md:py-14">
       <div className="mb-8 max-w-2xl">
         <h1 className="text-[32px]">{title}</h1>
-        {description && <p className="mt-2 text-text-muted">{description}</p>}
+        {description && <p className="mt-2 text-text">{description}</p>}
       </div>
 
       <div className="grid gap-10 md:grid-cols-[220px_1fr]">
@@ -46,7 +46,7 @@ export async function ShopView({
 
           {products.length === 0 ? (
             <div className="border border-dashed border-border py-16 text-center">
-              <p className="text-text-muted">No products match these filters yet.</p>
+              <p className="text-text">No products match these filters yet.</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">

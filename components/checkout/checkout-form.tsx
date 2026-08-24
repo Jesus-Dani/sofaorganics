@@ -52,7 +52,7 @@ export function CheckoutForm({
   if (lines.length === 0 && !hasSubmitted) {
     return (
       <div className="mt-10 border border-dashed border-border py-16 text-center">
-        <p className="text-text-muted">Your cart is empty.</p>
+        <p className="text-text">Your cart is empty.</p>
         <Link href="/shop" className="mt-4 inline-block text-sm font-medium text-primary underline">
           Browse the shop
         </Link>
@@ -103,9 +103,11 @@ export function CheckoutForm({
               <input
                 id="name"
                 {...register("name")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
-              <FieldError message={errors.name?.message} />
+              <FieldError id="name-error" message={errors.name?.message} />
             </div>
             <div>
               <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-text">
@@ -115,9 +117,11 @@ export function CheckoutForm({
                 id="email"
                 type="email"
                 {...register("email")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
-              <FieldError message={errors.email?.message} />
+              <FieldError id="email-error" message={errors.email?.message} />
             </div>
             <div>
               <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-text">
@@ -127,9 +131,11 @@ export function CheckoutForm({
                 id="phone"
                 type="tel"
                 {...register("phone")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? "phone-error" : undefined}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
-              <FieldError message={errors.phone?.message} />
+              <FieldError id="phone-error" message={errors.phone?.message} />
             </div>
           </div>
         </section>
@@ -150,7 +156,7 @@ export function CheckoutForm({
                   setValue("state", address.state);
                   setValue("postalCode", address.postal_code ?? "");
                 }}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <option value="">Enter a new address below…</option>
                 {savedAddresses.map((address) => (
@@ -170,9 +176,11 @@ export function CheckoutForm({
               <input
                 id="line1"
                 {...register("line1")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.line1}
+                aria-describedby={errors.line1 ? "line1-error" : undefined}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
-              <FieldError message={errors.line1?.message} />
+              <FieldError id="line1-error" message={errors.line1?.message} />
             </div>
             <div className="sm:col-span-2">
               <label htmlFor="line2" className="mb-1.5 block text-sm font-medium text-text">
@@ -181,7 +189,7 @@ export function CheckoutForm({
               <input
                 id="line2"
                 {...register("line2")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
             </div>
             <div>
@@ -191,9 +199,11 @@ export function CheckoutForm({
               <input
                 id="city"
                 {...register("city")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.city}
+                aria-describedby={errors.city ? "city-error" : undefined}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
-              <FieldError message={errors.city?.message} />
+              <FieldError id="city-error" message={errors.city?.message} />
             </div>
             <div>
               <label htmlFor="state" className="mb-1.5 block text-sm font-medium text-text">
@@ -202,9 +212,11 @@ export function CheckoutForm({
               <input
                 id="state"
                 {...register("state")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.state}
+                aria-describedby={errors.state ? "state-error" : undefined}
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
-              <FieldError message={errors.state?.message} />
+              <FieldError id="state-error" message={errors.state?.message} />
             </div>
             <div>
               <label htmlFor="postalCode" className="mb-1.5 block text-sm font-medium text-text">
@@ -213,7 +225,7 @@ export function CheckoutForm({
               <input
                 id="postalCode"
                 {...register("postalCode")}
-                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+                className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
             </div>
           </div>
@@ -235,7 +247,7 @@ export function CheckoutForm({
               </label>
             ))}
           </div>
-          <FieldError message={errors.shippingZone?.message} />
+          <FieldError id="shippingZone-error" message={errors.shippingZone?.message} />
         </section>
       </div>
 
@@ -243,7 +255,7 @@ export function CheckoutForm({
         <h2 className="text-lg font-serif">Order summary</h2>
         <ul className="space-y-2 border-b border-border pb-4 text-sm">
           {lines.map((line) => (
-            <li key={line.variantId} className="flex justify-between text-text-muted">
+            <li key={line.variantId} className="flex justify-between text-text">
               <span>
                 {line.productName} ({line.sizeLabel}) × {line.quantity}
               </span>
@@ -271,8 +283,8 @@ export function CheckoutForm({
         </div>
 
         {submitError && (
-          <div className="flex items-start gap-2 border border-accent bg-error-surface px-3 py-2.5 text-xs text-accent">
-            <WarningCircle size={14} className="mt-0.5 shrink-0" aria-hidden />
+          <div className="flex items-start gap-2 border border-accent bg-error-surface px-3 py-2.5 text-xs text-text">
+            <WarningCircle size={14} className="mt-0.5 shrink-0 text-accent" aria-hidden />
             {submitError}
           </div>
         )}

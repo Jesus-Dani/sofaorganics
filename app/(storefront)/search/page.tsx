@@ -26,7 +26,7 @@ export default async function SearchPage({
 
       {q && results.length === 0 && (
         <div className="mt-8 border border-dashed border-border py-16 text-center">
-          <p className="text-text-muted">
+          <p className="text-text">
             Nothing matched that search. Try a shorter term, or{" "}
             <a href="/shop" className="underline">
               browse the full shop

@@ -78,19 +78,25 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
         <h2 className="mb-4 text-lg font-semibold text-text">General Info</h2>
         <div className="space-y-4">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-text">Name</label>
+            <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-text">Name</label>
             <input
+              id="name"
               {...register("name")}
-              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "name-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            {errors.name && <FieldError message={errors.name.message} />}
+            {errors.name && <FieldError id="name-error" message={errors.name.message} />}
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-text">Slug</label>
+            <label htmlFor="slug" className="mb-1.5 block text-sm font-medium text-text">Slug</label>
             <div className="flex gap-2">
               <input
+                id="slug"
                 {...register("slug")}
-                className="flex-1 border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+                aria-invalid={!!errors.slug}
+                aria-describedby={errors.slug ? "slug-error" : undefined}
+                className="flex-1 border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
               <button
                 type="button"
@@ -100,16 +106,19 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
                 Generate from name
               </button>
             </div>
-            {errors.slug && <FieldError message={errors.slug.message} />}
+            {errors.slug && <FieldError id="slug-error" message={errors.slug.message} />}
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-text">Description</label>
+            <label htmlFor="description" className="mb-1.5 block text-sm font-medium text-text">Description</label>
             <textarea
+              id="description"
               rows={4}
               {...register("description")}
-              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.description}
+              aria-describedby={errors.description ? "description-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            {errors.description && <FieldError message={errors.description.message} />}
+            {errors.description && <FieldError id="description-error" message={errors.description.message} />}
           </div>
           <label className="flex items-center gap-2 text-sm text-text">
             <input type="checkbox" {...register("isPetSafe")} />
@@ -122,7 +131,7 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
                 rows={3}
                 {...register("petSafeNote")}
                 placeholder="Dosing/usage guidance shown in the PDP's pet-safe section"
-                className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+                className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               />
             </div>
           )}
@@ -162,27 +171,30 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
                 {isChecked && (
                   <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div>
-                      <label className="mb-1 block text-xs text-text-muted">Price (₦)</label>
+                      <label htmlFor={`variant-${size}-price`} className="mb-1 block text-xs text-text-muted">Price (₦)</label>
                       <input
+                        id={`variant-${size}-price`}
                         type="number"
                         step="0.01"
                         {...register(`variants.${index}.price` as const)}
-                        className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                        className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs text-text-muted">Stock</label>
+                      <label htmlFor={`variant-${size}-stock`} className="mb-1 block text-xs text-text-muted">Stock</label>
                       <input
+                        id={`variant-${size}-stock`}
                         type="number"
                         {...register(`variants.${index}.stockQuantity` as const)}
-                        className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                        className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs text-text-muted">SKU</label>
+                      <label htmlFor={`variant-${size}-sku`} className="mb-1 block text-xs text-text-muted">SKU</label>
                       <input
+                        id={`variant-${size}-sku`}
                         {...register(`variants.${index}.sku` as const)}
-                        className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                        className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
@@ -204,34 +216,38 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
                   className="grid grid-cols-1 items-end gap-2 border border-border p-3 sm:grid-cols-[1fr_1fr_1fr_1fr_auto]"
                 >
                   <div>
-                    <label className="mb-1 block text-xs text-text-muted">Size label</label>
+                    <label htmlFor={`variant-${field.id}-sizeLabel`} className="mb-1 block text-xs text-text-muted">Size label</label>
                     <input
+                      id={`variant-${field.id}-sizeLabel`}
                       {...register(`variants.${index}.sizeLabel` as const)}
-                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs text-text-muted">Price (₦)</label>
+                    <label htmlFor={`variant-${field.id}-price`} className="mb-1 block text-xs text-text-muted">Price (₦)</label>
                     <input
+                      id={`variant-${field.id}-price`}
                       type="number"
                       step="0.01"
                       {...register(`variants.${index}.price` as const)}
-                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs text-text-muted">Stock</label>
+                    <label htmlFor={`variant-${field.id}-stock`} className="mb-1 block text-xs text-text-muted">Stock</label>
                     <input
+                      id={`variant-${field.id}-stock`}
                       type="number"
                       {...register(`variants.${index}.stockQuantity` as const)}
-                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs text-text-muted">SKU</label>
+                    <label htmlFor={`variant-${field.id}-sku`} className="mb-1 block text-xs text-text-muted">SKU</label>
                     <input
+                      id={`variant-${field.id}-sku`}
                       {...register(`variants.${index}.sku` as const)}
-                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+                      className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                   <button
@@ -258,7 +274,9 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
             Add custom size
           </button>
         </div>
-        {errors.variants && typeof errors.variants.message === "string" && <FieldError message={errors.variants.message} />}
+        {errors.variants && typeof errors.variants.message === "string" && (
+          <FieldError id="variants-error" message={errors.variants.message} />
+        )}
       </section>
 
       <section className="space-y-5">
@@ -290,7 +308,7 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
         <h2 className="mb-4 text-lg font-semibold text-text">Publish</h2>
         <select
           {...register("status")}
-          className="border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          className="border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <option value="draft">Draft</option>
           <option value="published">Published</option>
@@ -298,7 +316,7 @@ export function ProductForm({ product, allFacets }: { product: Product; allFacet
         </select>
       </section>
 
-      {saveError && <FieldError message={saveError} />}
+      {saveError && <FieldError id="product-save-error" message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
       <div className="flex flex-wrap items-center justify-between gap-3">

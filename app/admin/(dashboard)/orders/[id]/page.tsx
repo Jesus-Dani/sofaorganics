@@ -36,9 +36,9 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
             {order.items.map((item) => (
               <tr key={item.id} className="border-b border-border last:border-0">
                 <td className="px-4 py-3 text-text">{item.product_name}</td>
-                <td className="px-4 py-3 text-text-muted">{item.size_label}</td>
-                <td className="px-4 py-3 text-text-muted">{item.quantity}</td>
-                <td className="px-4 py-3 text-text-muted">{formatCurrency(item.unit_price, order.currency)}</td>
+                <td className="px-4 py-3 text-text">{item.size_label}</td>
+                <td className="px-4 py-3 text-text">{item.quantity}</td>
+                <td className="px-4 py-3 text-text">{formatCurrency(item.unit_price, order.currency)}</td>
               </tr>
             ))}
           </tbody>
@@ -49,14 +49,14 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
         <div>
           <h2 className="mb-3 text-sm font-semibold uppercase text-text-muted">Customer</h2>
           <p className="text-sm text-text">{order.guest_name ?? "—"}</p>
-          <p className="text-sm text-text-muted">{order.guest_email ?? "—"}</p>
-          <p className="text-sm text-text-muted">{order.guest_phone ?? "—"}</p>
-          <p className="mt-2 text-sm text-text-muted">Payment: {order.payment_method ?? "—"}</p>
+          <p className="text-sm text-text">{order.guest_email ?? "—"}</p>
+          <p className="text-sm text-text">{order.guest_phone ?? "—"}</p>
+          <p className="mt-2 text-sm text-text">Payment: {order.payment_method ?? "—"}</p>
         </div>
         <div>
           <h2 className="mb-3 text-sm font-semibold uppercase text-text-muted">Shipping address</h2>
           {order.shipping_address ? (
-            <div className="text-sm text-text-muted">
+            <div className="text-sm text-text">
               <p>{order.shipping_address.line1}</p>
               {order.shipping_address.line2 && <p>{order.shipping_address.line2}</p>}
               <p>
@@ -67,21 +67,21 @@ export default async function AdminOrderDetailPage({ params }: { params: { id: s
               </p>
             </div>
           ) : (
-            <p className="text-sm text-text-muted">No shipping address on file.</p>
+            <p className="text-sm text-text">No shipping address on file.</p>
           )}
         </div>
       </section>
 
       <section className="border-t border-border pt-4">
-        <div className="flex justify-between text-sm text-text-muted">
+        <div className="flex justify-between text-sm text-text">
           <span>Subtotal</span>
           <span>{formatCurrency(order.subtotal, order.currency)}</span>
         </div>
-        <div className="flex justify-between text-sm text-text-muted">
+        <div className="flex justify-between text-sm text-text">
           <span>Shipping</span>
           <span>{formatCurrency(order.shipping_total, order.currency)}</span>
         </div>
-        <div className="flex justify-between text-sm text-text-muted">
+        <div className="flex justify-between text-sm text-text">
           <span>Tax</span>
           <span>{formatCurrency(order.tax_total, order.currency)}</span>
         </div>

@@ -22,7 +22,7 @@ export default async function ConfirmationPage({ params }: { params: { orderId: 
           Order #{order.id.slice(0, 8)} · {order.status === "paid" ? "Paid" : order.status}
         </p>
         <h1 className="text-[28px]">Thank you, {order.guest_name?.split(" ")[0] ?? "there"}.</h1>
-        <p className="mt-2 text-text-muted">
+        <p className="mt-2 text-text">
           We&apos;ve got your order. A confirmation would normally go to {order.guest_email}, though
           email sending isn&apos;t wired up yet, so this page is the record for now.
         </p>
@@ -32,7 +32,7 @@ export default async function ConfirmationPage({ params }: { params: { orderId: 
         <h2 className="mb-4 font-serif text-lg">Items</h2>
         <ul className="space-y-2 border-b border-border pb-4 text-sm">
           {order.items.map((item, i) => (
-            <li key={i} className="flex justify-between text-text-muted">
+            <li key={i} className="flex justify-between text-text">
               <span>
                 {item.product_name} ({item.size_label}) × {item.quantity}
               </span>
@@ -60,7 +60,7 @@ export default async function ConfirmationPage({ params }: { params: { orderId: 
         </div>
 
         {order.shipping_address && (
-          <div className="mt-6 border-t border-border pt-4 text-sm text-text-muted">
+          <div className="mt-6 border-t border-border pt-4 text-sm text-text">
             <p className="mb-1 font-medium text-text">Shipping to</p>
             <p>{order.shipping_address.line1}</p>
             {order.shipping_address.line2 && <p>{order.shipping_address.line2}</p>}

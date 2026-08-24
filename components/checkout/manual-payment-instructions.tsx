@@ -52,7 +52,7 @@ export function ManualPaymentInstructions({
     <div className="wrap max-w-lg py-16">
       <p className="eyebrow mb-2 text-center">Order #{orderId.slice(0, 8)}</p>
       <h1 className="text-center text-[28px]">Complete your payment</h1>
-      <p className="mt-3 text-center text-sm text-text-muted">
+      <p className="mt-3 text-center text-sm text-text">
         Transfer the amount below, then send us your receipt on WhatsApp so we can confirm it and start
         processing your order.
       </p>
@@ -63,8 +63,8 @@ export function ManualPaymentInstructions({
 
         <div className="mt-6 space-y-1.5 border-t border-border pt-5 text-sm">
           <p className="mb-2 font-medium text-text">Bank transfer details</p>
-          <p className="text-text-muted">{ACCOUNT_NAME}</p>
-          <p className="text-text-muted">{BANK_NAME}</p>
+          <p className="text-text">{ACCOUNT_NAME}</p>
+          <p className="text-text">{BANK_NAME}</p>
           <div className="flex items-center gap-2">
             <span className="text-text">{ACCOUNT_NUMBER}</span>
             <button
@@ -90,7 +90,7 @@ export function ManualPaymentInstructions({
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 block w-full bg-accent py-3.5 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
+          className="mt-6 block w-full bg-primary py-3.5 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
         >
           Send receipt on WhatsApp
         </a>

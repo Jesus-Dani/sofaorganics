@@ -29,7 +29,7 @@ export function CartDrawer() {
 
           {lines.length === 0 ? (
             <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6 text-center">
-              <p className="text-text-muted">Your cart is empty.</p>
+              <p className="text-text">Your cart is empty.</p>
               <Dialog.Close asChild>
                 <Link href="/shop" className="text-sm font-medium text-primary underline">
                   Browse the shop →

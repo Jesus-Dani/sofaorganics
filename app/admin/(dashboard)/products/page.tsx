@@ -39,12 +39,12 @@ export default async function AdminProductsPage({
           name="q"
           defaultValue={search}
           placeholder="Search by name"
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none sm:max-w-xs sm:flex-1"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:max-w-xs sm:flex-1"
         />
         <select
           name="status"
           defaultValue={status ?? ""}
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none sm:w-auto"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-auto"
         >
           <option value="">All statuses</option>
           <option value="draft">Draft</option>
@@ -84,11 +84,11 @@ export default async function AdminProductsPage({
                         {product.name}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 text-text-muted">{STATUS_LABEL[product.status]}</td>
+                    <td className="px-4 py-3 text-text">{STATUS_LABEL[product.status]}</td>
                     <td className="px-4 py-3">
                       <StockBadge status={stockStatus} />
                     </td>
-                    <td className="px-4 py-3 text-text-muted">
+                    <td className="px-4 py-3 text-text">
                       {lowest !== null ? formatCurrency(lowest, product.variants[0]?.currency ?? "NGN") : "No sizes yet"}
                     </td>
                     <td className="px-4 py-3 text-right">

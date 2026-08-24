@@ -103,7 +103,7 @@ export function PhotoUploader({ productId, images }: { productId: string; images
         />
       </div>
 
-      {error && <p className="mt-2 text-xs text-accent">{error}</p>}
+      {error && <p className="mt-2 text-xs text-text">{error}</p>}
 
       {images.length > 0 && (
         <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4">

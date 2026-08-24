@@ -102,7 +102,7 @@ function Row({
         <input
           value={label1}
           onChange={(e) => setLabel1(e.target.value)}
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </td>
       <td className="px-4 py-2">
@@ -111,7 +111,7 @@ function Row({
           step="0.01"
           value={value2}
           onChange={(e) => setValue2(e.target.value)}
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </td>
       <td className="px-4 py-2 text-right">
@@ -127,8 +127,8 @@ function Row({
           <DeleteButton onDelete={onDelete} confirmMessage={confirmMessage} />
         </div>
         {error && (
-          <p className="mt-1 flex items-center justify-end gap-1 text-xs text-accent">
-            <WarningCircle size={12} aria-hidden />
+          <p className="mt-1 flex items-center justify-end gap-1 text-xs text-text">
+            <WarningCircle size={12} className="text-accent" aria-hidden />
             {error}
           </p>
         )}
@@ -173,7 +173,7 @@ function NewRow({
           value={label1}
           onChange={(e) => setLabel1(e.target.value)}
           placeholder={newPlaceholder}
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </td>
       <td className="px-4 py-2">
@@ -182,7 +182,7 @@ function NewRow({
           step="0.01"
           value={value2}
           onChange={(e) => setValue2(e.target.value)}
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </td>
       <td className="px-4 py-2 text-right">
@@ -195,7 +195,7 @@ function NewRow({
           <Plus size={13} aria-hidden />
           {isPending ? "Adding…" : addLabel}
         </button>
-        {error && <p className="mt-1 text-xs text-accent">{error}</p>}
+        {error && <p className="mt-1 text-xs text-text">{error}</p>}
       </td>
     </tr>
   );

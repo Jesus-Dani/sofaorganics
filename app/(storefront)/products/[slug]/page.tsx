@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             <AddToCartForm product={product} wishlistedVariantIds={wishlistedVariantIds} />
           </div>
 
-          <p className="mt-8 max-w-prose text-[15px] leading-relaxed text-text-muted">{product.description}</p>
+          <p className="mt-8 max-w-prose text-[15px] leading-relaxed text-text">{product.description}</p>
 
           {product.isPetSafe && product.petSafeNote && (
             <div className="mt-6">

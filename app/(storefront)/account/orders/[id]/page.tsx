@@ -33,7 +33,7 @@ export default async function AccountOrderDetailPage({ params }: { params: { id:
         <h2 className="mb-4 font-serif text-lg">Items</h2>
         <ul className="space-y-2 border-b border-border pb-4 text-sm">
           {order.items.map((item) => (
-            <li key={item.id} className="flex justify-between text-text-muted">
+            <li key={item.id} className="flex justify-between text-text">
               <span>
                 {item.productName} ({item.sizeLabel}) × {item.quantity}
               </span>
@@ -61,7 +61,7 @@ export default async function AccountOrderDetailPage({ params }: { params: { id:
         </div>
 
         {order.shippingAddress && (
-          <div className="mt-6 border-t border-border pt-4 text-sm text-text-muted">
+          <div className="mt-6 border-t border-border pt-4 text-sm text-text">
             <p className="mb-1 font-medium text-text">Shipped to</p>
             <p>{order.shippingAddress.line1}</p>
             {order.shippingAddress.line2 && <p>{order.shippingAddress.line2}</p>}

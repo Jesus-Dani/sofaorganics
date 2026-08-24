@@ -105,20 +105,20 @@ export default function AdminSetupPage() {
       {status === "claiming" && <p className="text-center text-text-muted">Setting up your admin account…</p>}
 
       {status === "closed" && (
-        <p className="text-center text-text-muted">
+        <p className="text-center text-text">
           An admin account already exists. <a href="/admin/login" className="underline text-primary">Sign in</a>.
         </p>
       )}
 
       {status === "already-admin" && (
-        <p className="text-center text-text-muted">
+        <p className="text-center text-text">
           You&apos;re already the admin. <a href="/admin" className="underline text-primary">Go to admin</a>.
         </p>
       )}
 
       {status === "form" && (
         <form onSubmit={onSubmit} className="space-y-4">
-          <p className="text-center text-sm text-text-muted">
+          <p className="text-center text-sm text-text">
             Enter the email and password for the store&apos;s one admin account. If it doesn&apos;t exist yet, this
             creates it.
           </p>
@@ -130,9 +130,11 @@ export default function AdminSetupPage() {
               id="email"
               type="email"
               {...register("email")}
-              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.email?.message} />
+            <FieldError id="email-error" message={errors.email?.message} />
           </div>
           <div>
             <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-text">
@@ -142,9 +144,11 @@ export default function AdminSetupPage() {
               id="password"
               type="password"
               {...register("password")}
-              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+              aria-invalid={!!errors.password}
+              aria-describedby={errors.password ? "password-error" : undefined}
+              className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <FieldError message={errors.password?.message} />
+            <FieldError id="password-error" message={errors.password?.message} />
           </div>
           <button
             type="submit"
@@ -157,8 +161,8 @@ export default function AdminSetupPage() {
       )}
 
       {error && (
-        <p className="mt-4 flex items-start gap-1.5 text-center text-xs text-accent">
-          <WarningCircle size={13} className="mt-0.5 shrink-0" aria-hidden />
+        <p className="mt-4 flex items-start gap-1.5 text-center text-xs text-text">
+          <WarningCircle size={13} className="mt-0.5 shrink-0 text-accent" aria-hidden />
           {error}
         </p>
       )}

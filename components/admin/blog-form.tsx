@@ -57,20 +57,26 @@ export function BlogForm({ post, products }: { post: BlogPostRow; products: Pick
   return (
     <form onSubmit={onSubmit} className="max-w-3xl space-y-8 pb-16">
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Title</label>
+        <label htmlFor="title" className="mb-1.5 block text-sm font-medium text-text">Title</label>
         <input
+          id="title"
           {...register("title")}
-          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          aria-invalid={!!errors.title}
+          aria-describedby={errors.title ? "title-error" : undefined}
+          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
-        <FieldError message={errors.title?.message} />
+        <FieldError id="title-error" message={errors.title?.message} />
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Slug</label>
+        <label htmlFor="slug" className="mb-1.5 block text-sm font-medium text-text">Slug</label>
         <div className="flex gap-2">
           <input
+            id="slug"
             {...register("slug")}
-            className="flex-1 border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.slug}
+            aria-describedby={errors.slug ? "slug-error" : undefined}
+            className="flex-1 border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
           <button
             type="button"
@@ -80,7 +86,7 @@ export function BlogForm({ post, products }: { post: BlogPostRow; products: Pick
             Generate from title
           </button>
         </div>
-        <FieldError message={errors.slug?.message} />
+        <FieldError id="slug-error" message={errors.slug?.message} />
       </div>
 
       <div>
@@ -110,14 +116,14 @@ export function BlogForm({ post, products }: { post: BlogPostRow; products: Pick
         <label className="mb-1.5 block text-sm font-medium text-text">Status</label>
         <select
           {...register("status")}
-          className="border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          className="border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <option value="draft">Draft</option>
           <option value="published">Published</option>
         </select>
       </div>
 
-      {saveError && <FieldError message={saveError} />}
+      {saveError && <FieldError id="blog-save-error" message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
       <div className="flex flex-wrap items-center justify-between gap-3">

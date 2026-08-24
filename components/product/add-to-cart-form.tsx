@@ -39,9 +39,12 @@ export function AddToCartForm({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium text-text">Size</label>
+        <label id="variant-size-label" className="mb-1.5 block text-sm font-medium text-text">Size</label>
         <Select.Root value={variant.id} onValueChange={(v) => setVariantId(v)}>
-          <Select.Trigger className="flex w-full items-center justify-between border border-border px-4 py-3 text-sm text-text">
+          <Select.Trigger
+            aria-labelledby="variant-size-label"
+            className="flex w-full items-center justify-between border border-border px-4 py-3 text-sm text-text"
+          >
             <Select.Value />
             <Select.Icon>
               <CaretDown size={14} aria-hidden />

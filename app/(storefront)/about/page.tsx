@@ -15,7 +15,7 @@ export default function AboutPage() {
           <h1 className="max-w-lg text-[32px] leading-tight md:text-4xl">
             A herbalist who asks why, before reaching for a jar.
           </h1>
-          <div className="mt-6 max-w-lg space-y-4 text-[15px] leading-relaxed text-text-muted">
+          <div className="mt-6 max-w-lg space-y-4 text-[15px] leading-relaxed text-text">
             <p>
               Sofa Organics started with a simple frustration: most herbal shops sell blends that are
               pre-mixed, proprietary, and impossible to actually understand. Behind Sofa Organics is a master

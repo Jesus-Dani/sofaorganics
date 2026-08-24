@@ -69,7 +69,7 @@ export function CoverImageUploader({
           onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])}
         />
       </div>
-      {error && <p className="mt-2 text-xs text-accent">{error}</p>}
+      {error && <p className="mt-2 text-xs text-text">{error}</p>}
     </div>
   );
 }

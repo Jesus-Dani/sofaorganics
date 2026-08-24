@@ -51,12 +51,12 @@ export default async function AdminOrdersPage({
           name="q"
           defaultValue={search}
           placeholder="Search by name, email, or phone"
-          className="flex-1 border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none sm:max-w-xs"
+          className="flex-1 border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:max-w-xs"
         />
         <select
           name="status"
           defaultValue={status ?? ""}
-          className="border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <option value="">All statuses</option>
           {Object.entries(STATUS_LABEL).map(([value, label]) => (
@@ -68,7 +68,7 @@ export default async function AdminOrdersPage({
         <select
           name="source"
           defaultValue={source ?? ""}
-          className="border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <option value="">All sources</option>
           <option value="online">Online</option>
@@ -99,11 +99,11 @@ export default async function AdminOrdersPage({
                     {order.guest_name ?? order.guest_email ?? "Registered customer"}
                   </Link>
                 </td>
-                <td className="px-4 py-3 text-text-muted capitalize">{order.source}</td>
-                <td className="px-4 py-3 text-text-muted">{STATUS_LABEL[order.status]}</td>
-                <td className="px-4 py-3 text-text-muted">{order.item_count}</td>
-                <td className="px-4 py-3 text-text-muted">{formatCurrency(order.grand_total, order.currency)}</td>
-                <td className="px-4 py-3 text-text-muted">{new Date(order.created_at).toLocaleDateString()}</td>
+                <td className="px-4 py-3 text-text capitalize">{order.source}</td>
+                <td className="px-4 py-3 text-text">{STATUS_LABEL[order.status]}</td>
+                <td className="px-4 py-3 text-text">{order.item_count}</td>
+                <td className="px-4 py-3 text-text">{formatCurrency(order.grand_total, order.currency)}</td>
+                <td className="px-4 py-3 text-text">{new Date(order.created_at).toLocaleDateString()}</td>
               </tr>
             ))}
             {orders.length === 0 && (

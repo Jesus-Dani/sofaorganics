@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -13,6 +14,7 @@ type SearchValues = z.infer<typeof searchSchema>;
 
 export function SearchBar({ className = "" }: { className?: string }) {
   const router = useRouter();
+  const searchInputId = useId();
   const { register, handleSubmit } = useForm<SearchValues>({
     resolver: zodResolver(searchSchema),
     defaultValues: { q: "" },
@@ -28,8 +30,12 @@ export function SearchBar({ className = "" }: { className?: string }) {
       className={`flex items-stretch border border-border bg-background ${className}`}
       role="search"
     >
+      <label htmlFor={searchInputId} className="sr-only">
+        Search products and articles
+      </label>
       <input
         {...register("q")}
+        id={searchInputId}
         type="text"
         placeholder="Search products, articles"
         className="flex-1 bg-transparent px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:outline-none"

@@ -16,7 +16,7 @@ export function PetSafeNotes({ note }: { note: string }) {
             <CaretDown size={14} aria-hidden className="text-primary transition-transform group-data-[state=open]:rotate-180" />
           </Accordion.Trigger>
         </Accordion.Header>
-        <Accordion.Content className="px-4 pb-4 text-sm leading-relaxed text-text-muted">{note}</Accordion.Content>
+        <Accordion.Content className="px-4 pb-4 text-sm leading-relaxed text-text">{note}</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>
   );

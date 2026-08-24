@@ -5,7 +5,7 @@ export function NotFoundContent() {
     <div className="wrap py-24 text-center">
       <p className="eyebrow mb-4">404</p>
       <h1 className="text-[28px]">We couldn&apos;t find that page.</h1>
-      <p className="mx-auto mt-4 max-w-sm text-[15px] text-text-muted">
+      <p className="mx-auto mt-4 max-w-sm text-[15px] text-text">
         It may have moved, or the link might be off. Try the shop, or head back home.
       </p>
       <div className="mt-7 flex items-center justify-center gap-4">

@@ -18,18 +18,18 @@ export default async function AdminCustomerDetailPage({ params }: { params: { ke
       <section className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
         <div>
           <h2 className="mb-3 text-sm font-semibold uppercase text-text-muted">Contact</h2>
-          <p className="text-sm text-text-muted">{customer.email ?? "No email"}</p>
-          <p className="text-sm text-text-muted">{customer.phone ?? "No phone"}</p>
+          <p className="text-sm text-text">{customer.email ?? "No email"}</p>
+          <p className="text-sm text-text">{customer.phone ?? "No phone"}</p>
         </div>
         <div>
           <h2 className="mb-3 text-sm font-semibold uppercase text-text-muted">Lifetime metrics</h2>
-          <p className="text-sm text-text-muted">Orders: {customer.order_count}</p>
-          <p className="text-sm text-text-muted">Total spent: {formatCurrency(customer.total_spent, "NGN")}</p>
-          <p className="text-sm text-text-muted">Average order: {formatCurrency(customer.avg_order_value, "NGN")}</p>
-          <p className="text-sm text-text-muted">
+          <p className="text-sm text-text">Orders: {customer.order_count}</p>
+          <p className="text-sm text-text">Total spent: {formatCurrency(customer.total_spent, "NGN")}</p>
+          <p className="text-sm text-text">Average order: {formatCurrency(customer.avg_order_value, "NGN")}</p>
+          <p className="text-sm text-text">
             First order: {new Date(customer.first_order_at).toLocaleDateString()}
           </p>
-          <p className="text-sm text-text-muted">
+          <p className="text-sm text-text">
             Last order: {new Date(customer.last_order_at).toLocaleDateString()}
           </p>
         </div>
@@ -54,8 +54,8 @@ export default async function AdminCustomerDetailPage({ params }: { params: { ke
                       {order.status}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-text-muted">{formatCurrency(order.grand_total, order.currency)}</td>
-                  <td className="px-4 py-3 text-text-muted">{new Date(order.created_at).toLocaleDateString()}</td>
+                  <td className="px-4 py-3 text-text">{formatCurrency(order.grand_total, order.currency)}</td>
+                  <td className="px-4 py-3 text-text">{new Date(order.created_at).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>

@@ -12,7 +12,7 @@ export default function ContactPage() {
         <div>
           <p className="eyebrow mb-4">Contact</p>
           <h1 className="text-[32px] leading-tight">Reach us however&apos;s easiest.</h1>
-          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-text-muted">
+          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-text">
             Most orders and questions come through WhatsApp, and that&apos;s where you&apos;ll get
             the fastest answer, especially for wholesale or bulk sizes. The form is here too, for
             anything you&apos;d rather put in writing.

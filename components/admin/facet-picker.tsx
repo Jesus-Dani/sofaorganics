@@ -80,7 +80,7 @@ export function FacetPicker({
             }
           }}
           placeholder={`Add a new ${label.toLowerCase()} tag`}
-          className="flex-1 border border-border bg-background px-3 py-1.5 text-xs focus:border-primary focus:outline-none"
+          className="flex-1 border border-border bg-background px-3 py-1.5 text-xs focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
         <button
           type="button"
@@ -92,7 +92,7 @@ export function FacetPicker({
           Add
         </button>
       </div>
-      {error && <p className="mt-1 text-xs text-accent">{error}</p>}
+      {error && <p className="mt-1 text-xs text-text">{error}</p>}
     </div>
   );
 }

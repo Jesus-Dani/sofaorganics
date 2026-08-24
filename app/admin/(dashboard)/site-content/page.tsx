@@ -32,7 +32,7 @@ export default async function SiteContentPage() {
                     {LABELS[row.key] ?? row.key}
                   </Link>
                 </td>
-                <td className="px-4 py-3 text-text-muted">{new Date(row.updated_at).toLocaleDateString()}</td>
+                <td className="px-4 py-3 text-text">{new Date(row.updated_at).toLocaleDateString()}</td>
               </tr>
             ))}
           </tbody>

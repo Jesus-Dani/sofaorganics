@@ -48,7 +48,7 @@ export function AddWishlistItemToCartButton({ item }: { item: WishlistCard }) {
       >
         {item.stockQuantity === 0 ? "Out of Stock" : isPending ? "Moving…" : "Move to Cart"}
       </button>
-      {error && <p className="mt-1 text-xs text-accent">{error}</p>}
+      {error && <p className="mt-1 text-xs text-text">{error}</p>}
     </div>
   );
 }

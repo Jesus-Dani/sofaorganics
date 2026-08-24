@@ -24,7 +24,7 @@ export default async function AccountOrdersPage() {
 
       {orders.length === 0 ? (
         <div className="mt-10 border border-dashed border-border py-16 text-center">
-          <p className="text-text-muted">No orders yet.</p>
+          <p className="text-text">No orders yet.</p>
           <Link href="/shop" className="mt-4 inline-block text-sm font-medium text-primary underline">
             Browse the shop
           </Link>

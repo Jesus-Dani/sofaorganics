@@ -23,7 +23,7 @@ export function AddressesManager({ addresses }: { addresses: AddressRow[] }) {
     <div className="space-y-4">
       {addresses.map((address) => (
         <div key={address.id} className="flex items-start justify-between border border-border p-5">
-          <div className="text-sm text-text-muted">
+          <div className="text-sm text-text">
             {address.is_default && <p className="mb-1 text-xs font-semibold uppercase text-primary">Default</p>}
             {address.label && <p className="font-medium text-text">{address.label}</p>}
             <p>{address.line1}</p>

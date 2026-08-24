@@ -42,7 +42,7 @@ export function RelatedProductsPicker({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search products to link"
-          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
         {results.length > 0 && (
           <ul className="absolute z-10 mt-1 w-full border border-border bg-background shadow-lg">

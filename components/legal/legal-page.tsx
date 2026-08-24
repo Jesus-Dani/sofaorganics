@@ -5,7 +5,7 @@ export function LegalPage({ title, bodyHtml }: { title: string; bodyHtml: string
       <div className="mt-3 inline-flex items-center gap-2 bg-secondary/40 px-3 py-1.5 text-xs font-medium text-text">
         Placeholder text, pending legal review before launch
       </div>
-      <div className="prose prose-sm mt-8 max-w-none text-text-muted" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+      <div className="prose prose-sm mt-8 max-w-none text-text" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
     </div>
   );
 }

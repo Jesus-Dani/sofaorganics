@@ -37,7 +37,7 @@ export function OrderStatusSelect({ orderId, status }: { orderId: string; status
         defaultValue={status}
         disabled={isPending}
         onChange={(e) => handleChange(e.target.value as OrderStatus)}
-        className="border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none disabled:opacity-50"
+        className="border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50"
       >
         {STATUS_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
@@ -45,7 +45,7 @@ export function OrderStatusSelect({ orderId, status }: { orderId: string; status
           </option>
         ))}
       </select>
-      {error && <p className="mt-1.5 text-xs text-accent">{error}</p>}
+      {error && <p className="mt-1.5 text-xs text-text">{error}</p>}
     </div>
   );
 }

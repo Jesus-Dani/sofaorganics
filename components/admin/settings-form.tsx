@@ -45,27 +45,34 @@ export function SettingsForm({ settings }: { settings: StoreSettingsRow }) {
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-text">Business info</h2>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-text">Business name</label>
+          <label htmlFor="businessName" className="mb-1.5 block text-sm font-medium text-text">Business name</label>
           <input
+            id="businessName"
             {...register("businessName")}
-            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.businessName}
+            aria-describedby={errors.businessName ? "businessName-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.businessName?.message} />
+          <FieldError id="businessName-error" message={errors.businessName?.message} />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-text">WhatsApp number</label>
+          <label htmlFor="whatsappNumber" className="mb-1.5 block text-sm font-medium text-text">WhatsApp number</label>
           <input
+            id="whatsappNumber"
             {...register("whatsappNumber")}
-            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-text">Contact email</label>
+          <label htmlFor="contactEmail" className="mb-1.5 block text-sm font-medium text-text">Contact email</label>
           <input
+            id="contactEmail"
             {...register("contactEmail")}
-            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.contactEmail}
+            aria-describedby={errors.contactEmail ? "contactEmail-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.contactEmail?.message} />
+          <FieldError id="contactEmail-error" message={errors.contactEmail?.message} />
         </div>
       </section>
 
@@ -84,7 +91,7 @@ export function SettingsForm({ settings }: { settings: StoreSettingsRow }) {
         </label>
       </section>
 
-      {saveError && <FieldError message={saveError} />}
+      {saveError && <FieldError id="settings-save-error" message={saveError} />}
       {savedAt && !saveError && <p className="text-sm text-primary">Saved.</p>}
 
       <button

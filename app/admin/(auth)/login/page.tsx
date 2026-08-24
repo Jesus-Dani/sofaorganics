@@ -58,9 +58,11 @@ export default function AdminLoginPage() {
             id="email"
             type="email"
             {...register("email")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.email?.message} />
+          <FieldError id="email-error" message={errors.email?.message} />
         </div>
         <div>
           <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-text">
@@ -70,14 +72,16 @@ export default function AdminLoginPage() {
             id="password"
             type="password"
             {...register("password")}
-            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.password}
+            aria-describedby={errors.password ? "password-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.password?.message} />
+          <FieldError id="password-error" message={errors.password?.message} />
         </div>
 
         {error && (
-          <p className="flex items-start gap-1.5 text-xs text-accent">
-            <WarningCircle size={13} className="mt-0.5 shrink-0" aria-hidden />
+          <p className="flex items-start gap-1.5 text-xs text-text">
+            <WarningCircle size={13} className="mt-0.5 shrink-0 text-accent" aria-hidden />
             {error}
           </p>
         )}

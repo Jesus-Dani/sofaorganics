@@ -35,7 +35,7 @@ export function Footer() {
       <div className="wrap grid grid-cols-2 gap-10 py-16 md:grid-cols-5">
         <div className="col-span-2">
           <span className="block font-serif text-2xl font-semibold text-text">SOFA Organics</span>
-          <p className="mt-3 max-w-xs text-sm text-text-muted">
+          <p className="mt-3 max-w-xs text-sm text-text">
             Ayurvedic and African herbs, spices, and oils, guided by a functional-medicine approach.
             Rooted in tradition, sold with a wellness-support promise, never a cure claim.
           </p>
@@ -68,7 +68,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border py-6">
-        <div className="wrap flex flex-col items-center justify-between gap-2 text-xs text-text-muted sm:flex-row">
+        <div className="wrap flex flex-col items-center justify-between gap-2 text-xs text-text sm:flex-row">
           <p>© {new Date().getFullYear()} Sofa Organics. All rights reserved.</p>
           <p>Herbal and wellness products are not intended to diagnose, treat, cure, or prevent any disease.</p>
         </div>

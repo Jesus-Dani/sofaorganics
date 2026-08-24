@@ -52,7 +52,7 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
           id="address-label"
           {...register("label")}
           placeholder="e.g. Home, Office"
-          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </div>
       <div>
@@ -62,9 +62,11 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
         <input
           id="address-line1"
           {...register("line1")}
-          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          aria-invalid={!!errors.line1}
+          aria-describedby={errors.line1 ? "address-line1-error" : undefined}
+          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
-        <FieldError message={errors.line1?.message} />
+        <FieldError id="address-line1-error" message={errors.line1?.message} />
       </div>
       <div>
         <label htmlFor="address-line2" className="mb-1.5 block text-sm font-medium text-text">
@@ -73,7 +75,7 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
         <input
           id="address-line2"
           {...register("line2")}
-          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </div>
       <div className="grid grid-cols-2 gap-4">
@@ -84,9 +86,11 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
           <input
             id="address-city"
             {...register("city")}
-            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.city}
+            aria-describedby={errors.city ? "address-city-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.city?.message} />
+          <FieldError id="address-city-error" message={errors.city?.message} />
         </div>
         <div>
           <label htmlFor="address-state" className="mb-1.5 block text-sm font-medium text-text">
@@ -95,9 +99,11 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
           <input
             id="address-state"
             {...register("state")}
-            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+            aria-invalid={!!errors.state}
+            aria-describedby={errors.state ? "address-state-error" : undefined}
+            className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           />
-          <FieldError message={errors.state?.message} />
+          <FieldError id="address-state-error" message={errors.state?.message} />
         </div>
       </div>
       <div>
@@ -107,7 +113,7 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
         <input
           id="address-postal-code"
           {...register("postalCode")}
-          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none"
+          className="w-full border border-border bg-background px-4 py-2.5 text-sm focus:border-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         />
       </div>
       <label className="flex items-center gap-2 text-sm text-text">
@@ -115,7 +121,7 @@ export function AddressForm({ address, onDone }: { address?: AddressRow; onDone:
         Set as default address
       </label>
 
-      <FieldError message={saveError ?? undefined} />
+      <FieldError id="address-save-error" message={saveError ?? undefined} />
 
       <div className="flex gap-3">
         <button
