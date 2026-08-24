@@ -22,8 +22,12 @@ export function CheckoutForm({
   savedAddresses: AddressRow[];
 }) {
   const router = useRouter();
-  const { lines, subtotal } = useCart();
+  const { lines, subtotal, clearCart } = useCart();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  // Cart clears the instant the order is created (see onSubmit) — this flag keeps
+  // rendering the form/summary through the brief window before navigation away
+  // finishes, instead of flashing "Your cart is empty" once lines.length hits 0.
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const {
     register,
@@ -45,7 +49,7 @@ export function CheckoutForm({
   const grandTotal = subtotal + shippingTotal + taxTotal;
   const currency = lines[0]?.currency ?? "NGN";
 
-  if (lines.length === 0) {
+  if (lines.length === 0 && !hasSubmitted) {
     return (
       <div className="mt-10 border border-dashed border-border py-16 text-center">
         <p className="text-text-muted">Your cart is empty.</p>
@@ -73,11 +77,13 @@ export function CheckoutForm({
         throw new Error(json.error ?? "Something went wrong placing your order.");
       }
 
-      // Cart is cleared once we actually reach the confirmation page (a real "paid"
-      // signal), not here — clearing it now, while this form is still mounted, made
-      // it re-render with lines.length === 0 and flash the "cart is empty" state
-      // before the navigation to /pay (and then Paystack) even finished. It also
-      // wiped the cart even if the customer abandoned payment on Paystack.
+      // Clear once the order actually exists — its items now belong to the order,
+      // not the cart, regardless of whether payment settles later. Clearing here
+      // (rather than waiting for a "paid" signal on confirmation) also means a
+      // customer whose payment is still pending doesn't see their old cart contents
+      // still sitting there, which read as "checkout silently failed."
+      setHasSubmitted(true);
+      clearCart();
       router.push(`/checkout/${json.orderId}/pay`);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong placing your order.");
@@ -278,6 +284,13 @@ export function CheckoutForm({
         >
           {isSubmitting ? "Placing order…" : "Place order"}
         </button>
+        <p className="text-center text-xs text-text-muted">
+          Read our{" "}
+          <Link href="/legal/returns-policy" className="underline hover:text-primary">
+            returns &amp; refund policy
+          </Link>
+          .
+        </p>
       </div>
     </form>
   );

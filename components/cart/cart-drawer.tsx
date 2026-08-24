@@ -58,7 +58,7 @@ export function CartDrawer() {
                           type="button"
                           onClick={() => removeLine(line.variantId)}
                           aria-label={`Remove ${line.productName} from cart`}
-                          className="text-text-muted hover:text-accent"
+                          className="-m-3.5 p-3.5 text-text-muted hover:text-accent"
                         >
                           <Trash size={16} aria-hidden />
                         </button>
@@ -69,7 +69,7 @@ export function CartDrawer() {
                             type="button"
                             aria-label="Decrease quantity"
                             onClick={() => setQuantity(line.variantId, line.quantity - 1)}
-                            className="flex h-7 w-7 items-center justify-center"
+                            className="flex h-11 w-11 items-center justify-center"
                           >
                             <Minus size={12} aria-hidden />
                           </button>
@@ -78,7 +78,7 @@ export function CartDrawer() {
                             type="button"
                             aria-label="Increase quantity"
                             onClick={() => setQuantity(line.variantId, line.quantity + 1)}
-                            className="flex h-7 w-7 items-center justify-center"
+                            className="flex h-11 w-11 items-center justify-center"
                           >
                             <Plus size={12} aria-hidden />
                           </button>

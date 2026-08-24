@@ -2,6 +2,18 @@ import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { checkoutRequestSchema } from "@/lib/checkout/schema";
 
+/** create_guest_order raises raw Postgres exceptions (e.g. with a SKU) — translate the
+ * ones a customer can actually hit into plain language instead of surfacing them as-is. */
+function toCustomerFacingError(message: string): string {
+  if (message.startsWith("Insufficient stock for")) {
+    return "One item in your cart just sold out — please update the quantity or remove it and try again.";
+  }
+  if (message.startsWith("Product variant") && message.includes("not found")) {
+    return "One item in your cart is no longer available — please remove it and try again.";
+  }
+  return message;
+}
+
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const parsed = checkoutRequestSchema.safeParse(body);
@@ -21,7 +33,7 @@ export async function POST(request: Request) {
   });
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 422 });
+    return NextResponse.json({ error: toCustomerFacingError(error.message) }, { status: 422 });
   }
 
   return NextResponse.json({ orderId });
